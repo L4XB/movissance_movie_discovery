@@ -15,6 +15,7 @@ part 'home_state.dart';
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(HomeInitial()) {
     on<HomeInitialLoadingEvent>(loadInitialHomeData);
+    on<SelectGenreEvent>(loadMoviesByGenre);
   }
 
   GenreRepository genreRepository = ApiGenreRepository();
@@ -22,11 +23,23 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   FutureOr<void> loadInitialHomeData(
       HomeInitialLoadingEvent event, Emitter<HomeState> emit) async {
-    emit(HomeInitialDataLoadingState());
+    emit(HomeLoadingState());
     try {
       final genres = await genreRepository.getAllGenres();
       final movies = await movieRepository.getPopularMovies();
       emit(HomeInitialDataLoadedState(genres: genres, movies: movies));
+    } catch (e) {
+      emit(HomeErrorState(e.toString()));
+    }
+  }
+
+  FutureOr<void> loadMoviesByGenre(
+      SelectGenreEvent event, Emitter<HomeState> emit) async {
+    emit(HomeLoadingState());
+    try {
+      final movies = await movieRepository.discoverMovies(
+          event.page, event.genre.id, null);
+      emit(HomeMoviesByGenreLoadedState(movies));
     } catch (e) {
       emit(HomeErrorState(e.toString()));
     }

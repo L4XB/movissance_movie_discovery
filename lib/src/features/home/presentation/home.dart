@@ -13,7 +13,7 @@ class HomeScreen extends StatelessWidget {
       ),
       body: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
-          if (state is HomeInitialDataLoadingState) {
+          if (state is HomeLoadingState) {
             return const Center(child: CircularProgressIndicator());
           } else if (state is HomeInitialDataLoadedState) {
             return ListView.builder(

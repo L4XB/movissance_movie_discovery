@@ -5,7 +5,13 @@ sealed class HomeState {}
 
 final class HomeInitial extends HomeState {}
 
-final class HomeInitialDataLoadingState extends HomeState {}
+final class HomeLoadingState extends HomeState {}
+
+final class HomeErrorState extends HomeState {
+  final String message;
+
+  HomeErrorState(this.message);
+}
 
 final class HomeInitialDataLoadedState extends HomeState {
   final List<GenreModel> genres;
@@ -14,8 +20,8 @@ final class HomeInitialDataLoadedState extends HomeState {
   HomeInitialDataLoadedState({required this.genres, required this.movies});
 }
 
-final class HomeErrorState extends HomeState {
-  final String message;
+final class HomeMoviesByGenreLoadedState extends HomeState {
+  final List<MovieModel> movies;
 
-  HomeErrorState(this.message);
+  HomeMoviesByGenreLoadedState(this.movies);
 }
