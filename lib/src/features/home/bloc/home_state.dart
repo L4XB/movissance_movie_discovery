@@ -25,3 +25,15 @@ final class HomeMoviesByGenreLoadedState extends HomeState {
 
   HomeMoviesByGenreLoadedState(this.movies);
 }
+
+final class HomeMovieDetailsLoadedState extends HomeState {
+  final MovieDetailModel movie;
+
+  HomeMovieDetailsLoadedState(this.movie);
+}
+
+final class HomeMovieSearchResultState extends HomeState {
+  final List<MovieModel> movies;
+
+  HomeMovieSearchResultState(this.movies);
+}

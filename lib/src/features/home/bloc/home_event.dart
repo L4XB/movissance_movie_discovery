@@ -11,3 +11,15 @@ final class SelectGenreEvent extends HomeEvent {
 
   SelectGenreEvent(this.genre, this.page);
 }
+
+final class SelectMovieEvent extends HomeEvent {
+  final int movieId;
+
+  SelectMovieEvent(this.movieId);
+}
+
+final class SearchMovieEvent extends HomeEvent {
+  final String query;
+
+  SearchMovieEvent(this.query);
+}

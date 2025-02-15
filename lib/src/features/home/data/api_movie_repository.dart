@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:red_line/src/common/utils/string_formater.dart';
 import 'package:red_line/src/config.dart';
 import 'package:red_line/src/features/home/data/movie_repository.dart';
 import 'package:red_line/src/features/home/domain/movie_detail_model.dart';
@@ -114,10 +113,10 @@ class ApiMovieRepository implements MovieRepository {
   }
 
   @override
-  Future<List<MovieModel>> searchMovieByName(String text) async {
+  Future<List<MovieModel>> searchMovieByName(String query) async {
     final Map<String, dynamic> queryParameters = {
       "api_key": theMovieDatabaseApiKey,
-      "query": StringFormater.textToQuery(text),
+      "query": query,
     };
     final Response response = await Dio().get(
         "$theMovieDatabaseApiBaseURL/search/movie",
