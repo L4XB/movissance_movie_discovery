@@ -19,7 +19,21 @@ final class SelectMovieEvent extends HomeEvent {
 }
 
 final class SearchMovieEvent extends HomeEvent {
+  final int page;
   final String query;
 
-  SearchMovieEvent(this.query);
+  SearchMovieEvent(this.query, this.page);
+}
+
+final class LoadMoreMoviesEvent extends HomeEvent {
+  final int currentPage;
+  final GenreModel genre;
+
+  LoadMoreMoviesEvent(this.genre, this.currentPage);
+}
+
+final class LoadTopRatedMoviesEvent extends HomeEvent {
+  final int page;
+
+  LoadTopRatedMoviesEvent(this.page);
 }

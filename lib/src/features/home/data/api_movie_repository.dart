@@ -49,10 +49,12 @@ class ApiMovieRepository implements MovieRepository {
   }
 
   @override
-  Future<List<MovieModel>> getPopularMovies() async {
-    final Response response = await Dio().get(
-        "$theMovieDatabaseApiBaseURL/movie/popular",
-        queryParameters: {"api_key": theMovieDatabaseApiKey});
+  Future<List<MovieModel>> getPopularMovies(int page) async {
+    final Response response = await Dio()
+        .get("$theMovieDatabaseApiBaseURL/movie/popular", queryParameters: {
+      "api_key": theMovieDatabaseApiKey,
+      "page": page,
+    });
 
     if (response.statusCode == 200 || response.statusCode == 201) {
       final List<MovieModel> movies = (response.data["results"] as List)
@@ -65,10 +67,13 @@ class ApiMovieRepository implements MovieRepository {
   }
 
   @override
-  Future<List<MovieModel>> getSimilarMovies(int id) async {
+  Future<List<MovieModel>> getSimilarMovies(int id, int page) async {
     final Response response = await Dio().get(
         "$theMovieDatabaseApiBaseURL/movie/$id/recommendations",
-        queryParameters: {"api_key": theMovieDatabaseApiKey});
+        queryParameters: {
+          "api_key": theMovieDatabaseApiKey,
+          "page": page,
+        });
 
     if (response.statusCode == 200 || response.statusCode == 201) {
       final List<MovieModel> movies = (response.data["results"] as List)
@@ -81,10 +86,12 @@ class ApiMovieRepository implements MovieRepository {
   }
 
   @override
-  Future<List<MovieModel>> getTopRatedMovies() async {
-    final Response response = await Dio().get(
-        "$theMovieDatabaseApiBaseURL/movie/top_rated",
-        queryParameters: {"api_key": theMovieDatabaseApiKey});
+  Future<List<MovieModel>> getTopRatedMovies(int page) async {
+    final Response response = await Dio()
+        .get("$theMovieDatabaseApiBaseURL/movie/top_rated", queryParameters: {
+      "api_key": theMovieDatabaseApiKey,
+      "page": page,
+    });
 
     if (response.statusCode == 200 || response.statusCode == 201) {
       final List<MovieModel> movies = (response.data["results"] as List)
@@ -97,10 +104,12 @@ class ApiMovieRepository implements MovieRepository {
   }
 
   @override
-  Future<List<MovieModel>> getUpcomingMovies() async {
-    final Response response = await Dio().get(
-        "$theMovieDatabaseApiBaseURL/movie/upcoming",
-        queryParameters: {"api_key": theMovieDatabaseApiKey});
+  Future<List<MovieModel>> getUpcomingMovies(int page) async {
+    final Response response = await Dio()
+        .get("$theMovieDatabaseApiBaseURL/movie/upcoming", queryParameters: {
+      "api_key": theMovieDatabaseApiKey,
+      "page": page,
+    });
 
     if (response.statusCode == 200 || response.statusCode == 201) {
       final List<MovieModel> movies = (response.data["results"] as List)
@@ -113,10 +122,11 @@ class ApiMovieRepository implements MovieRepository {
   }
 
   @override
-  Future<List<MovieModel>> searchMovieByName(String query) async {
+  Future<List<MovieModel>> searchMovieByName(String query, int page) async {
     final Map<String, dynamic> queryParameters = {
       "api_key": theMovieDatabaseApiKey,
       "query": query,
+      "page": page,
     };
     final Response response = await Dio().get(
         "$theMovieDatabaseApiBaseURL/search/movie",

@@ -20,6 +20,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<SelectGenreEvent>(loadMoviesByGenre);
     on<SelectMovieEvent>(loadMovieDetails);
     on<SearchMovieEvent>(loadMoviesBySearchQuery);
+    on<LoadMoreMoviesEvent>(loadMoreMovies);
+    on<LoadTopRatedMoviesEvent>(loadTopRadedMovies);
   }
 
   GenreRepository genreRepository = ApiGenreRepository();
@@ -30,7 +32,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     emit(HomeLoadingState());
     try {
       final genres = await genreRepository.getAllGenres();
-      final movies = await movieRepository.getPopularMovies();
+      final movies = await movieRepository.getPopularMovies(1);
       emit(HomeInitialDataLoadedState(genres: genres, movies: movies));
     } catch (e) {
       emit(HomeErrorState(e.toString()));
@@ -65,8 +67,31 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     emit(HomeLoadingState());
     try {
       final query = StringFormater.textToQuery(event.query);
-      final movies = await movieRepository.searchMovieByName(query);
+      final movies = await movieRepository.searchMovieByName(query, event.page);
       emit(HomeMovieSearchResultState(movies));
+    } catch (e) {
+      emit(HomeErrorState(e.toString()));
+    }
+  }
+
+  FutureOr<void> loadMoreMovies(
+      LoadMoreMoviesEvent event, Emitter<HomeState> emit) async {
+    emit(HomeLoadingState());
+    try {
+      final movies = await movieRepository.discoverMovies(
+          event.currentPage + 1, event.genre.id, null);
+      emit(HomeMoviesByGenreLoadedState(movies));
+    } catch (e) {
+      emit(HomeErrorState(e.toString()));
+    }
+  }
+
+  FutureOr<void> loadTopRadedMovies(
+      LoadTopRatedMoviesEvent event, Emitter<HomeState> emit) async {
+    emit(HomeLoadingState());
+    try {
+      final movies = await movieRepository.getTopRatedMovies(event.page);
+      emit(HomeMoviesByGenreLoadedState(movies));
     } catch (e) {
       emit(HomeErrorState(e.toString()));
     }
