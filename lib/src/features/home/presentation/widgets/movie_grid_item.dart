@@ -26,7 +26,8 @@ class MovieGridItem extends StatelessWidget {
             ),
           ),
           Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding:
+                  const EdgeInsets.only(top: 8, left: 8, right: 8, bottom: 4),
               child: AutoSizeText(
                 movie.title,
                 style: TextStyle(
@@ -42,11 +43,12 @@ class MovieGridItem extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Row(
               children: [
-                Icon(Icons.star, color: Colors.yellow, size: 16),
-                SizedBox(width: 4),
+                Icon(Icons.star,
+                    color: const Color.fromARGB(255, 228, 214, 90), size: 20),
+                SizedBox(width: 2),
                 Text(
-                  movie.voteAverage.toString(),
-                  style: TextStyle(fontSize: 14),
+                  movie.voteAverage.toStringAsFixed(1),
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
