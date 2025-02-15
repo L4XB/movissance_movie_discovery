@@ -77,9 +77,19 @@ class ApiMovieRepository implements MovieRepository {
   }
 
   @override
-  Future<List<MovieModel>> getUpcomingMovies() {
-    // TODO: implement getUpcomingMovies
-    throw UnimplementedError();
+  Future<List<MovieModel>> getUpcomingMovies() async {
+    final Response response = await Dio().get(
+        "$theMovieDatabaseApiBaseURL/movie/upcoming",
+        queryParameters: {"api_key": theMovieDatabaseApiKey});
+
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      final List<MovieModel> movies = (response.data["results"] as List)
+          .map((movie) => MovieModel.fromJson(movie))
+          .toList();
+      return movies;
+    } else {
+      throw Exception("Failed to load upcoming movies");
+    }
   }
 
   @override
