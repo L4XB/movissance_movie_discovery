@@ -21,7 +21,7 @@ class HomeScreen extends StatelessWidget {
               itemBuilder: (context, index) {
                 return SizedBox(
                   child: Image.network(
-                      "https://image.tmdb.org/t/p/w500/${state.movies[index].posterPath}"),
+                      "https://image.tmdb.org/t/p/w500${state.movies[index].posterPath}"),
                 );
               },
             );
