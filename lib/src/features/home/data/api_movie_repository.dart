@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:red_line/src/config.dart';
 import 'package:red_line/src/features/home/data/movie_repository.dart';
+import 'package:red_line/src/features/home/domain/movie_detail_model.dart';
 import 'package:red_line/src/features/home/domain/movie_model.dart';
 
 class ApiMovieRepository implements MovieRepository {
@@ -35,10 +36,16 @@ class ApiMovieRepository implements MovieRepository {
   }
 
   @override
-  Future<MovieModel> getMovieDetail(int id) async {
+  Future<MovieDetailModel> getMovieDetail(int id) async {
     final Response response = await Dio().get(
         "$theMovieDatabaseApiBaseURL/movie/$id",
         queryParameters: {"api_key": theMovieDatabaseApiKey});
+
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return MovieDetailModel.fromJson(response.data);
+    } else {
+      throw Exception("Failed to load movie detail");
+    }
   }
 
   @override

@@ -60,36 +60,38 @@ class MovieDetailModel {
 
   factory MovieDetailModel.fromJson(Map<String, dynamic> json) {
     return MovieDetailModel(
-      adult: json['adult'],
-      backdropPath: json['backdrop_path'],
-      budget: json['budget'],
+      adult: json['adult'] ?? false,
+      backdropPath: json['backdrop_path'] ?? '',
+      budget: json['budget'] ?? 0,
       genres: List<GenreModel>.from(
-          json['genres'].map((x) => GenreModel.fromJson(x))),
-      homepage: json['homepage'],
-      id: json['id'],
-      imdbId: json['imdb_id'],
-      originCountry: List<String>.from(json['origin_country']),
-      originalLanguage: json['original_language'],
-      originalTitle: json['original_title'],
-      overview: json['overview'],
-      popularity: json['popularity'].toDouble(),
-      posterPath: json['poster_path'],
+          (json['genres'] ?? []).map((x) => GenreModel.fromJson(x))),
+      homepage: json['homepage'] ?? '',
+      id: json['id'] ?? 0,
+      imdbId: json['imdb_id'] ?? '',
+      originCountry: List<String>.from(json['origin_country'] ?? []),
+      originalLanguage: json['original_language'] ?? '',
+      originalTitle: json['original_title'] ?? '',
+      overview: json['overview'] ?? '',
+      popularity: (json['popularity'] ?? 0.0).toDouble(),
+      posterPath: json['poster_path'] ?? '',
       productionCompanies: List<ProviderModel>.from(
-          json['production_companies'].map((x) => ProviderModel.fromJson(x))),
+          (json['production_companies'] ?? [])
+              .map((x) => ProviderModel.fromJson(x))),
       productionCountries: List<ProductionCountryModel>.from(
-          json['production_countries']
+          (json['production_countries'] ?? [])
               .map((x) => ProductionCountryModel.fromJson(x))),
-      releaseDate: json['release_date'],
-      revenue: json['revenue'],
-      runtime: json['runtime'],
+      releaseDate: json['release_date'] ?? '',
+      revenue: json['revenue'] ?? 0,
+      runtime: json['runtime'] ?? 0,
       spokenLanguages: List<SpokenLanguageModel>.from(
-          json['spoken_languages'].map((x) => SpokenLanguageModel.fromJson(x))),
-      status: json['status'],
-      tagline: json['tagline'],
-      title: json['title'],
-      video: json['video'],
-      voteAverage: json['vote_average'].toDouble(),
-      voteCount: json['vote_count'],
+          (json['spoken_languages'] ?? [])
+              .map((x) => SpokenLanguageModel.fromJson(x))),
+      status: json['status'] ?? '',
+      tagline: json['tagline'] ?? '',
+      title: json['title'] ?? '',
+      video: json['video'] ?? false,
+      voteAverage: (json['vote_average'] ?? 0.0).toDouble(),
+      voteCount: json['vote_count'] ?? 0,
     );
   }
 

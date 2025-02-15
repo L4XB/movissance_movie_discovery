@@ -16,11 +16,11 @@ class ProviderModel {
 
   factory ProviderModel.fromJson(Map<String, dynamic> json) {
     return ProviderModel(
-      id: json['id'],
-      logoPath: json['logo_path'],
-      providerId: json['provider_id'],
-      providerName: json['provider_name'],
-      displayPriority: json['display_priority'],
+      id: json['id'] ?? 0,
+      logoPath: json['logo_path'] ?? '',
+      providerId: json['provider_id'] ?? 0,
+      providerName: json['provider_name'] ?? '',
+      displayPriority: json['display_priority'] ?? 0,
     );
   }
 
