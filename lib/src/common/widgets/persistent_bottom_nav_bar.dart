@@ -16,7 +16,8 @@ class PersistentBottomNavBar extends StatelessWidget {
       resizeToAvoidBottomInset: true,
       hideNavigationBarWhenKeyboardAppears: true,
       padding: const EdgeInsets.only(top: 8),
-      backgroundColor: Colors.grey.shade900,
+      //Colors.grey.shade900
+      backgroundColor: CupertinoColors.systemBackground,
       isVisible: true,
       animationSettings: const NavBarAnimationSettings(
         navBarItemAnimation: ItemAnimationSettings(

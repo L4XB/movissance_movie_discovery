@@ -16,7 +16,10 @@ class HomeScreen extends StatelessWidget {
             if (state is HomeLoadingState) {
               return const Center(child: CircularProgressIndicator());
             } else if (state is HomeInitialDataLoadedState) {
-              return HomeScreenContent();
+              return HomeScreenContent(
+                genres: state.genres,
+                movies: state.movies,
+              );
             } else if (state is HomeErrorState) {
               return Center(child: Text(state.message));
             }
