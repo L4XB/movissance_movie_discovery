@@ -11,9 +11,9 @@ class SpokenLanguageModel {
 
   factory SpokenLanguageModel.fromJson(Map<String, dynamic> json) {
     return SpokenLanguageModel(
-      englishName: json['english_name'],
-      iso6391: json['iso_639_1'],
-      name: json['name'],
+      englishName: json['english_name'] ?? "",
+      iso6391: json['iso_639_1'] ?? "",
+      name: json['name'] ?? "",
     );
   }
 
