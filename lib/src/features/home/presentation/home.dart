@@ -10,22 +10,20 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       // backgroundColor: Colors.grey.shade900,
-      body: SafeArea(
-        child: BlocBuilder<HomeBloc, HomeState>(
-          builder: (context, state) {
-            if (state is HomeLoadingState) {
-              return const Center(child: CircularProgressIndicator());
-            } else if (state is HomeInitialDataLoadedState) {
-              return HomeScreenContent(
-                genres: state.genres,
-                movies: state.movies,
-              );
-            } else if (state is HomeErrorState) {
-              return Center(child: Text(state.message));
-            }
-            return const Center(child: Text('Unbekannter Zustand'));
-          },
-        ),
+      body: BlocBuilder<HomeBloc, HomeState>(
+        builder: (context, state) {
+          if (state is HomeLoadingState) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (state is HomeInitialDataLoadedState) {
+            return HomeScreenContent(
+              genres: state.genres,
+              movies: state.movies,
+            );
+          } else if (state is HomeErrorState) {
+            return Center(child: Text(state.message));
+          }
+          return const Center(child: Text('Unbekannter Zustand'));
+        },
       ),
     );
   }

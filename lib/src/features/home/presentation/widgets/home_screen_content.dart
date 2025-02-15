@@ -20,12 +20,13 @@ class HomeScreenContent extends StatelessWidget {
         SliverToBoxAdapter(
           child: Column(
             children: [
+              SizedBoxExtension.height(60),
               GreetingWidget(),
               SizedBoxExtension.height(20),
               SearchFieldWidget(),
               SizedBoxExtension.height(20),
               GenreChipsWidget(genres: genres),
-              SizedBoxExtension.height(20),
+              SizedBoxExtension.height(10),
               MovieGridWidget(movies: movies),
             ],
           ),

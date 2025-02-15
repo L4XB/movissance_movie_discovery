@@ -8,10 +8,10 @@ class MovieGridWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Stack(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 21),
+          padding: const EdgeInsets.only(left: 21, top: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -23,7 +23,6 @@ class MovieGridWidget extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(height: 10),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 18),
           child: GridView.builder(
