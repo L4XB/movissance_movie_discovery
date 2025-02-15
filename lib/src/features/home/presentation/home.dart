@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:red_line/src/features/home/data/api_movie_repository.dart';
 import 'package:red_line/src/features/home/data/movie_repository.dart';
-import 'package:red_line/src/features/home/domain/movie_detail_model.dart';
+import 'package:red_line/src/features/home/domain/movie_model.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -13,10 +13,12 @@ class HomeScreen extends StatelessWidget {
       body: Center(
         child: OutlinedButton(
             onPressed: () async {
-              final MovieDetailModel movie =
-                  await movieRepository.getMovieDetail(181808);
+              final List<MovieModel> movies =
+                  await movieRepository.getPopularMovies();
 
-              print(movie.title);
+              for (final MovieModel movie in movies) {
+                print(movie.title);
+              }
             },
             child: Text("Test API call")),
       ),
