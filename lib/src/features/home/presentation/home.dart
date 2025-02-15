@@ -14,7 +14,7 @@ class HomeScreen extends StatelessWidget {
         child: OutlinedButton(
             onPressed: () async {
               final List<MovieModel> movies =
-                  await movieRepository.getUpcomingMovies();
+                  await movieRepository.getTopRatedMovies();
 
               for (final MovieModel movie in movies) {
                 print(movie.title);

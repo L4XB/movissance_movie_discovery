@@ -71,9 +71,19 @@ class ApiMovieRepository implements MovieRepository {
   }
 
   @override
-  Future<List<MovieModel>> getTopRatedMovies() {
-    // TODO: implement getTopRatedMovies
-    throw UnimplementedError();
+  Future<List<MovieModel>> getTopRatedMovies() async {
+    final Response response = await Dio().get(
+        "$theMovieDatabaseApiBaseURL/movie/top_rated",
+        queryParameters: {"api_key": theMovieDatabaseApiKey});
+
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      final List<MovieModel> movies = (response.data["results"] as List)
+          .map((movie) => MovieModel.fromJson(movie))
+          .toList();
+      return movies;
+    } else {
+      throw Exception("Failed to load top rated movies");
+    }
   }
 
   @override
