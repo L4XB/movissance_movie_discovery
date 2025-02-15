@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:red_line/src/common/utils/string_formater.dart';
 import 'package:red_line/src/config.dart';
 import 'package:red_line/src/features/home/data/movie_repository.dart';
 import 'package:red_line/src/features/home/domain/movie_detail_model.dart';
@@ -113,8 +114,22 @@ class ApiMovieRepository implements MovieRepository {
   }
 
   @override
-  Future<List<MovieModel>> searchMovieByName(String query) {
-    // TODO: implement searchMovieByName
-    throw UnimplementedError();
+  Future<List<MovieModel>> searchMovieByName(String text) async {
+    final Map<String, dynamic> queryParameters = {
+      "api_key": theMovieDatabaseApiKey,
+      "query": StringFormater.textToQuery(text),
+    };
+    final Response response = await Dio().get(
+        "$theMovieDatabaseApiBaseURL/search/movie",
+        queryParameters: queryParameters);
+
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      final List<MovieModel> movies = (response.data["results"] as List)
+          .map((movie) => MovieModel.fromJson(movie))
+          .toList();
+      return movies;
+    } else {
+      throw Exception("Failed to load movies");
+    }
   }
 }
