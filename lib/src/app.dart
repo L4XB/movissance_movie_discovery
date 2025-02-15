@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:red_line/src/common/presentation/persistent_bottom_nav_bar.dart';
+import 'package:red_line/src/common/widgets/persistent_bottom_nav_bar.dart';
 import 'package:red_line/src/features/home/bloc/home_bloc.dart';
 
 class App extends StatelessWidget {
