@@ -30,7 +30,11 @@ class GenreChip extends StatelessWidget {
                   .loadMoviesByGenre(genreModel.id, 1);
             },
             child: Chip(
-              label: Text(genreModel.name),
+              label: Text(
+                genreModel.name,
+                style:
+                    TextStyle(color: isSelected ? Colors.white : Colors.black),
+              ),
               backgroundColor:
                   isSelected ? CupertinoColors.activeBlue : Colors.white,
               elevation: 3,
