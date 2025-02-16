@@ -28,7 +28,7 @@ class OverlayImage extends StatelessWidget {
         }
         if (state is MovieDetailsLoaded) {
           return Positioned(
-            top: 185,
+            top: 190,
             left: 20,
             child: Container(
               height: 175,
