@@ -44,14 +44,14 @@ class GeneralInformationsAndPoster extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 150, top: 10, right: 30),
+                padding: const EdgeInsets.only(left: 150, top: 10, right: 10),
                 child: AutoSizeText(
                   state.movie.title,
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
-                  maxLines: 2,
+                  maxLines: 1,
                   minFontSize: 12,
                   overflow: TextOverflow.ellipsis,
                   wrapWords: true,
