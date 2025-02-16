@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:red_line/src/common/widgets/back_button.dart';
 import 'package:red_line/src/extensions/sized_box_extension.dart';
+import 'package:red_line/src/features/movie_details/bloc/detials_selection_cubit/details_selection_cubit.dart';
 import 'package:red_line/src/features/movie_details/presentation/widgets/general_informations/general_informations_and_poster.dart';
 import 'package:red_line/src/features/movie_details/presentation/widgets/general_informations/overlay_image.dart';
 
@@ -63,7 +65,11 @@ class MovieDetailsContent extends StatelessWidget {
                         label: Text('Comments'),
                       ),
                     ],
-                    onSelectionChanged: (Set<int> newSelection) {},
+                    onSelectionChanged: (Set<int> newSelection) {
+                      context.read<DetailsSelectionCubit>().setDetailsSelection(
+                            newSelection.first,
+                          );
+                    },
                     showSelectedIcon: false,
                     style: ButtonStyle(
                       backgroundColor: WidgetStateProperty.resolveWith(
@@ -80,7 +86,12 @@ class MovieDetailsContent extends StatelessWidget {
                         ),
                       ),
                     ),
-                    selected: const {0},
+                    selected: context.select(
+                        (DetailsSelectionCubit cubit) => cubit.state == 0
+                            ? {0}
+                            : cubit.state == 1
+                                ? {1}
+                                : {2}),
                   ),
                 ),
               ],

@@ -3,10 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:red_line/src/common/widgets/persistent_bottom_nav_bar.dart';
 import 'package:red_line/src/config.dart';
-import 'package:red_line/src/features/home/bloc/filter_cubit/filter_cubit.dart';
 import 'package:red_line/src/features/home/bloc/home_genre_cubit/home_genre_cubit.dart';
 import 'package:red_line/src/features/home/bloc/home_movie_cubit/home_movie_cubit.dart';
+import 'package:red_line/src/features/movie_details/bloc/detials_selection_cubit/details_selection_cubit.dart';
 import 'package:red_line/src/features/movie_details/bloc/favourites_cubit/favourites_cubit.dart';
+import 'package:red_line/src/features/movie_details/bloc/filter_cubit/filter_cubit.dart';
 import 'package:red_line/src/features/movie_details/bloc/movie_details_cubit/movie_details_cubit.dart';
 
 class App extends StatelessWidget {
@@ -28,6 +29,9 @@ class App extends StatelessWidget {
         BlocProvider<MovieDetailsCubit>(
             create: (context) => MovieDetailsCubit()),
         BlocProvider<FavouritesCubit>(create: (context) => FavouritesCubit()),
+        BlocProvider<DetailsSelectionCubit>(
+          create: (context) => DetailsSelectionCubit(),
+        )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
