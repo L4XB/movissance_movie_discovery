@@ -122,12 +122,38 @@ class ApiMovieRepository implements MovieRepository {
   }
 
   @override
-  Future<List<MovieModel>> searchMovieByName(String query, int page) async {
+  Future<List<MovieModel>> searchMovieByName(String query, int page,
+      {String? language,
+      String? region,
+      bool? includeAdult,
+      int? withRuntimeGte,
+      int? withRuntimeLte}) async {
     final Map<String, dynamic> queryParameters = {
       "api_key": theMovieDatabaseApiKey,
       "query": query,
       "page": page,
     };
+
+    if (language != null) {
+      queryParameters["language"] = language;
+    }
+
+    if (region != null) {
+      queryParameters["region"] = region;
+    }
+
+    if (includeAdult != null) {
+      queryParameters["include_adult"] = includeAdult;
+    }
+
+    if (withRuntimeGte != null) {
+      queryParameters["with_runtime.gte"] = withRuntimeGte;
+    }
+
+    if (withRuntimeLte != null) {
+      queryParameters["with_runtime.lte"] = withRuntimeLte;
+    }
+
     final Response response = await Dio().get(
         "$theMovieDatabaseApiBaseURL/search/movie",
         queryParameters: queryParameters);
