@@ -18,7 +18,7 @@ class GreetingWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Hallo, Lukas 👋",
+                "Hello, Lukas 👋",
                 style: TextStyle(
                   fontSize: 27,
                   fontWeight: FontWeight.bold,
