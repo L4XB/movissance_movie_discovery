@@ -21,8 +21,8 @@ class HomeScreenContent extends StatelessWidget {
               SearchFieldWidget(),
               SizedBoxExtension.height(20),
               Stack(children: [
-                GenreChipsWidget(),
                 MovieGridWidget(),
+                GenreChipsWidget(),
               ]),
             ],
           ),

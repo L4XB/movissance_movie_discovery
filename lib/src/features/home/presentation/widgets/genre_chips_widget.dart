@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:red_line/src/features/home/bloc/home_genre_cubit/home_genre_cubit.dart';
-import 'package:red_line/src/features/home/bloc/home_movie_cubit/home_movie_cubit.dart';
-import 'package:red_line/src/features/home/domain/genre_model.dart';
+import 'package:red_line/src/features/home/presentation/widgets/genre_chip.dart';
 
 class GenreChipsWidget extends StatelessWidget {
   const GenreChipsWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // final firstTenGenres = genres.take(10).toList();
     return Column(
       children: [
         Padding(
@@ -43,8 +41,12 @@ class GenreChipsWidget extends StatelessWidget {
                 child: Text(state.message),
               );
             }
-            if (state is HomeGenreLoaded) {
-              final firstTenGenres = state.genres.take(10).toList();
+            if (state is HomeGenreLoaded || state is HomeGenreSelected) {
+              final genres = state is HomeGenreLoaded
+                  ? state.genres
+                  : (state as HomeGenreSelected).genres;
+
+              final firstTenGenres = genres.take(10).toList();
 
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18),
@@ -60,39 +62,12 @@ class GenreChipsWidget extends StatelessWidget {
                 ),
               );
             }
-            return Text("Unnknown State");
+            return Center(
+              child: Text("Unknown State"),
+            );
           },
         ),
       ],
-    );
-  }
-}
-
-class GenreChip extends StatelessWidget {
-  const GenreChip({
-    super.key,
-    required this.genreModel,
-  });
-
-  final GenreModel genreModel;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5),
-      child: GestureDetector(
-        onTap: () {
-          context.read<HomeMovieCubit>().loadMoviesByGenre(genreModel.id, 1);
-        },
-        child: Chip(
-          label: Text(genreModel.name),
-          backgroundColor: Colors.white,
-          elevation: 3,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
-          ),
-        ),
-      ),
     );
   }
 }

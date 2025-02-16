@@ -11,6 +11,15 @@ class HomeGenreCubit extends Cubit<HomeGenreState> {
 
   GenreRepository genreRepository = ApiGenreRepository();
 
+  void selectGenre(GenreModel genre) {
+    final currentState = state;
+    if (currentState is HomeGenreLoaded) {
+      emit(HomeGenreSelected(genre, currentState.genres, currentState.page));
+    } else if (currentState is HomeGenreSelected) {
+      emit(HomeGenreSelected(genre, currentState.genres, currentState.page));
+    }
+  }
+
   void loadGenres(int page) async {
     emit(HomeGenreLoading());
     try {

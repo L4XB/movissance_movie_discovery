@@ -13,8 +13,11 @@ class MovieGridWidget extends StatelessWidget {
       child: BlocBuilder<HomeMovieCubit, HomeMovieState>(
         builder: (context, state) {
           if (state is HomeMovieLoadingState) {
-            return Center(
-              child: CircularProgressIndicator(),
+            return Padding(
+              padding: const EdgeInsets.only(top: 150),
+              child: Center(
+                child: CircularProgressIndicator(),
+              ),
             );
           }
           if (state is HomeMovieErrorState) {

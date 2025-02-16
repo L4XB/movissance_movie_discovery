@@ -19,3 +19,11 @@ final class HomeGenreError extends HomeGenreState {
 
   HomeGenreError(this.message);
 }
+
+final class HomeGenreSelected extends HomeGenreState {
+  final GenreModel genre;
+  final List<GenreModel> genres;
+  final int page;
+
+  HomeGenreSelected(this.genre, this.genres, this.page);
+}
