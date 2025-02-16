@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:red_line/src/features/home/bloc/home_genre_cubit/home_genre_cubit.dart';
+import 'package:red_line/src/features/home/bloc/home_movie_cubit/home_movie_cubit.dart';
+import 'package:red_line/src/features/home/domain/genre_model.dart';
 
 class GenreChipsWidget extends StatelessWidget {
   const GenreChipsWidget({super.key});
@@ -50,16 +52,8 @@ class GenreChipsWidget extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: firstTenGenres.map((genre) {
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 5),
-                        child: Chip(
-                          label: Text(genre.name),
-                          backgroundColor: Colors.white,
-                          elevation: 3,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                        ),
+                      return GenreChip(
+                        genreModel: genre,
                       );
                     }).toList(),
                   ),
@@ -70,6 +64,35 @@ class GenreChipsWidget extends StatelessWidget {
           },
         ),
       ],
+    );
+  }
+}
+
+class GenreChip extends StatelessWidget {
+  const GenreChip({
+    super.key,
+    required this.genreModel,
+  });
+
+  final GenreModel genreModel;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 5),
+      child: GestureDetector(
+        onTap: () {
+          context.read<HomeMovieCubit>().loadMoviesByGenre(genreModel.id, 1);
+        },
+        child: Chip(
+          label: Text(genreModel.name),
+          backgroundColor: Colors.white,
+          elevation: 3,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+        ),
+      ),
     );
   }
 }
