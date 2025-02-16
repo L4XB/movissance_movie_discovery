@@ -30,7 +30,10 @@ class GenreBottomSheet extends StatelessWidget {
 
           return Container(
             width: double.infinity,
-            color: CupertinoColors.systemBackground,
+            decoration: BoxDecoration(
+              color: CupertinoColors.systemBackground,
+              borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+            ),
             child: Padding(
               padding: const EdgeInsets.all(25.0),
               child: Wrap(
