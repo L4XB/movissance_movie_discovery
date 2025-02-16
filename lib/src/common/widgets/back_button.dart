@@ -11,8 +11,8 @@ class CustomBackButton extends StatelessWidget {
         PersistentNavBarNavigator.pop(context);
       },
       child: Container(
-        height: 35,
-        width: 60,
+        height: 30,
+        width: 50,
         decoration: BoxDecoration(
           color: const Color.fromARGB(178, 248, 249, 250),
           borderRadius: BorderRadius.only(
@@ -27,7 +27,7 @@ class CustomBackButton extends StatelessWidget {
               CupertinoIcons.chevron_back,
               weight: 70,
               size: 26,
-              color: CupertinoColors.activeBlue,
+              color: Color.fromARGB(255, 67, 144, 226),
             ),
           ),
         ),
