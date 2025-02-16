@@ -3,7 +3,7 @@ import 'package:red_line/src/extensions/sized_box_extension.dart';
 import 'package:red_line/src/features/home/presentation/widgets/genre/genre_chips_widget.dart';
 import 'package:red_line/src/features/home/presentation/widgets/greeting_widget.dart';
 import 'package:red_line/src/features/home/presentation/widgets/movie/movie_grid_widget.dart';
-import 'package:red_line/src/features/home/presentation/widgets/searchfield_widget.dart';
+import 'package:red_line/src/features/home/presentation/widgets/search/searchfield_widget.dart';
 
 class HomeScreenContent extends StatelessWidget {
   const HomeScreenContent({super.key});
