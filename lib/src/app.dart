@@ -6,6 +6,7 @@ import 'package:red_line/src/config.dart';
 import 'package:red_line/src/features/home/bloc/filter_cubit/filter_cubit.dart';
 import 'package:red_line/src/features/home/bloc/home_genre_cubit/home_genre_cubit.dart';
 import 'package:red_line/src/features/home/bloc/home_movie_cubit/home_movie_cubit.dart';
+import 'package:red_line/src/features/movie_details/bloc/favourites_cubit/favourites_cubit.dart';
 import 'package:red_line/src/features/movie_details/bloc/movie_details_cubit/movie_details_cubit.dart';
 
 class App extends StatelessWidget {
@@ -26,6 +27,7 @@ class App extends StatelessWidget {
         BlocProvider<FilterCubit>(create: (context) => FilterCubit()),
         BlocProvider<MovieDetailsCubit>(
             create: (context) => MovieDetailsCubit()),
+        BlocProvider<FavouritesCubit>(create: (context) => FavouritesCubit()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
