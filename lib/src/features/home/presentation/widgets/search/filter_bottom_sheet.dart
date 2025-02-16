@@ -38,7 +38,7 @@ class FilterBottomSheet extends StatelessWidget {
                   ),
                 ),
                 CustomRadioListTile(
-                  title: 'Short (less than 60 min)',
+                  title: 'Any',
                   value: 1,
                   groupValue: selectedValue,
                   onChanged: (value) {
@@ -46,7 +46,7 @@ class FilterBottomSheet extends StatelessWidget {
                   },
                 ),
                 CustomRadioListTile(
-                  title: 'Medium (1 to 2 hours)',
+                  title: 'Short (less than 60 min)',
                   value: 2,
                   groupValue: selectedValue,
                   onChanged: (value) {
@@ -54,8 +54,16 @@ class FilterBottomSheet extends StatelessWidget {
                   },
                 ),
                 CustomRadioListTile(
-                  title: 'Long (more than 2 hours)',
+                  title: 'Medium (1 to 2 hours)',
                   value: 3,
+                  groupValue: selectedValue,
+                  onChanged: (value) {
+                    context.read<FilterCubit>().setFilter(value!);
+                  },
+                ),
+                CustomRadioListTile(
+                  title: 'Long (more than 2 hours)',
+                  value: 4,
                   groupValue: selectedValue,
                   onChanged: (value) {
                     context.read<FilterCubit>().setFilter(value!);
