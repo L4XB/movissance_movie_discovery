@@ -19,7 +19,9 @@ class HomeScreenContent extends StatelessWidget {
           child: Column(
             children: [
               SizedBoxExtension.height(60),
-              GreetingWidget(),
+              GreetingWidget(
+                controller: controller,
+              ),
               SizedBoxExtension.height(20),
               SearchFieldWidget(),
               SizedBoxExtension.height(20),

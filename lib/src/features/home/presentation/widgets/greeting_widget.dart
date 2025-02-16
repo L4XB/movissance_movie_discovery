@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:red_line/src/extensions/sized_box_extension.dart';
 
 class GreetingWidget extends StatelessWidget {
-  const GreetingWidget({super.key});
+  final PersistentTabController controller;
+  const GreetingWidget({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -32,10 +34,15 @@ class GreetingWidget extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.only(right: 20),
-          child: CircleAvatar(
-            radius: 30,
-            backgroundImage: NetworkImage(
-                "https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250"),
+          child: GestureDetector(
+            onTap: () {
+              controller.jumpToTab(3);
+            },
+            child: CircleAvatar(
+              radius: 30,
+              backgroundImage: NetworkImage(
+                  "https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250"),
+            ),
           ),
         )
       ],

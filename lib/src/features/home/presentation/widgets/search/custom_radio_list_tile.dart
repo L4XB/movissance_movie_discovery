@@ -17,7 +17,10 @@ class CustomRadioListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(title),
+      title: Text(
+        title,
+        style: TextStyle(fontWeight: FontWeight.bold),
+      ),
       leading: GestureDetector(
         onTap: () => onChanged(value),
         child: Container(
@@ -27,14 +30,16 @@ class CustomRadioListTile extends StatelessWidget {
             shape: BoxShape.circle,
             border: Border.all(
               color: groupValue == value ? Colors.blue : Colors.grey,
-              width: 2,
+              width: 2.5,
             ),
           ),
           child: groupValue == value
-              ? Icon(
-                  Icons.check,
-                  size: 16,
-                  color: Colors.blue,
+              ? Center(
+                  child: Icon(
+                    Icons.check,
+                    size: 18,
+                    color: Colors.blue,
+                  ),
                 )
               : null,
         ),
