@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:red_line/src/features/home/bloc/home_genre_cubit/home_genre_cubit.dart';
+import 'package:red_line/src/features/home/presentation/widgets/genre/genre_bottom_sheet.dart';
 import 'package:red_line/src/features/home/presentation/widgets/genre/genre_chip.dart';
 
 class GenreChipsWidget extends StatelessWidget {
@@ -20,11 +21,21 @@ class GenreChipsWidget extends StatelessWidget {
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                       color: const Color.fromARGB(255, 53, 65, 93))),
-              Text("View All",
-                  style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                      color: const Color.fromARGB(169, 0, 0, 0))),
+              GestureDetector(
+                onTap: () {
+                  showModalBottomSheet(
+                    context: context,
+                    builder: (context) {
+                      return GenreBottomSheet();
+                    },
+                  );
+                },
+                child: Text("View All",
+                    style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                        color: const Color.fromARGB(169, 0, 0, 0))),
+              ),
             ],
           ),
         ),
