@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:red_line/src/extensions/sized_box_extension.dart';
-import 'package:red_line/src/features/home/domain/genre_model.dart';
-import 'package:red_line/src/features/home/domain/movie_model.dart';
 import 'package:red_line/src/features/home/presentation/widgets/genre_chips_widget.dart';
 import 'package:red_line/src/features/home/presentation/widgets/greeting_widget.dart';
 import 'package:red_line/src/features/home/presentation/widgets/movie_grid_widget.dart';
 import 'package:red_line/src/features/home/presentation/widgets/searchfield_widget.dart';
 
 class HomeScreenContent extends StatelessWidget {
-  final List<GenreModel> genres;
-  final List<MovieModel> movies;
-  const HomeScreenContent(
-      {super.key, required this.genres, required this.movies});
+  const HomeScreenContent({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +20,9 @@ class HomeScreenContent extends StatelessWidget {
               SizedBoxExtension.height(20),
               SearchFieldWidget(),
               SizedBoxExtension.height(20),
-              GenreChipsWidget(genres: genres),
+              GenreChipsWidget(),
               SizedBoxExtension.height(10),
-              MovieGridWidget(movies: movies),
+              MovieGridWidget(),
             ],
           ),
         ),

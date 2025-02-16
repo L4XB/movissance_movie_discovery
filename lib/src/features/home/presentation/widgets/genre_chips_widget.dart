@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:red_line/src/features/home/domain/genre_model.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:red_line/src/features/home/bloc/home_genre_cubit/home_genre_cubit.dart';
 
 class GenreChipsWidget extends StatelessWidget {
-  final List<GenreModel> genres;
-  const GenreChipsWidget({super.key, required this.genres});
+  const GenreChipsWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final firstTenGenres = genres.take(10).toList();
+    // final firstTenGenres = genres.take(10).toList();
     return Column(
       children: [
         Padding(
@@ -29,26 +29,45 @@ class GenreChipsWidget extends StatelessWidget {
           ),
         ),
         SizedBox(height: 10),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 18),
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: firstTenGenres.map((genre) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 5),
-                  child: Chip(
-                    label: Text(genre.name),
-                    backgroundColor: Colors.white,
-                    elevation: 3,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
+        BlocBuilder<HomeGenreCubit, HomeGenreState>(
+          builder: (context, state) {
+            if (state is HomeGenreLoading) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            if (state is HomeGenreError) {
+              return Center(
+                child: Text(state.message),
+              );
+            }
+            if (state is HomeGenreLoaded) {
+              final firstTenGenres = state.genres.take(10).toList();
+
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 18),
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: firstTenGenres.map((genre) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 5),
+                        child: Chip(
+                          label: Text(genre.name),
+                          backgroundColor: Colors.white,
+                          elevation: 3,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                        ),
+                      );
+                    }).toList(),
                   ),
-                );
-              }).toList(),
-            ),
-          ),
+                ),
+              );
+            }
+            return Text("Unnknown State");
+          },
         ),
       ],
     );
