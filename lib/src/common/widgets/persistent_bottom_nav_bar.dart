@@ -44,6 +44,12 @@ class PersistentBottomNavBar extends StatelessWidget {
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
+        icon: Icon(Icons.explore_outlined),
+        title: ("Discover"),
+        activeColorPrimary: CupertinoColors.activeBlue,
+        inactiveColorPrimary: CupertinoColors.systemGrey,
+      ),
+      PersistentBottomNavBarItem(
         icon: Icon(Icons.bookmark_outline),
         title: ("Favorites"),
         activeColorPrimary: CupertinoColors.activeBlue,
@@ -69,6 +75,11 @@ class PersistentBottomNavBar extends StatelessWidget {
       Scaffold(
         body: Center(
           child: Text("Screen Three"),
+        ),
+      ),
+      Scaffold(
+        body: Center(
+          child: Text("Screen Four"),
         ),
       ),
     ];
