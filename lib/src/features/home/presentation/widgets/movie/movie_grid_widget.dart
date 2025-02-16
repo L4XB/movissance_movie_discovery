@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:red_line/src/features/home/bloc/home_movie_cubit/home_movie_cubit.dart';
-import 'package:red_line/src/features/home/presentation/widgets/movie_grid_item.dart';
+import 'package:red_line/src/features/home/presentation/widgets/movie/movie_grid_item.dart';
 
 class MovieGridWidget extends StatelessWidget {
   const MovieGridWidget({super.key});

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:red_line/src/features/home/bloc/home_genre_cubit/home_genre_cubit.dart';
-import 'package:red_line/src/features/home/presentation/widgets/genre_chip.dart';
+import 'package:red_line/src/features/home/presentation/widgets/genre/genre_chip.dart';
 
 class GenreChipsWidget extends StatelessWidget {
   const GenreChipsWidget({super.key});
