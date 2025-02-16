@@ -4,19 +4,20 @@ import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:red_line/src/features/home/presentation/home.dart';
 
 class PersistentBottomNavBar extends StatelessWidget {
-  const PersistentBottomNavBar({super.key});
+  final PersistentTabController controller;
+  const PersistentBottomNavBar({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
     return PersistentTabView(
       context,
+      controller: controller,
       screens: _buildScreens(),
       items: _navBarsItems(),
       handleAndroidBackButtonPress: true,
       resizeToAvoidBottomInset: true,
       hideNavigationBarWhenKeyboardAppears: true,
       padding: const EdgeInsets.only(top: 8),
-      //Colors.grey.shade900
       backgroundColor: CupertinoColors.systemBackground,
       isVisible: true,
       animationSettings: const NavBarAnimationSettings(
@@ -66,7 +67,9 @@ class PersistentBottomNavBar extends StatelessWidget {
 
   List<Widget> _buildScreens() {
     return [
-      HomeScreen(),
+      HomeScreen(
+        controller: controller,
+      ),
       Scaffold(
         body: Center(
           child: Text("Screen Two"),

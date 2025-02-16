@@ -1,12 +1,15 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:red_line/src/extensions/sized_box_extension.dart';
+import 'package:red_line/src/features/home/presentation/widgets/discover_more_button.dart';
 import 'package:red_line/src/features/home/presentation/widgets/genre/genre_chips_widget.dart';
 import 'package:red_line/src/features/home/presentation/widgets/greeting_widget.dart';
 import 'package:red_line/src/features/home/presentation/widgets/movie/movie_grid_widget.dart';
 import 'package:red_line/src/features/home/presentation/widgets/search/searchfield_widget.dart';
 
 class HomeScreenContent extends StatelessWidget {
-  const HomeScreenContent({super.key});
+  final PersistentTabController controller;
+  const HomeScreenContent({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +27,10 @@ class HomeScreenContent extends StatelessWidget {
                 MovieGridWidget(),
                 GenreChipsWidget(),
               ]),
+              DiscoverMoreButton(
+                controller: controller,
+              ),
+              SizedBoxExtension.height(25),
             ],
           ),
         ),
