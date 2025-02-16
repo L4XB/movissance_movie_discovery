@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:red_line/src/config.dart';
 import 'package:red_line/src/features/home/data/movie_repository.dart';
-import 'package:red_line/src/features/home/domain/movie_detail_model.dart';
 import 'package:red_line/src/features/home/domain/movie_model.dart';
+import 'package:red_line/src/features/movie_details/domain/movie_detail_model.dart';
 
 class ApiMovieRepository implements MovieRepository {
   @override
