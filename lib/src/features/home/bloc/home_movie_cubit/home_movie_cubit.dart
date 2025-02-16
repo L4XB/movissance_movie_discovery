@@ -52,4 +52,21 @@ class HomeMovieCubit extends Cubit<HomeMovieState> {
       emit(HomeMovieErrorState(e.toString()));
     }
   }
+
+  void loadMoreMovies(int page) async {
+    final currentState = state;
+    if (currentState is HomeMovieLoadedState) {
+      final currentPage = currentState.page;
+      if (page > currentPage) {
+        emit(HomeMovieLoadingState());
+        try {
+          final movies = await movieRepository.getPopularMovies(page);
+          final newMovies = currentState.movies + movies;
+          emit(HomeMovieLoadedState(newMovies, page));
+        } catch (e) {
+          emit(HomeMovieErrorState(e.toString()));
+        }
+      }
+    }
+  }
 }
