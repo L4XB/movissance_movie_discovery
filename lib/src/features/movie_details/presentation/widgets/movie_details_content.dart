@@ -64,7 +64,7 @@ class MovieDetailsContent extends StatelessWidget {
                       ),
                       ButtonSegment<int>(
                         value: 2,
-                        label: Text('Ratings'),
+                        label: Text('Reviews'),
                       ),
                     ],
                     onSelectionChanged: (Set<int> newSelection) {
