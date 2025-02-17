@@ -5,10 +5,10 @@ import 'package:red_line/src/features/movie_details/presentation/widgets/general
 import 'package:red_line/src/features/movie_details/presentation/widgets/general_informations/movie_rating_row.dart';
 import 'package:red_line/src/features/movie_details/presentation/widgets/general_informations/movie_title.dart';
 
-class MovieDetailsContent extends StatelessWidget {
+class MovieGeneralInformationsContent extends StatelessWidget {
   final MovieDetailModel movie;
 
-  const MovieDetailsContent({super.key, required this.movie});
+  const MovieGeneralInformationsContent({super.key, required this.movie});
 
   @override
   Widget build(BuildContext context) {

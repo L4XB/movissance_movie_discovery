@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:red_line/src/features/movie_details/bloc/movie_details_cubit/movie_details_cubit.dart';
 import 'package:red_line/src/features/movie_details/presentation/widgets/general_informations/error_message.dart';
 import 'package:red_line/src/features/movie_details/presentation/widgets/general_informations/loading_indicator.dart';
-import 'package:red_line/src/features/movie_details/presentation/widgets/general_informations/movie_details_content.dart';
+import 'package:red_line/src/features/movie_details/presentation/widgets/general_informations/movie_general_informations_content.dart';
 
 class GeneralInformationsAndPoster extends StatelessWidget {
   const GeneralInformationsAndPoster({
@@ -22,7 +22,7 @@ class GeneralInformationsAndPoster extends StatelessWidget {
           return ErrorMessage(message: state.message);
         }
         if (state is MovieDetailsLoaded) {
-          return MovieDetailsContent(movie: state.movie);
+          return MovieGeneralInformationsContent(movie: state.movie);
         }
         return const Text("Unknown state");
       },
