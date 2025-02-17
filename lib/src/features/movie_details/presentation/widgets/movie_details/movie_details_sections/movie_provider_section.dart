@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 import 'package:red_line/src/extensions/sized_box_extension.dart';
 import 'package:red_line/src/features/movie_details/bloc/movie_provider_cubit/movie_provider_cubit.dart';
-import 'package:red_line/src/features/movie_details/presentation/widgets/movie_details/movie_provider_details/provider_tile.dart';
-import 'package:red_line/src/features/movie_details/presentation/widgets/movie_details/movie_provider_details/section_header.dart';
+import 'package:red_line/src/features/movie_details/presentation/widgets/movie_details/movie_details_sections/widgets/provider_tile.dart';
+import 'package:red_line/src/features/movie_details/presentation/widgets/movie_details/movie_details_sections/widgets/section_header.dart';
 
 class MovieProviderSection extends StatelessWidget {
   const MovieProviderSection({super.key});
