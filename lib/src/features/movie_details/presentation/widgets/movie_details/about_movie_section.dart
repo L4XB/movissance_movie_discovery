@@ -1,9 +1,7 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:red_line/src/extensions/sized_box_extension.dart';
 import 'package:red_line/src/features/movie_details/bloc/movie_details_cubit/movie_details_cubit.dart';
-import 'package:red_line/src/features/movie_details/presentation/widgets/movie_details/error_message.dart';
-import 'package:red_line/src/features/movie_details/presentation/widgets/movie_details/loading_indicator.dart';
 import 'package:red_line/src/features/movie_details/presentation/widgets/movie_details/movie_overview.dart';
 
 class AboutMovieSection extends StatelessWidget {
@@ -31,10 +29,14 @@ class AboutMovieSection extends StatelessWidget {
         BlocBuilder<MovieDetailsCubit, MovieDetailsState>(
             builder: (context, movieDetailsState) {
           if (movieDetailsState is MovieDetailsLoading) {
-            return LoadingIndicator();
+            return Center(
+              child: CircularProgressIndicator(),
+            );
           }
           if (movieDetailsState is MovieDetailsError) {
-            return ErrorMessage(message: movieDetailsState.message);
+            return Center(
+              child: Text(movieDetailsState.message),
+            );
           }
           if (movieDetailsState is MovieDetailsLoaded) {
             final status = movieDetailsState.movie.status;
