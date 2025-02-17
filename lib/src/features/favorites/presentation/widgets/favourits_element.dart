@@ -94,9 +94,9 @@ class FavouritsElement extends StatelessWidget {
                             color: Colors.yellow,
                             size: 20,
                           ),
-                          SizedBox(width: 5),
+                          SizedBox(width: 2),
                           Text(
-                            '${movie.voteAverage} (${movie.voteCount} votes)',
+                            '${movie.voteAverage.toStringAsFixed(1)} (${movie.voteCount} votes)',
                             style: TextStyle(
                               fontSize: 14,
                             ),
