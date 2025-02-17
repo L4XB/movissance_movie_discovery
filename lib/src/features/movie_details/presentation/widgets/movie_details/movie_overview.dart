@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:red_line/src/extensions/sized_box_extension.dart';
-import 'package:red_line/src/features/movie_details/presentation/widgets/movie_details/movie_status_badge.dart';
+import 'package:red_line/src/features/movie_details/presentation/widgets/movie_details/movie_details_sections/widgets/movie_status_badge.dart';
 
 class MovieOverview extends StatelessWidget {
   final String overview;
