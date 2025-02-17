@@ -1,29 +1,41 @@
 PODS:
+  - device_info_plus (0.0.1):
+    - Flutter
   - Flutter (1.0.0)
   - speech_to_text (0.0.1):
     - Flutter
     - FlutterMacOS
     - Try
   - Try (2.1.1)
+  - vibration (3.0.0):
+    - Flutter
 
 DEPENDENCIES:
+  - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
   - Flutter (from `Flutter`)
   - speech_to_text (from `.symlinks/plugins/speech_to_text/darwin`)
+  - vibration (from `.symlinks/plugins/vibration/ios`)
 
 SPEC REPOS:
   trunk:
     - Try
 
 EXTERNAL SOURCES:
+  device_info_plus:
+    :path: ".symlinks/plugins/device_info_plus/ios"
   Flutter:
     :path: Flutter
   speech_to_text:
     :path: ".symlinks/plugins/speech_to_text/darwin"
+  vibration:
+    :path: ".symlinks/plugins/vibration/ios"
 
 SPEC CHECKSUMS:
+  device_info_plus: 21fcca2080fbcd348be798aa36c3e5ed849eefbe
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   speech_to_text: 9dc43a5df3cbc2813f8c7cc9bd0fbf94268ed7ac
   Try: 5ef669ae832617b3cee58cb2c6f99fb767a4ff96
+  vibration: 69774ad57825b11c951ee4c46155f455d7a592ce
 
 PODFILE CHECKSUM: 4305caec6b40dde0ae97be1573c53de1882a07e5
 

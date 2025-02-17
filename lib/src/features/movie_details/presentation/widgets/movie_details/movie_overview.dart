@@ -28,11 +28,11 @@ class MovieOverview extends StatelessWidget {
                 fontWeight: FontWeight.bold),
           ),
         ),
-        SizedBoxExtension.height(20),
+        SizedBoxExtension.height(15),
         Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30),
             child: MovieStatusBadge(status: status)),
-        SizedBoxExtension.height(20),
+        SizedBoxExtension.height(15),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30),
           child: Text(
