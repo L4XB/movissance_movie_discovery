@@ -7,6 +7,7 @@ import 'package:red_line/src/features/movie_details/bloc/detials_selection_cubit
 import 'package:red_line/src/features/movie_details/presentation/widgets/general_informations/overlay_image.dart';
 import 'package:red_line/src/features/movie_details/presentation/widgets/general_informations_and_poster.dart';
 import 'package:red_line/src/features/movie_details/presentation/widgets/movie_details/about_movie_section.dart';
+import 'package:red_line/src/features/movie_details/presentation/widgets/movie_details/movie_provider_section.dart';
 
 class MovieDetailsContent extends StatelessWidget {
   const MovieDetailsContent({
@@ -103,9 +104,7 @@ class MovieDetailsContent extends StatelessWidget {
                         return AboutMovieSection();
                       }
                       if (state == 1) {
-                        return Center(
-                          child: Text('Ratings'),
-                        );
+                        return MovieProviderSection();
                       }
                       if (state == 2) {
                         return Center(

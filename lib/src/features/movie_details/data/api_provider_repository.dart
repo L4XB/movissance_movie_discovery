@@ -15,6 +15,9 @@ class ApiProviderRepository extends ProviderRepository {
         });
 
     if (response.statusCode == 200 || response.statusCode == 201) {
+      if (response.data["results"]["GB"] == null) {
+        throw Exception("No provider found");
+      }
       return ProviderModel.fromJson(response.data["results"]["GB"]);
     } else {
       throw Exception("Failed to load provider");

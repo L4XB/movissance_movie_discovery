@@ -1,4 +1,5 @@
 class ProviderModel {
+  final bool isEmtpy;
   final String link;
   final List<Provider> flatrate;
   final List<Provider> rent;
@@ -9,7 +10,7 @@ class ProviderModel {
     required this.flatrate,
     required this.rent,
     required this.buy,
-  });
+  }) : isEmtpy = (flatrate.isEmpty && rent.isEmpty && buy.isEmpty);
 
   factory ProviderModel.fromJson(Map<String, dynamic> json) {
     return ProviderModel(
