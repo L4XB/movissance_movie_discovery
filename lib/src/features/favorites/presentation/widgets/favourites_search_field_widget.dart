@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:red_line/src/features/favorites/bloc/favourites_data_cubit/favourites_data_cubit.dart';
+import 'package:red_line/src/features/favorites/presentation/widgets/favourites_search_filter_bottom_sheet.dart';
 
 class FavouritesSearchFieldWidget extends StatefulWidget {
   const FavouritesSearchFieldWidget({super.key});
@@ -54,10 +55,11 @@ class _FavouritesSearchFieldWidgetState
               IconButton(
                 icon: Icon(Icons.tune),
                 onPressed: () {
-                  // showModalBottomSheet(
-                  //   context: context,
-                  //   builder: (context) => const ,
-                  // );
+                  showModalBottomSheet(
+                    context: context,
+                    builder: (context) =>
+                        const FavouritesSearchFilterBottomSheet(),
+                  );
                 },
               ),
             ],
