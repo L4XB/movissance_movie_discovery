@@ -10,6 +10,7 @@ import 'package:red_line/src/features/movie_details/bloc/favourites_cubit/favour
 import 'package:red_line/src/features/movie_details/bloc/filter_cubit/filter_cubit.dart';
 import 'package:red_line/src/features/movie_details/bloc/movie_details_cubit/movie_details_cubit.dart';
 import 'package:red_line/src/features/movie_details/bloc/movie_provider_cubit/movie_provider_cubit.dart';
+import 'package:red_line/src/features/movie_details/bloc/movie_reviews_cubit/movie_reviews_cubit.dart';
 
 class App extends StatelessWidget {
   App({super.key});
@@ -35,6 +36,9 @@ class App extends StatelessWidget {
         ),
         BlocProvider<MovieProviderCubit>(
           create: (context) => MovieProviderCubit(),
+        ),
+        BlocProvider<MovieReviewsCubit>(
+          create: (context) => MovieReviewsCubit(),
         )
       ],
       child: MaterialApp(
