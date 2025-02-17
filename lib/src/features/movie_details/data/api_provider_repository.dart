@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:red_line/src/config.dart';
-import 'package:red_line/src/features/home/domain/provider_model.dart';
 import 'package:red_line/src/features/movie_details/data/provider_repository.dart';
+import 'package:red_line/src/features/movie_details/domain/provider_model.dart';
 
 class ApiProviderRepository extends ProviderRepository {
   @override
@@ -15,7 +15,7 @@ class ApiProviderRepository extends ProviderRepository {
         });
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      return ProviderModel.fromJson(response.data);
+      return ProviderModel.fromJson(response.data["results"]["GB"]);
     } else {
       throw Exception("Failed to load provider");
     }

@@ -1,7 +1,7 @@
 import 'package:red_line/src/features/home/domain/genre_model.dart';
 import 'package:red_line/src/features/home/domain/production_country_model.dart';
-import 'package:red_line/src/features/home/domain/provider_model.dart';
 import 'package:red_line/src/features/home/domain/spoken_languages_model.dart';
+import 'package:red_line/src/features/movie_details/domain/provider_model.dart';
 
 class MovieDetailModel {
   final bool adult;
@@ -17,7 +17,7 @@ class MovieDetailModel {
   final String overview;
   final double popularity;
   final String posterPath;
-  final List<ProviderModel> productionCompanies;
+  final List<Provider> productionCompanies;
   final List<ProductionCountryModel> productionCountries;
   final String releaseDate;
   final int revenue;
@@ -74,9 +74,9 @@ class MovieDetailModel {
       overview: json['overview'] ?? '',
       popularity: (json['popularity'] ?? 0.0).toDouble(),
       posterPath: json['poster_path'] ?? '',
-      productionCompanies: List<ProviderModel>.from(
+      productionCompanies: List<Provider>.from(
           (json['production_companies'] ?? [])
-              .map((x) => ProviderModel.fromJson(x))),
+              .map((x) => Provider.fromJson(x))),
       productionCountries: List<ProductionCountryModel>.from(
           (json['production_countries'] ?? [])
               .map((x) => ProductionCountryModel.fromJson(x))),
