@@ -1,3 +1,4 @@
-# red_line
+Top Rated und Upcoming in Discover mit endloss scrolling
+eventuell auch dsa reccomendation ding einbauen
 
-A new Flutter project.
+maybe son feed wie bei insta
