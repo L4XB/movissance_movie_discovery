@@ -9,8 +9,6 @@ class FavouritesCubit extends Cubit<List<int>> {
   final FavouritesRepository _favouritesRepository =
       SharedPreferencesFavouritesReposiotry();
 
-  /// TODO: Shared Pref und Repo einbauen um die Daten der Favoriten zu laden
-
   void addFavourite(int movieId) async {
     if (!state.contains(movieId)) {
       emit(List.from(state)..add(movieId));
