@@ -2,11 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:red_line/src/common/widgets/back_button.dart';
+import 'package:red_line/src/config.dart';
 import 'package:red_line/src/extensions/sized_box_extension.dart';
 import 'package:red_line/src/features/movie_details/bloc/detials_selection_cubit/details_selection_cubit.dart';
 import 'package:red_line/src/features/movie_details/bloc/movie_details_cubit/movie_details_cubit.dart';
-import 'package:red_line/src/features/movie_details/presentation/widgets/general_informations/general_informations_and_poster.dart';
 import 'package:red_line/src/features/movie_details/presentation/widgets/general_informations/overlay_image.dart';
+import 'package:red_line/src/features/movie_details/presentation/widgets/general_informations_and_poster.dart';
 
 class MovieDetailsContent extends StatelessWidget {
   const MovieDetailsContent({
@@ -55,15 +56,15 @@ class MovieDetailsContent extends StatelessWidget {
                     segments: const [
                       ButtonSegment(
                         value: 0,
-                        label: Text('Info'),
+                        label: Text('About'),
                       ),
                       ButtonSegment<int>(
                         value: 1,
-                        label: Text('Ratings'),
+                        label: Text('Info'),
                       ),
                       ButtonSegment<int>(
                         value: 2,
-                        label: Text('Comments'),
+                        label: Text('Ratings'),
                       ),
                     ],
                     onSelectionChanged: (Set<int> newSelection) {
@@ -100,54 +101,7 @@ class MovieDetailsContent extends StatelessWidget {
                   child: BlocBuilder<DetailsSelectionCubit, int>(
                     builder: (context, state) {
                       if (state == 0) {
-                        return Column(
-                          children: [
-                            Align(
-                              alignment: Alignment.centerLeft,
-                              child: Padding(
-                                padding: const EdgeInsets.only(left: 30),
-                                child: Text("About the Movie",
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                        color: const Color.fromARGB(
-                                            255, 53, 65, 93))),
-                              ),
-                            ),
-                            SizedBoxExtension.height(10),
-                            BlocBuilder<MovieDetailsCubit, MovieDetailsState>(
-                                builder: (context, movieDetailsState) {
-                              if (movieDetailsState is MovieDetailsLoading) {
-                                return Center(
-                                  child: CircularProgressIndicator(),
-                                );
-                              }
-                              if (movieDetailsState is MovieDetailsError) {
-                                return Center(
-                                  child: Text(movieDetailsState.message),
-                                );
-                              }
-                              if (movieDetailsState is MovieDetailsLoaded) {
-                                return Column(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 30),
-                                      child: Text(
-                                        movieDetailsState.movie.overview,
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          color: CupertinoColors.black,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                );
-                              }
-                              return Text("Unknown state");
-                            })
-                          ],
-                        );
+                        return AboutMovieSection();
                       }
                       if (state == 1) {
                         return Center(
@@ -168,6 +122,133 @@ class MovieDetailsContent extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class AboutMovieSection extends StatelessWidget {
+  const AboutMovieSection({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 30),
+              child: Text("About the Movie",
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: const Color.fromARGB(255, 53, 65, 93))),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 5, right: 20),
+              child: BlocBuilder<MovieDetailsCubit, MovieDetailsState>(
+                  builder: (context, movieDetailsState) {
+                if (movieDetailsState is MovieDetailsLoading) {
+                  return LoadingIndicator();
+                }
+                if (movieDetailsState is MovieDetailsError) {
+                  return ErrorMessage(message: movieDetailsState.message);
+                }
+                if (movieDetailsState is MovieDetailsLoaded) {
+                  return MovieStatusBadge(
+                      status: movieDetailsState.movie.status);
+                }
+                return Container();
+              }),
+            )
+          ],
+        ),
+        SizedBoxExtension.height(10),
+        BlocBuilder<MovieDetailsCubit, MovieDetailsState>(
+            builder: (context, movieDetailsState) {
+          if (movieDetailsState is MovieDetailsLoading) {
+            return LoadingIndicator();
+          }
+          if (movieDetailsState is MovieDetailsError) {
+            return ErrorMessage(message: movieDetailsState.message);
+          }
+          if (movieDetailsState is MovieDetailsLoaded) {
+            return MovieOverview(overview: movieDetailsState.movie.overview);
+          }
+          return Text("Unknown state");
+        })
+      ],
+    );
+  }
+}
+
+class LoadingIndicator extends StatelessWidget {
+  const LoadingIndicator({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: CircularProgressIndicator(),
+    );
+  }
+}
+
+class ErrorMessage extends StatelessWidget {
+  final String message;
+
+  const ErrorMessage({super.key, required this.message});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text(message),
+    );
+  }
+}
+
+class MovieStatusBadge extends StatelessWidget {
+  final String status;
+
+  const MovieStatusBadge({super.key, required this.status});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: statusColor[status] ?? CupertinoColors.systemGrey2),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2.5),
+        child: Text(
+          status,
+          style: TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class MovieOverview extends StatelessWidget {
+  final String overview;
+
+  const MovieOverview({super.key, required this.overview});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30),
+      child: Text(
+        overview,
+        style: TextStyle(
+          fontSize: 14,
+          color: CupertinoColors.black,
+        ),
+      ),
     );
   }
 }
