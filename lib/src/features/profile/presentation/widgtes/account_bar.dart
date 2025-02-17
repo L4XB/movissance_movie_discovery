@@ -15,7 +15,7 @@ class AccountBar extends StatelessWidget {
         child: Container(
           width: size.width * 0.90,
           decoration: BoxDecoration(
-            color: const Color.fromARGB(255, 230, 226, 226),
+            color: CupertinoColors.systemGrey6,
             borderRadius: BorderRadius.circular(10),
           ),
           child: Padding(

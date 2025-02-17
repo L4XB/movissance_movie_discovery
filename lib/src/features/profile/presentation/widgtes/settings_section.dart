@@ -13,7 +13,7 @@ class SettingsSection extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
         child: Container(
           decoration: BoxDecoration(
-            color: const Color.fromARGB(255, 230, 226, 226),
+            color: CupertinoColors.systemGrey6,
             borderRadius: BorderRadius.circular(10),
           ),
           width: size.width * 0.9,
