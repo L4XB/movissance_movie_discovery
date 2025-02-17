@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:red_line/src/features/favorites/bloc/favourites_cubit/favourites_cubit.dart';
+import 'package:red_line/src/features/favorites/cubit/favourites_cubit.dart';
 import 'package:red_line/src/features/movie_details/bloc/movie_details_cubit/movie_details_cubit.dart';
 
 class AddToFavouriesActionButton extends StatelessWidget {
