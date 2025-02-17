@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:red_line/src/features/favorites/bloc/favourites_data_cubit/favourites_data_cubit.dart';
 
 class FavouritesSearchFieldWidget extends StatefulWidget {
   const FavouritesSearchFieldWidget({super.key});
@@ -39,7 +41,13 @@ class _FavouritesSearchFieldWidgetState
           filled: true,
           fillColor: Colors.white,
           contentPadding: EdgeInsets.symmetric(horizontal: 20),
-          prefixIcon: IconButton(icon: Icon(Icons.search), onPressed: () {}),
+          prefixIcon: IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () {
+                context
+                    .read<FavouritesDataCubit>()
+                    .search(_searchController.text);
+              }),
           suffixIcon: Row(
             mainAxisSize: MainAxisSize.min,
             children: [

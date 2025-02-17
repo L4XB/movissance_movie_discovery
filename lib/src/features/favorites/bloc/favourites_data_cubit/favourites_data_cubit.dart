@@ -20,6 +20,16 @@ class FavouritesDataCubit extends Cubit<FavouritesDataState> {
     _loadData(favouritesCubit.state);
   }
 
+  void search(String query) {
+    if (state is FavouritesDataLoaded) {
+      final List<MovieModel> movies = (state as FavouritesDataLoaded)
+          .movies
+          .where((element) => element.title.contains(query))
+          .toList();
+      emit(FavouritesDataLoaded(movies));
+    }
+  }
+
   void _loadData(List<int> favourites) async {
     emit(FavouritesDataLoading());
     try {
