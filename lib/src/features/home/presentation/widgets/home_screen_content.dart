@@ -7,10 +7,16 @@ import 'package:red_line/src/features/home/presentation/widgets/greeting_widget.
 import 'package:red_line/src/features/home/presentation/widgets/movie/movie_grid_widget.dart';
 import 'package:red_line/src/features/home/presentation/widgets/search/searchfield_widget.dart';
 
-class HomeScreenContent extends StatelessWidget {
+class HomeScreenContent extends StatefulWidget {
   final PersistentTabController controller;
+
   const HomeScreenContent({super.key, required this.controller});
 
+  @override
+  State<HomeScreenContent> createState() => _HomeScreenContentState();
+}
+
+class _HomeScreenContentState extends State<HomeScreenContent> {
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
@@ -20,7 +26,7 @@ class HomeScreenContent extends StatelessWidget {
             children: [
               SizedBoxExtension.height(60),
               GreetingWidget(
-                controller: controller,
+                controller: widget.controller,
               ),
               SizedBoxExtension.height(20),
               SearchFieldWidget(),
@@ -30,7 +36,7 @@ class HomeScreenContent extends StatelessWidget {
                 GenreChipsWidget(),
               ]),
               DiscoverMoreButton(
-                controller: controller,
+                controller: widget.controller,
               ),
               SizedBoxExtension.height(25),
             ],
