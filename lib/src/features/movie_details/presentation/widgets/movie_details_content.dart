@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:red_line/src/common/extensions/sized_box_extension.dart';
 import 'package:red_line/src/common/widgets/back_button.dart';
-import 'package:red_line/src/extensions/sized_box_extension.dart';
 import 'package:red_line/src/features/movie_details/bloc/detials_selection_cubit/details_selection_cubit.dart';
 import 'package:red_line/src/features/movie_details/presentation/widgets/general_informations/overlay_image.dart';
 import 'package:red_line/src/features/movie_details/presentation/widgets/general_informations_and_poster.dart';

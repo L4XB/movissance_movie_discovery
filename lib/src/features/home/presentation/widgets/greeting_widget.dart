@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
-import 'package:red_line/src/extensions/sized_box_extension.dart';
+import 'package:red_line/src/common/extensions/sized_box_extension.dart';
 
 class GreetingWidget extends StatelessWidget {
   final PersistentTabController controller;

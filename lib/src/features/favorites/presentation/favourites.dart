@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:red_line/src/extensions/sized_box_extension.dart';
+import 'package:red_line/src/common/extensions/sized_box_extension.dart';
 import 'package:red_line/src/features/favorites/presentation/favourites_content.dart';
 import 'package:red_line/src/features/favorites/presentation/widgets/favourites_search_field_widget.dart';
 
