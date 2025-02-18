@@ -22,6 +22,9 @@ class AccountBar extends StatelessWidget {
           final currentUser = state;
           final displayName = currentUser?.displayName ?? "";
           final imagePath = currentUser?.photoURL;
+          final imageFile = imagePath != null ? File(imagePath) : null;
+          final imageExists = imageFile?.existsSync() ?? false;
+
           return Center(
             child: Material(
               elevation: 3,
@@ -39,11 +42,9 @@ class AccountBar extends StatelessWidget {
                     children: [
                       CircleAvatar(
                         radius: 30,
-                        backgroundImage: imagePath == null
-                            ? AssetImage(
-                                "assets/images/placeholder.png",
-                              )
-                            : FileImage(File(imagePath)),
+                        backgroundImage: imageExists
+                            ? FileImage(imageFile!)
+                            : AssetImage("assets/images/placeholder.png"),
                       ),
                       SizedBoxExtension.width(20),
                       Expanded(

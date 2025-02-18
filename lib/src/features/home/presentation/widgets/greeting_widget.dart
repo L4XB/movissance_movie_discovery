@@ -20,6 +20,9 @@ class GreetingWidget extends StatelessWidget {
           final currentUser = state;
           final displayName = currentUser?.displayName ?? "";
           final imagePath = currentUser?.photoURL;
+          final imageFile = imagePath != null ? File(imagePath) : null;
+          final imageExists = imageFile?.existsSync() ?? false;
+
           return Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -53,10 +56,9 @@ class GreetingWidget extends StatelessWidget {
                   },
                   child: CircleAvatar(
                     radius: 30,
-                    backgroundImage: imagePath == null
-                        ? NetworkImage(
-                            "https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250")
-                        : FileImage(File(imagePath)),
+                    backgroundImage: imageExists
+                        ? FileImage(imageFile!)
+                        : AssetImage("assets/images/placeholder.png"),
                   ),
                 ),
               )
