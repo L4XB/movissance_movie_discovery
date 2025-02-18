@@ -3,6 +3,10 @@ import 'package:red_line/src/features/auth/data/auth_repository.dart';
 
 class FirebaseAuthRepository implements AuthRepository {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+
+  @override
+  Stream<User?> get onAuthStateChanged => _firebaseAuth.authStateChanges();
+
   @override
   Future<void> loginUser(String email, String password) {
     try {
@@ -21,9 +25,6 @@ class FirebaseAuthRepository implements AuthRepository {
       throw Exception(e);
     }
   }
-
-  @override
-  Stream<User?> get onAuthStateChanged => _firebaseAuth.authStateChanges();
 
   @override
   Future<void> resetPassword(String email) {

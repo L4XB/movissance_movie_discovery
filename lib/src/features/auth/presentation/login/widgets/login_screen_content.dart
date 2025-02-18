@@ -1,17 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
-import 'package:red_line/src/common/widgets/persistent_bottom_nav_bar.dart';
+import 'package:red_line/src/features/auth/data/auth_repository.dart';
 import 'package:red_line/src/features/auth/presentation/login/widgets/background_circles.dart';
 import 'package:red_line/src/features/auth/presentation/login/widgets/email_text_field.dart';
 import 'package:red_line/src/features/auth/presentation/login/widgets/password_text_field.dart';
 
-class LoginScreenContent extends StatelessWidget {
-  final PersistentTabController controller;
+class LoginScreenContent extends StatefulWidget {
+  final AuthRepository authRepository;
   const LoginScreenContent({
     super.key,
-    required this.controller,
+    required this.authRepository,
   });
+
+  @override
+  State<LoginScreenContent> createState() => _LoginScreenContentState();
+}
+
+class _LoginScreenContentState extends State<LoginScreenContent> {
+  late TextEditingController _emailController;
+  late TextEditingController _passwordController;
+
+  @override
+  void initState() {
+    _emailController = TextEditingController();
+    _passwordController = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,19 +63,25 @@ class LoginScreenContent extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            const EmailTextField(),
-            const PasswordTextField(),
+            EmailTextField(
+              controller: _emailController,
+            ),
+            PasswordTextField(
+              controller: _passwordController,
+            ),
             const SizedBox(height: 30),
             SizedBox(
               width: size.width * 0.9,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => PersistentBottomNavBar(
-                                controller: controller,
-                              )));
+                  try {
+                    widget.authRepository.loginUser(
+                      _emailController.text,
+                      _passwordController.text,
+                    );
+                  } catch (e) {
+                    print(e);
+                  }
                 },
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.white,

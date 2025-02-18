@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:red_line/src/common/extensions/sized_box_extension.dart';
+import 'package:red_line/src/features/auth/data/auth_repository.dart';
 
 class AccountBar extends StatelessWidget {
-  const AccountBar({super.key});
+  final AuthRepository authRepository;
+  const AccountBar({super.key, required this.authRepository});
 
   @override
   Widget build(BuildContext context) {
@@ -45,10 +47,15 @@ class AccountBar extends StatelessWidget {
                       ),
                     ),
                     SizedBoxExtension.width(60),
-                    Icon(CupertinoIcons.square_arrow_right,
-                        color: Color.fromARGB(255, 53, 65, 93),
-                        weight: 30,
-                        size: 25)
+                    GestureDetector(
+                      onTap: () {
+                        authRepository.logoutUser();
+                      },
+                      child: Icon(CupertinoIcons.square_arrow_right,
+                          color: Color.fromARGB(255, 53, 65, 93),
+                          weight: 30,
+                          size: 25),
+                    )
                   ],
                 ),
               ],

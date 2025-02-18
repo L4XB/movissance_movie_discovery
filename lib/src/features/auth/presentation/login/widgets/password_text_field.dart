@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class PasswordTextField extends StatefulWidget {
-  const PasswordTextField({super.key});
+  final TextEditingController controller;
+  const PasswordTextField({super.key, required this.controller});
 
   @override
   State<PasswordTextField> createState() => _PasswordTextFieldState();
@@ -22,6 +23,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
       child: TextFormField(
+        controller: widget.controller,
         decoration: InputDecoration(
           labelText: 'Password',
           hintText: 'Password',

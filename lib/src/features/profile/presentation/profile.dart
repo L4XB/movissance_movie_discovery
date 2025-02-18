@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:red_line/src/common/extensions/sized_box_extension.dart';
+import 'package:red_line/src/features/auth/data/auth_repository.dart';
 import 'package:red_line/src/features/profile/presentation/widgtes/account_bar.dart';
 import 'package:red_line/src/features/profile/presentation/widgtes/settings_section.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+  final AuthRepository authRepository;
+  const ProfileScreen({super.key, required this.authRepository});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,9 @@ class ProfileScreen extends StatelessWidget {
                     color: Color.fromARGB(255, 53, 65, 93))),
           ),
           SizedBoxExtension.height(20),
-          AccountBar(),
+          AccountBar(
+            authRepository: authRepository,
+          ),
           Padding(
             padding: EdgeInsets.only(left: 25, top: 35),
             child: Text("Settings",
