@@ -8,6 +8,9 @@ class FirebaseAuthRepository implements AuthRepository {
   Stream<User?> get onAuthStateChanged => _firebaseAuth.authStateChanges();
 
   @override
+  User? get currentUser => _firebaseAuth.currentUser;
+
+  @override
   Future<void> loginUser(String email, String password) {
     try {
       return _firebaseAuth.signInWithEmailAndPassword(
