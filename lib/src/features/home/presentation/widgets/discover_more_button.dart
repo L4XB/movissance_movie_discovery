@@ -14,7 +14,7 @@ class DiscoverMoreButton extends StatelessWidget {
       sizeStyle: CupertinoButtonSize.medium,
       color: const Color.fromARGB(41, 0, 123, 255),
       onPressed: () {
-        controller.jumpToTab(1);
+        controller.jumpToTab(2);
       },
       child: Text(
         "Discover More",
