@@ -1,8 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
+import 'package:red_line/src/features/auth/data/auth_repository.dart';
+import 'package:red_line/src/features/auth/presentation/password_reset/password_reset.dart';
 
 class SettingsSection extends StatelessWidget {
-  const SettingsSection({super.key});
+  final AuthRepository authRepository;
+  const SettingsSection({super.key, required this.authRepository});
 
   @override
   Widget build(BuildContext context) {
@@ -64,38 +68,28 @@ class SettingsSection extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 5),
-                child: ListTile(
-                  title: Text("Change Profile Picture",
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
-                  trailing: Padding(
-                    padding: const EdgeInsets.only(right: 10),
-                    child: Icon(
-                      Icons.arrow_forward_ios,
-                      size: 18,
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Divider(
-                  height: 1,
-                  thickness: 1.5,
-                  color: CupertinoColors.systemGrey,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 5),
-                child: ListTile(
-                  title: Text("Reset Password",
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
-                  trailing: Padding(
-                    padding: const EdgeInsets.only(right: 10),
-                    child: Icon(
-                      Icons.arrow_forward_ios,
-                      size: 18,
+                child: GestureDetector(
+                  onTap: () {
+                    PersistentNavBarNavigator.pushNewScreen(
+                      context,
+                      screen: PasswordResetScreen(
+                        authRepository: authRepository,
+                      ),
+                      withNavBar: false,
+                      pageTransitionAnimation:
+                          PageTransitionAnimation.cupertino,
+                    );
+                  },
+                  child: ListTile(
+                    title: Text("Reset Password",
+                        style: TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.bold)),
+                    trailing: Padding(
+                      padding: const EdgeInsets.only(right: 10),
+                      child: Icon(
+                        Icons.arrow_forward_ios,
+                        size: 18,
+                      ),
                     ),
                   ),
                 ),

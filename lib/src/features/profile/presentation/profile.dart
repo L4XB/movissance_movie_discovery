@@ -35,7 +35,9 @@ class ProfileScreen extends StatelessWidget {
                     color: Color.fromARGB(255, 53, 65, 93))),
           ),
           SizedBoxExtension.height(20),
-          SettingsSection(),
+          SettingsSection(
+            authRepository: authRepository,
+          ),
         ],
       ),
     );
