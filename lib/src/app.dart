@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
-import 'package:red_line/src/common/widgets/persistent_bottom_nav_bar.dart';
 import 'package:red_line/src/config.dart';
+import 'package:red_line/src/features/auth/presentation/login/login.dart';
 import 'package:red_line/src/features/discover/cubit/swiper_content_cubit.dart';
 import 'package:red_line/src/features/favorites/bloc/cubit/favourites_filter_cubit.dart';
 import 'package:red_line/src/features/favorites/bloc/favourites_cubit/favourites_cubit.dart';
@@ -57,9 +57,10 @@ class App extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: PersistentBottomNavBar(
-          controller: controller,
-        ),
+        home: LoginScreen(),
+        // home: PersistentBottomNavBar(
+        //   controller: controller,
+        // ),
       ),
     );
   }
