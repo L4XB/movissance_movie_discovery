@@ -10,8 +10,9 @@ final class SwiperContentLoading extends SwiperContentState {}
 final class SwiperContentLoaded extends SwiperContentState {
   final List<MovieModel> movies;
   final int page;
+  final int index;
 
-  SwiperContentLoaded(this.movies, this.page);
+  SwiperContentLoaded(this.movies, this.page, this.index);
 }
 
 final class SwiperContentError extends SwiperContentState {

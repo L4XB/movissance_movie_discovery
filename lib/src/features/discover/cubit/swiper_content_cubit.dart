@@ -14,12 +14,13 @@ class SwiperContentCubit extends Cubit<SwiperContentState> {
   final MovieRepository _movieRepository = ApiMovieRepository();
   final Random _random = Random();
   int _currentPage = 1;
+  int _currentIndex = 0;
 
   Future<void> loadMovies() async {
     try {
       emit(SwiperContentLoading());
       final movies = await _fetchRandomCategoryMovies(_currentPage);
-      emit(SwiperContentLoaded(movies, _currentPage));
+      emit(SwiperContentLoaded(movies, _currentPage, _currentIndex));
     } catch (e) {
       emit(SwiperContentError(e.toString()));
     }
@@ -33,7 +34,7 @@ class SwiperContentCubit extends Cubit<SwiperContentState> {
         final allMovies = List<MovieModel>.from(currentState.movies)
           ..addAll(newMovies);
         _currentPage++;
-        emit(SwiperContentLoaded(allMovies, _currentPage));
+        emit(SwiperContentLoaded(allMovies, _currentPage, _currentIndex));
       } catch (e) {
         emit(SwiperContentError(e.toString()));
       }
@@ -58,6 +59,15 @@ class SwiperContentCubit extends Cubit<SwiperContentState> {
   void checkAndLoadMoreMovies(int remainingMovies) {
     if (remainingMovies <= 5) {
       loadMoreMovies();
+    }
+  }
+
+  void updateCurrentIndex(int index) {
+    if (state is SwiperContentLoaded) {
+      final currentState = state as SwiperContentLoaded;
+      _currentIndex = index;
+      emit(SwiperContentLoaded(
+          currentState.movies, _currentPage, _currentIndex));
     }
   }
 }

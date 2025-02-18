@@ -26,6 +26,9 @@ class DiscoverPageContent extends StatelessWidget {
             child: PageView.builder(
               scrollDirection: Axis.vertical,
               itemCount: state.movies.length,
+              onPageChanged: (index) {
+                context.read<SwiperContentCubit>().updateCurrentIndex(index);
+              },
               itemBuilder: (context, index) {
                 final movie = state.movies[index];
                 if (index == state.movies.length - 5) {

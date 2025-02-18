@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
+import 'package:red_line/src/config.dart';
 import 'package:red_line/src/features/home/domain/movie_model.dart';
 import 'package:red_line/src/features/movie_details/bloc/movie_details_cubit/movie_details_cubit.dart';
 import 'package:red_line/src/features/movie_details/bloc/movie_provider_cubit/movie_provider_cubit.dart';
@@ -30,7 +31,7 @@ class MoviePage extends StatelessWidget {
         decoration: BoxDecoration(
           image: DecorationImage(
             image: NetworkImage(
-                'https://image.tmdb.org/t/p/w500${movie.posterPath}'),
+                theMovieDatabaseApiImageBaseURL + movie.posterPath),
             fit: BoxFit.cover,
           ),
         ),
@@ -40,8 +41,8 @@ class MoviePage extends StatelessWidget {
               begin: Alignment.bottomCenter,
               end: Alignment.topCenter,
               colors: [
-                Colors.black.withOpacity(0.8),
-                Colors.black.withOpacity(0.2),
+                Colors.black.withAlpha(204), // 0.8 * 255 = 204
+                Colors.black.withAlpha(51), // 0.2 * 255 = 51
               ],
             ),
           ),
@@ -82,14 +83,17 @@ class MoviePage extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 10),
-                Text(
-                  movie.overview,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    color: Colors.white70,
+                Padding(
+                  padding: const EdgeInsets.only(right: 50),
+                  child: Text(
+                    movie.overview,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      color: Colors.white70,
+                    ),
+                    maxLines: 5,
+                    overflow: TextOverflow.ellipsis,
                   ),
-                  maxLines: 5,
-                  overflow: TextOverflow.ellipsis,
                 ),
               ],
             ),
