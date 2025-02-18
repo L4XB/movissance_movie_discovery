@@ -23,6 +23,7 @@ dependencies:
   firebase_core: ^3.11.0
   firebase_auth: ^5.4.2
   image_picker: ^1.1.2
+  flutter_local_notifications: ^18.0.1
 
 dev_dependencies:
   flutter_test:
