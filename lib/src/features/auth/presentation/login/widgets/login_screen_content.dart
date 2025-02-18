@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
+import 'package:red_line/src/common/widgets/persistent_bottom_nav_bar.dart';
 import 'package:red_line/src/features/auth/presentation/login/widgets/background_circles.dart';
 import 'package:red_line/src/features/auth/presentation/login/widgets/email_text_field.dart';
 import 'package:red_line/src/features/auth/presentation/login/widgets/password_text_field.dart';
 
 class LoginScreenContent extends StatelessWidget {
+  final PersistentTabController controller;
   const LoginScreenContent({
     super.key,
+    required this.controller,
   });
 
   @override
@@ -45,7 +49,12 @@ class LoginScreenContent extends StatelessWidget {
               width: size.width * 0.9,
               child: ElevatedButton(
                 onPressed: () {
-                  // Handle login
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => PersistentBottomNavBar(
+                                controller: controller,
+                              )));
                 },
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.white,
@@ -64,7 +73,7 @@ class LoginScreenContent extends StatelessWidget {
             const SizedBox(height: 20),
             TextButton(
               onPressed: () {
-                // Handle password reset
+                // TODO: handle password reset
               },
               child: const Text(
                 'Forgot Password?',

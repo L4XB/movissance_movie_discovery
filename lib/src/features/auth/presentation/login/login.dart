@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:red_line/src/features/auth/presentation/login/widgets/login_screen_content.dart';
 import 'package:red_line/src/features/auth/presentation/signup/signup.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+  final PersistentTabController controller;
+  const LoginScreen({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +13,9 @@ class LoginScreen extends StatelessWidget {
       body: PageView(
         scrollDirection: Axis.vertical,
         children: [
-          LoginScreenContent(),
+          LoginScreenContent(
+            controller: controller,
+          ),
           SignupScreen(),
         ],
       ),

@@ -57,7 +57,7 @@ class App extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: LoginScreen(),
+        home: LoginScreen(controller: controller),
         // home: PersistentBottomNavBar(
         //   controller: controller,
         // ),
