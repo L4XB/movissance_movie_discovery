@@ -103,7 +103,9 @@ class _LoginScreenContentState extends State<LoginScreenContent> {
             TextButton(
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => PasswordResetScreen()));
+                    builder: (context) => PasswordResetScreen(
+                          authRepository: widget.authRepository,
+                        )));
               },
               child: const Text(
                 'Forgot Password?',
