@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:red_line/src/common/utils/textfield_validators.dart';
 
 class EmailTextField extends StatelessWidget {
   const EmailTextField({super.key});
@@ -9,7 +8,6 @@ class EmailTextField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
       child: TextFormField(
-        validator: (value) => TextfieldValidators.emailValidator(value),
         decoration: InputDecoration(
           labelText: 'Email',
           hintText: 'Email',
