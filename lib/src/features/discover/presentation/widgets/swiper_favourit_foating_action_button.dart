@@ -31,7 +31,7 @@ class SwiperFavouritFoatingActionButton extends StatelessWidget {
                         .addFavourite(currentMovie.id);
                   }
                 },
-                backgroundColor: CupertinoColors.systemGrey5,
+                backgroundColor: CupertinoColors.systemGrey3,
                 child: AnimatedSwitcher(
                   duration: const Duration(milliseconds: 300),
                   transitionBuilder:
@@ -51,7 +51,7 @@ class SwiperFavouritFoatingActionButton extends StatelessWidget {
         }
         return FloatingActionButton(
           onPressed: () {},
-          backgroundColor: CupertinoColors.systemGrey5,
+          backgroundColor: CupertinoColors.systemGrey3,
           child: const Icon(
             Icons.bookmark_outline,
             color: Colors.yellow,
