@@ -22,7 +22,7 @@ class MovieProviderSection extends StatelessWidget {
             child: Column(
               children: [
                 Lottie.asset("assets/animations/no_data_animation.json",
-                    width: 400),
+                    repeat: false, width: 400),
               ],
             ),
           );
