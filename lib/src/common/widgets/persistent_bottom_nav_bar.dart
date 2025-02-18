@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
+import 'package:red_line/src/features/discover/presentation/discover.dart';
 import 'package:red_line/src/features/favorites/presentation/favourites.dart';
 import 'package:red_line/src/features/home/presentation/home.dart';
 import 'package:red_line/src/features/profile/presentation/profile.dart';
@@ -72,11 +73,7 @@ class PersistentBottomNavBar extends StatelessWidget {
       HomeScreen(
         controller: controller,
       ),
-      Scaffold(
-        body: Center(
-          child: Text("Screen Two"),
-        ),
-      ),
+      DiscoverScreen(),
       Favourites(),
       ProfileScreen()
     ];
