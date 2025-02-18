@@ -22,6 +22,7 @@ class _SignupScreenState extends State<SignupScreen> {
   late TextEditingController _passwordController;
   late TextEditingController _confirmPasswordController;
   late TextEditingController _nameController;
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   XFile? _selectedImage;
 
   @override
@@ -47,90 +48,107 @@ class _SignupScreenState extends State<SignupScreen> {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.blueAccent,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const SizedBox(height: 100),
-          Padding(
-            padding: const EdgeInsets.only(left: 20),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: const Text(
-                'Create your\nAccount',
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                    fontSize: 27,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
+      body: Form(
+        key: formKey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const SizedBox(height: 100),
+            Padding(
+              padding: const EdgeInsets.only(left: 20),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: const Text(
+                  'Create your\nAccount',
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                      fontSize: 27,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
+                ),
               ),
             ),
-          ),
-          const SizedBox(height: 20),
-          EmailTextField(
-            controller: _emailController,
-            validator: TextfieldValidators.emailValidator,
-          ),
-          NameTextField(
-            controller: _nameController,
-          ),
-          PasswordTextField(
-            controller: _passwordController,
-            validator: TextfieldValidators.passwordValidator,
-            label: 'Password',
-          ),
-          PasswordTextField(
-            controller: _confirmPasswordController,
-            label: 'Confirm Password',
-            validator: (value) {
-              if (value != _passwordController.text) {
-                return 'Passwords do not match';
-              }
-              return TextfieldValidators.passwordValidator(value);
-            },
-          ),
-          const SizedBox(height: 30),
-          _selectedImage != null
-              ? Image.file(
-                  File(_selectedImage!.path),
-                  height: 100,
-                  width: 100,
-                  fit: BoxFit.cover,
-                )
-              : Image.asset(
-                  'assets/images/placeholder.png',
-                  height: 100,
-                  width: 100,
-                  fit: BoxFit.cover,
-                ),
-          const SizedBox(height: 10),
-          ImagePickerField(
-            onImageSelected: (image) {
-              setState(() {
-                _selectedImage = image;
-              });
-            },
-          ),
-          const SizedBox(height: 30),
-          SizedBox(
-            width: size.width * 0.9,
-            child: ElevatedButton(
-              onPressed: () {
-                // TODO: handle signup
+            const SizedBox(height: 20),
+            EmailTextField(
+              controller: _emailController,
+              validator: TextfieldValidators.emailValidator,
+            ),
+            NameTextField(
+              controller: _nameController,
+            ),
+            PasswordTextField(
+              controller: _passwordController,
+              validator: TextfieldValidators.passwordValidator,
+              label: 'Password',
+            ),
+            PasswordTextField(
+              controller: _confirmPasswordController,
+              label: 'Confirm Password',
+              validator: (value) {
+                if (value != _passwordController.text) {
+                  return 'Passwords do not match';
+                }
+                return TextfieldValidators.passwordValidator(value);
               },
-              style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.blueAccent,
-                backgroundColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-              ),
-              child: const Text('Sign Up',
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
             ),
-          ),
-        ],
+            const SizedBox(height: 30),
+            _selectedImage != null
+                ? ClipRRect(
+                    borderRadius: BorderRadius.circular(70),
+                    child: Image.file(
+                      File(_selectedImage!.path),
+                      height: 110,
+                      width: 110,
+                      fit: BoxFit.cover,
+                    ),
+                  )
+                : ClipRRect(
+                    borderRadius: BorderRadius.circular(70),
+                    child: Image.asset(
+                      'assets/images/placeholder.png',
+                      height: 110,
+                      width: 110,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+            const SizedBox(height: 10),
+            ImagePickerField(
+              onImageSelected: (image) {
+                setState(() {
+                  _selectedImage = image;
+                });
+              },
+            ),
+            const SizedBox(height: 30),
+            SizedBox(
+              width: size.width * 0.9,
+              child: ElevatedButton(
+                onPressed: () {
+                  final mail = _emailController.text;
+                  final password = _passwordController.text;
+                  final name = _nameController.text;
+                  final imagePath = _selectedImage?.path;
+                  if (formKey.currentState!.validate()) {
+                    widget.authRepository
+                        .signUp(mail, password, name, imagePath);
+                  }
+                },
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.blueAccent,
+                  backgroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                ),
+                child: const Text('Sign Up',
+                    style:
+                        TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

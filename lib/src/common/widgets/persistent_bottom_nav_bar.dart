@@ -75,6 +75,7 @@ class PersistentBottomNavBar extends StatelessWidget {
     return [
       HomeScreen(
         controller: controller,
+        authRepository: authRepository,
       ),
       Favourites(),
       DiscoverScreen(),

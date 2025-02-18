@@ -39,10 +39,13 @@ class FirebaseAuthRepository implements AuthRepository {
   }
 
   @override
-  Future<void> signUp(String email, String password) {
+  Future<void> signUp(
+      String email, String password, String name, String? image) async {
     try {
-      return _firebaseAuth.createUserWithEmailAndPassword(
+      await _firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
+      await _firebaseAuth.currentUser!
+          .updateProfile(displayName: name, photoURL: image);
     } catch (e) {
       throw Exception(e);
     }
