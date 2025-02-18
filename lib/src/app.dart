@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:red_line/src/common/widgets/persistent_bottom_nav_bar.dart';
 import 'package:red_line/src/config.dart';
+import 'package:red_line/src/features/discover/cubit/swiper_content_cubit.dart';
 import 'package:red_line/src/features/favorites/bloc/cubit/favourites_filter_cubit.dart';
 import 'package:red_line/src/features/favorites/bloc/favourites_cubit/favourites_cubit.dart';
 import 'package:red_line/src/features/favorites/bloc/favourites_data_cubit/favourites_data_cubit.dart';
@@ -49,6 +50,9 @@ class App extends StatelessWidget {
         ),
         BlocProvider<FavouritesFilterCubit>(
           create: (context) => FavouritesFilterCubit(),
+        ),
+        BlocProvider<SwiperContentCubit>(
+          create: (context) => SwiperContentCubit()..loadMovies(),
         )
       ],
       child: MaterialApp(

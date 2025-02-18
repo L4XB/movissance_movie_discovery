@@ -48,14 +48,14 @@ class PersistentBottomNavBar extends StatelessWidget {
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.explore_outlined),
-        title: ("Discover"),
+        icon: Icon(Icons.bookmark_outline),
+        title: ("Favorites"),
         activeColorPrimary: CupertinoColors.activeBlue,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.bookmark_outline),
-        title: ("Favorites"),
+        icon: Icon(Icons.explore_outlined),
+        title: ("Discover"),
         activeColorPrimary: CupertinoColors.activeBlue,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
@@ -73,8 +73,8 @@ class PersistentBottomNavBar extends StatelessWidget {
       HomeScreen(
         controller: controller,
       ),
-      DiscoverScreen(),
       Favourites(),
+      DiscoverScreen(),
       ProfileScreen()
     ];
   }
