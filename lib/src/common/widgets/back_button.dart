@@ -14,7 +14,7 @@ class CustomBackButton extends StatelessWidget {
         height: 30,
         width: 50,
         decoration: BoxDecoration(
-          color: const Color.fromARGB(178, 248, 249, 250),
+          color: const Color.fromARGB(177, 189, 190, 191),
           borderRadius: BorderRadius.only(
             topRight: Radius.circular(20),
             bottomRight: Radius.circular(20),

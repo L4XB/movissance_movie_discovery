@@ -4,6 +4,7 @@ import 'package:red_line/src/features/auth/data/auth_repository.dart';
 import 'package:red_line/src/features/auth/presentation/login/widgets/background_circles.dart';
 import 'package:red_line/src/features/auth/presentation/login/widgets/email_text_field.dart';
 import 'package:red_line/src/features/auth/presentation/login/widgets/password_text_field.dart';
+import 'package:red_line/src/features/auth/presentation/password_reset/password_reset.dart';
 
 class LoginScreenContent extends StatefulWidget {
   final AuthRepository authRepository;
@@ -101,7 +102,8 @@ class _LoginScreenContentState extends State<LoginScreenContent> {
             const SizedBox(height: 20),
             TextButton(
               onPressed: () {
-                // TODO: handle password reset
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => PasswordResetScreen()));
               },
               child: const Text(
                 'Forgot Password?',
