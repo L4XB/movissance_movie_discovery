@@ -68,6 +68,7 @@ class _LoginScreenContentState extends State<LoginScreenContent> {
             ),
             PasswordTextField(
               controller: _passwordController,
+              label: "Password",
             ),
             const SizedBox(height: 30),
             SizedBox(

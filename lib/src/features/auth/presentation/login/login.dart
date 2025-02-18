@@ -16,7 +16,7 @@ class LoginScreen extends StatelessWidget {
           LoginScreenContent(
             authRepository: authRepository,
           ),
-          SignupScreen(),
+          SignupScreen(authRepository: authRepository),
         ],
       ),
     );

@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
 
-class EmailTextField extends StatelessWidget {
+class NameTextField extends StatelessWidget {
   final TextEditingController controller;
-  final String? Function(String?)? validator;
-  const EmailTextField({super.key, required this.controller, this.validator});
+  const NameTextField({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
       child: TextFormField(
-        validator: validator ?? (_) => null,
         controller: controller,
         decoration: InputDecoration(
-          labelText: 'Email',
-          hintText: 'Email',
+          labelText: 'Name',
+          hintText: 'Name',
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15),
             borderSide: const BorderSide(color: Colors.grey),
