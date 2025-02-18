@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1060674366308",
+    "project_id": "red-line-8eb32",
+    "storage_bucket": "red-line-8eb32.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1060674366308:android:a1d912fa642d93f4d6e871",
+        "android_client_info": {
+          "package_name": "com.example.red_line"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbI1FnI5QOuJLXanUaxTunxo3jVq4_S90"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
