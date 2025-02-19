@@ -11,6 +11,7 @@ class MovieProviderSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return BlocBuilder<MovieProviderCubit, MovieProviderState>(
       builder: (context, state) {
         if (state is MovieProviderLoading) {
@@ -18,11 +19,11 @@ class MovieProviderSection extends StatelessWidget {
         }
         if (state is MovieProviderError) {
           return Padding(
-            padding: const EdgeInsets.only(top: 30),
+            padding: EdgeInsets.only(top: size.height * 0.035),
             child: Column(
               children: [
                 Lottie.asset("assets/animations/no_data_animation.json",
-                    repeat: false, width: 400),
+                    repeat: false, width: size.width),
               ],
             ),
           );
@@ -36,20 +37,20 @@ class MovieProviderSection extends StatelessWidget {
                 SectionHeader(title: "Flatrate"),
                 ...state.provider.flatrate
                     .map((provider) => ProviderTile(provider: provider)),
-                SizedBoxExtension.height(25),
+                SizedBoxExtension.height(size.height * 0.025),
               ],
               if (state.provider.rent.isNotEmpty) ...[
                 SectionHeader(title: "Rent"),
                 ...state.provider.rent
                     .map((provider) => ProviderTile(provider: provider)),
-                SizedBoxExtension.height(25),
+                SizedBoxExtension.height(size.height * 0.025),
               ],
               if (state.provider.buy.isNotEmpty) ...[
                 SectionHeader(title: "Buy"),
                 ...state.provider.buy
                     .map((provider) => ProviderTile(provider: provider)),
               ],
-              SizedBoxExtension.height(50),
+              SizedBoxExtension.height(size.height * 0.06),
             ],
           );
         }

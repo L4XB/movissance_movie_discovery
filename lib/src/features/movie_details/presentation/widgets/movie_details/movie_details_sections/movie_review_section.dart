@@ -9,6 +9,7 @@ class MovieReviewSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return BlocBuilder<MovieReviewsCubit, MovieReviewsState>(
       builder: (context, state) {
         if (state is MovieReviewsLoading) {
@@ -24,7 +25,7 @@ class MovieReviewSection extends StatelessWidget {
             itemCount: state.reviews.length + 1,
             itemBuilder: (context, index) {
               if (index == state.reviews.length) {
-                return SizedBoxExtension.height(60);
+                return SizedBoxExtension.height(size.height * 0.08);
               }
               final review = state.reviews[index];
               return ReviewBox(review: review);

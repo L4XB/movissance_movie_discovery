@@ -9,6 +9,8 @@ class AboutMovieSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final scaler = MediaQuery.of(context).textScaler;
     return Column(
       children: [
         Row(
@@ -16,16 +18,16 @@ class AboutMovieSection extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 30),
+              padding: EdgeInsets.only(left: size.width * 0.076),
               child: Text("About the Movie",
                   style: TextStyle(
-                      fontSize: 20,
+                      fontSize: scaler.scale(20),
                       fontWeight: FontWeight.bold,
                       color: const Color.fromARGB(255, 53, 65, 93))),
             ),
           ],
         ),
-        SizedBoxExtension.height(10),
+        SizedBoxExtension.height(size.height * 0.012),
         BlocBuilder<MovieDetailsCubit, MovieDetailsState>(
             builder: (context, movieDetailsState) {
           if (movieDetailsState is MovieDetailsLoading) {
