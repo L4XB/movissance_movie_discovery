@@ -17,6 +17,7 @@ class MovieDetailsContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Column(
       children: [
         Stack(
@@ -25,12 +26,12 @@ class MovieDetailsContent extends StatelessWidget {
             GeneralInformationsAndPoster(),
             OverlayImage(),
             Positioned(
-              top: 55,
+              top: size.height * 0.07,
               child: CustomBackButton(),
             ),
           ],
         ),
-        SizedBoxExtension.height(40),
+        SizedBoxExtension.height(size.height * 0.0225),
         Expanded(
           child: Container(
             width: double.infinity,
@@ -50,54 +51,51 @@ class MovieDetailsContent extends StatelessWidget {
             ),
             child: Column(
               children: [
-                SizedBoxExtension.height(20),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                  child: SegmentedButton(
-                    segments: const [
-                      ButtonSegment(
-                        value: 0,
-                        label: Text('About'),
-                      ),
-                      ButtonSegment<int>(
-                        value: 1,
-                        label: Text('Providers'),
-                      ),
-                      ButtonSegment<int>(
-                        value: 2,
-                        label: Text('Reviews'),
-                      ),
-                    ],
-                    onSelectionChanged: (Set<int> newSelection) {
-                      context.read<DetailsSelectionCubit>().setDetailsSelection(
-                            newSelection.first,
-                          );
-                    },
-                    showSelectedIcon: false,
-                    style: ButtonStyle(
-                      backgroundColor: WidgetStateProperty.resolveWith(
-                        (Set<WidgetState> states) {
-                          if (states.contains(WidgetState.selected)) {
-                            return Colors.white;
-                          }
-                          return const Color.fromARGB(255, 235, 235, 251);
-                        },
-                      ),
-                      shape: WidgetStateProperty.all(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16.0),
-                        ),
+                SizedBoxExtension.height(size.height * 0.0225),
+                SegmentedButton(
+                  segments: const [
+                    ButtonSegment(
+                      value: 0,
+                      label: Text('About'),
+                    ),
+                    ButtonSegment<int>(
+                      value: 1,
+                      label: Text('Providers'),
+                    ),
+                    ButtonSegment<int>(
+                      value: 2,
+                      label: Text('Reviews'),
+                    ),
+                  ],
+                  onSelectionChanged: (Set<int> newSelection) {
+                    context.read<DetailsSelectionCubit>().setDetailsSelection(
+                          newSelection.first,
+                        );
+                  },
+                  showSelectedIcon: false,
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStateProperty.resolveWith(
+                      (Set<WidgetState> states) {
+                        if (states.contains(WidgetState.selected)) {
+                          return Colors.white;
+                        }
+                        return const Color.fromARGB(255, 235, 235, 251);
+                      },
+                    ),
+                    shape: WidgetStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16.0),
                       ),
                     ),
-                    selected: context.select(
-                        (DetailsSelectionCubit cubit) => cubit.state == 0
-                            ? {0}
-                            : cubit.state == 1
-                                ? {1}
-                                : {2}),
                   ),
+                  selected: context
+                      .select((DetailsSelectionCubit cubit) => cubit.state == 0
+                          ? {0}
+                          : cubit.state == 1
+                              ? {1}
+                              : {2}),
                 ),
-                SizedBoxExtension.height(20),
+                SizedBoxExtension.height(size.height * 0.0225),
                 Expanded(
                   child: BlocBuilder<DetailsSelectionCubit, int>(
                     builder: (context, state) {

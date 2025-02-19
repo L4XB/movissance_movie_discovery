@@ -15,35 +15,37 @@ class MovieOverview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final scaler = MediaQuery.of(context).textScaler;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30),
+          padding: EdgeInsets.symmetric(horizontal: size.width * 0.075),
           child: Text(
             "Tagline: $tagline",
             style: TextStyle(
-                fontSize: 14,
+                fontSize: scaler.scale(14),
                 color: CupertinoColors.black,
                 fontWeight: FontWeight.bold),
           ),
         ),
-        SizedBoxExtension.height(15),
+        SizedBoxExtension.height(size.height * 0.018),
         Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
+            padding: EdgeInsets.symmetric(horizontal: size.width * 0.075),
             child: MovieStatusBadge(status: status)),
-        SizedBoxExtension.height(15),
+        SizedBoxExtension.height(size.height * 0.018),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30),
+          padding: EdgeInsets.symmetric(horizontal: size.width * 0.075),
           child: Text(
             overview,
             style: TextStyle(
-              fontSize: 14,
+              fontSize: scaler.scale(14),
               color: CupertinoColors.black,
             ),
           ),
         ),
-        SizedBoxExtension.height(20),
+        SizedBoxExtension.height(size.height * 0.019),
       ],
     );
   }
