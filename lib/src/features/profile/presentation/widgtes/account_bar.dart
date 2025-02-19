@@ -15,6 +15,7 @@ class AccountBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final textScaler = MediaQuery.of(context).textScaler;
     return BlocProvider(
       create: (context) => UserDataCubit(),
       child: BlocBuilder<UserDataCubit, User?>(
@@ -36,7 +37,7 @@ class AccountBar extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(12),
+                  padding: const EdgeInsets.all(13),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -46,20 +47,20 @@ class AccountBar extends StatelessWidget {
                             ? FileImage(imageFile!)
                             : AssetImage("assets/images/placeholder.png"),
                       ),
-                      SizedBoxExtension.width(20),
+                      SizedBoxExtension.width(size.width * 0.050),
                       Expanded(
                         child: Row(
                           children: [
                             Text(
                               "Welcome, ",
                               style: TextStyle(
-                                  fontSize: 18,
+                                  fontSize: textScaler.scale(18),
                                   color: CupertinoColors.secondaryLabel),
                             ),
                             Text(
                               displayName,
                               style: TextStyle(
-                                fontSize: 20,
+                                fontSize: textScaler.scale(20),
                                 fontWeight: FontWeight.bold,
                                 color: const Color.fromARGB(232, 46, 46, 48),
                               ),
@@ -72,9 +73,9 @@ class AccountBar extends StatelessWidget {
                               child: Icon(CupertinoIcons.square_arrow_right,
                                   color: Color.fromARGB(255, 53, 65, 93),
                                   weight: 30,
-                                  size: 25),
+                                  size: textScaler.scale(25)),
                             ),
-                            SizedBoxExtension.width(10),
+                            SizedBoxExtension.width(size.width * 0.025),
                           ],
                         ),
                       ),

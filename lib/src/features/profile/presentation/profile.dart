@@ -10,31 +10,35 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final textScaler = MediaQuery.of(context).textScaler;
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.only(left: 25, top: 70),
+            padding: EdgeInsets.only(
+                left: size.width * 0.065, top: size.height * 0.0825),
             child: Text("Account",
                 style: TextStyle(
-                    fontSize: 25,
+                    fontSize: textScaler.scale(25),
                     fontWeight: FontWeight.bold,
                     color: Color.fromARGB(255, 53, 65, 93))),
           ),
-          SizedBoxExtension.height(20),
+          SizedBoxExtension.height(size.height * 0.025),
           AccountBar(
             authRepository: authRepository,
           ),
           Padding(
-            padding: EdgeInsets.only(left: 25, top: 35),
+            padding: EdgeInsets.only(
+                left: size.width * 0.065, top: size.height * 0.045),
             child: Text("Settings",
                 style: TextStyle(
-                    fontSize: 25,
+                    fontSize: textScaler.scale(25),
                     fontWeight: FontWeight.bold,
                     color: Color.fromARGB(255, 53, 65, 93))),
           ),
-          SizedBoxExtension.height(20),
+          SizedBoxExtension.height(size.height * 0.025),
           SettingsSection(
             authRepository: authRepository,
           ),

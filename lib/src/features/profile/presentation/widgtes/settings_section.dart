@@ -12,6 +12,7 @@ class SettingsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final textScaler = MediaQuery.of(context).textScaler;
     return Center(
       child: Material(
         elevation: 3,
@@ -26,11 +27,12 @@ class SettingsSection extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 5),
+                padding: EdgeInsets.symmetric(vertical: size.height * 0.0055),
                 child: ListTile(
                   title: Text("Dark Mode",
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+                      style: TextStyle(
+                          fontSize: textScaler.scale(15),
+                          fontWeight: FontWeight.bold)),
                   trailing: Switch(
                     value: true,
                     activeColor: CupertinoColors.activeBlue,
@@ -39,7 +41,7 @@ class SettingsSection extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
+                padding: EdgeInsets.symmetric(horizontal: size.width * 0.025),
                 child: Divider(
                   height: 1,
                   thickness: 1.5,
@@ -47,11 +49,12 @@ class SettingsSection extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 5),
+                padding: EdgeInsets.symmetric(vertical: size.height * 0.0055),
                 child: ListTile(
                   title: Text("Notifications",
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+                      style: TextStyle(
+                          fontSize: textScaler.scale(15),
+                          fontWeight: FontWeight.bold)),
                   trailing: Switch(
                     activeColor: CupertinoColors.activeBlue,
                     value: true,
@@ -60,7 +63,7 @@ class SettingsSection extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
+                padding: EdgeInsets.symmetric(horizontal: size.width * 0.025),
                 child: Divider(
                   height: 1,
                   thickness: 1.5,
@@ -68,7 +71,7 @@ class SettingsSection extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 5),
+                padding: EdgeInsets.symmetric(vertical: size.height * 0.0055),
                 child: GestureDetector(
                   onTap: () {
                     PersistentNavBarNavigator.pushNewScreen(
@@ -84,19 +87,20 @@ class SettingsSection extends StatelessWidget {
                   child: ListTile(
                     title: Text("Reset Password",
                         style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.bold)),
+                            fontSize: textScaler.scale(15),
+                            fontWeight: FontWeight.bold)),
                     trailing: Padding(
-                      padding: const EdgeInsets.only(right: 10),
+                      padding: EdgeInsets.only(right: size.width * 0.025),
                       child: Icon(
                         Icons.arrow_forward_ios,
-                        size: 18,
+                        size: textScaler.scale(18),
                       ),
                     ),
                   ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
+                padding: EdgeInsets.symmetric(horizontal: size.width * 0.025),
                 child: Divider(
                   height: 1,
                   thickness: 1.5,
@@ -104,7 +108,7 @@ class SettingsSection extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 5),
+                padding: EdgeInsets.symmetric(vertical: size.height * 0.0055),
                 child: ListTile(
                   onTap: () async {
                     final Uri emailLaunchUri = Uri(
@@ -118,13 +122,14 @@ class SettingsSection extends StatelessWidget {
                     }
                   },
                   title: Text("Support",
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+                      style: TextStyle(
+                          fontSize: textScaler.scale(15),
+                          fontWeight: FontWeight.bold)),
                   trailing: Padding(
-                    padding: const EdgeInsets.only(right: 10),
+                    padding: EdgeInsets.only(right: size.width * 0.025),
                     child: Icon(
                       Icons.arrow_forward_ios,
-                      size: 18,
+                      size: textScaler.scale(18),
                     ),
                   ),
                 ),
