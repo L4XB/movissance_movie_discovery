@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:red_line/src/features/favorites/bloc/cubit/favourites_filter_cubit.dart';
+import 'package:red_line/src/features/favorites/bloc/favourites_filter_cubit/favourites_filter_cubit.dart';
 import 'package:red_line/src/features/home/presentation/widgets/search/custom_radio_list_tile.dart';
 
 class FavouritesSearchFilterBottomSheet extends StatelessWidget {

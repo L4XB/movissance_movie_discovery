@@ -20,7 +20,9 @@ class FavouritesDataCubit extends Cubit<FavouritesDataState> {
     _loadData(favouritesCubit.state);
   }
 
-  void search(String query) {
+  void search(String query, int selectedDurationFilter) {
+    // (int?, int?) runtimeRange =
+    //     RuntimeRangeCalculator.getRuntimeRange(selectedDurationFilter);
     if (state is FavouritesDataLoaded) {
       final List<MovieModel> movies = (state as FavouritesDataLoaded)
           .movies
