@@ -20,6 +20,13 @@ class HomeGenreCubit extends Cubit<HomeGenreState> {
     }
   }
 
+  void unselectAllGenres() {
+    final currentState = state;
+    if (currentState is HomeGenreSelected) {
+      emit(HomeGenreLoaded(currentState.genres, currentState.page));
+    }
+  }
+
   void loadGenres(int page) async {
     emit(HomeGenreLoading());
     try {
