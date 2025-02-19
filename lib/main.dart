@@ -12,6 +12,6 @@ void main() async {
   final FirebaseMessagingService firebaseMessagingService =
       FirebaseMessagingService();
   await firebaseMessagingService.initialize();
-  await firebaseMessagingService.scheduleNotification(8, 0);
+  await firebaseMessagingService.scheduleNotification(10, 0);
   runApp(App());
 }
