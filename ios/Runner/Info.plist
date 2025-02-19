@@ -58,6 +58,13 @@
 	<string>http</string> 
 	<string>https</string>
 	<string>mailto</string> 
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<false/>
+	<key>UIBackgroundModes</key>
+	<array>
+	<string>fetch</string>
+	<string>remote-notification</string>
+	</array>
 </array>
 </dict>
 </plist>
