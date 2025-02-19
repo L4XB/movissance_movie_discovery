@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:red_line/src/features/auth/data/auth_repository.dart';
 import 'package:red_line/src/features/auth/presentation/password_reset/password_reset.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SettingsSection extends StatelessWidget {
   final AuthRepository authRepository;
@@ -105,6 +106,17 @@ class SettingsSection extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 5),
                 child: ListTile(
+                  onTap: () async {
+                    final Uri emailLaunchUri = Uri(
+                      scheme: 'mailto',
+                      path: 'support@redline.com',
+                    );
+                    if (await canLaunchUrl(emailLaunchUri)) {
+                      await launchUrl(emailLaunchUri);
+                    } else {
+                      throw 'Could not launch $emailLaunchUri';
+                    }
+                  },
                   title: Text("Support",
                       style:
                           TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),

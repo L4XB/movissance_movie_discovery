@@ -51,5 +51,13 @@
 	<string>Wir benötigen Zugriff auf Ihre Fotobibliothek, um Fotos auszuwählen.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Wir benötigen Zugriff auf Ihre Fotobibliothek, um Fotos zu speichern.</string>
+	<key>LSApplicationQueriesSchemes</key> 
+	<array> 
+	<string>googlechrome</string> 
+	<string>googlechromes</string> 
+	<string>http</string> 
+	<string>https</string>
+	<string>mailto</string> 
+</array>
 </dict>
 </plist>
