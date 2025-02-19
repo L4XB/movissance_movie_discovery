@@ -8,12 +8,17 @@ class MovieTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final scaler = MediaQuery.of(context).textScaler;
     return Padding(
-      padding: const EdgeInsets.only(left: 150, top: 10, right: 10),
+      padding: EdgeInsets.only(
+        left: size.width * 0.382,
+        top: size.height * 0.011,
+      ),
       child: AutoSizeText(
         title,
-        style: const TextStyle(
-          fontSize: 20,
+        style: TextStyle(
+          fontSize: scaler.scale(20),
           fontWeight: FontWeight.bold,
         ),
         maxLines: 1,

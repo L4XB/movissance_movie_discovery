@@ -11,6 +11,7 @@ class AddToFavouriesActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scaler = MediaQuery.of(context).textScaler;
     return BlocBuilder<MovieDetailsCubit, MovieDetailsState>(
       builder: (context, movieDetailsState) {
         if (movieDetailsState is MovieDetailsLoaded) {
@@ -36,7 +37,7 @@ class AddToFavouriesActionButton extends StatelessWidget {
                   child: Icon(
                     isFavourite ? Icons.bookmark : Icons.bookmark_outline,
                     color: CupertinoColors.systemYellow,
-                    size: 35,
+                    size: scaler.scale(35),
                     key: ValueKey<bool>(isFavourite),
                   ),
                 ),
@@ -50,7 +51,7 @@ class AddToFavouriesActionButton extends StatelessWidget {
           child: Icon(
             Icons.bookmark_outline,
             color: CupertinoColors.systemYellow,
-            size: 35,
+            size: scaler.scale(35),
           ),
         );
       },

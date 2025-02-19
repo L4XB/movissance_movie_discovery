@@ -9,53 +9,55 @@ class MovieDetailsRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final scaler = MediaQuery.of(context).textScaler;
     return Padding(
-      padding: const EdgeInsets.only(left: 150),
+      padding: EdgeInsets.only(left: size.width * 0.382),
       child: Row(
         children: [
           Padding(
-            padding: const EdgeInsets.only(right: 5),
+            padding: EdgeInsets.only(right: size.width * 0.012),
             child: Text(
               movie.releaseDate.substring(0, 4),
-              style: const TextStyle(
+              style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 14,
+                fontSize: scaler.scale(14),
                 color: CupertinoColors.systemGrey,
               ),
             ),
           ),
-          const Text(
+          Text(
             " ● ",
             style: TextStyle(
-              fontSize: 5,
+              fontSize: scaler.scale(5),
               color: CupertinoColors.systemGrey,
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 5, right: 5),
+            padding: EdgeInsets.symmetric(horizontal: size.width * 0.012),
             child: Text(
               movie.genres.first.name,
-              style: const TextStyle(
+              style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 14,
+                fontSize: scaler.scale(14),
                 color: CupertinoColors.systemGrey,
               ),
             ),
           ),
-          const Text(
+          Text(
             " ● ",
             style: TextStyle(
-              fontSize: 5,
+              fontSize: scaler.scale(5),
               color: CupertinoColors.systemGrey,
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 5),
+            padding: EdgeInsets.only(left: size.width * 0.012),
             child: Text(
               StringFormater.minutesToHours(movie.runtime),
-              style: const TextStyle(
+              style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 14,
+                fontSize: scaler.scale(14),
                 color: CupertinoColors.systemGrey,
               ),
             ),

@@ -9,56 +9,63 @@ class MovieRatingRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final scaler = MediaQuery.of(context).textScaler;
     return Padding(
-      padding: const EdgeInsets.only(left: 150),
+      padding: EdgeInsets.only(left: size.width * 0.38),
       child: Row(
         children: [
-          const Padding(
-            padding: EdgeInsets.only(top: 5),
+          Padding(
+            padding: EdgeInsets.only(top: size.height * 0.005),
             child: Icon(
               Icons.star,
               color: CupertinoColors.systemYellow,
-              size: 20,
+              size: scaler.scale(20),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 2, top: 5, right: 1),
+            padding: EdgeInsets.only(
+                left: size.width * 0.0075,
+                top: size.height * 0.005,
+                right: size.width * 0.00375),
             child: Text(
               movie.voteAverage.toStringAsFixed(1),
-              style: const TextStyle(
-                fontSize: 14,
+              style: TextStyle(
+                fontSize: scaler.scale(14),
                 fontWeight: FontWeight.bold,
               ),
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.only(top: 5, right: 5),
+          Padding(
+            padding: EdgeInsets.only(
+                top: size.height * 0.005, right: size.width * 0.0125),
             child: Text(
               "/10.0",
               style: TextStyle(
                 color: CupertinoColors.systemGrey,
-                fontSize: 14,
+                fontSize: scaler.scale(14),
                 fontWeight: FontWeight.bold,
               ),
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.only(top: 5),
+          Padding(
+            padding: EdgeInsets.only(top: size.height * 0.005),
             child: Text(
               " ● ",
               style: TextStyle(
-                fontSize: 5,
+                fontSize: scaler.scale(5),
                 color: CupertinoColors.systemGrey,
               ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 5, left: 5),
+            padding: EdgeInsets.only(
+                top: size.height * 0.005, left: size.width * 0.0125),
             child: Text(
               "${movie.voteCount} votes",
-              style: const TextStyle(
+              style: TextStyle(
                 color: CupertinoColors.black,
-                fontSize: 14,
+                fontSize: scaler.scale(14),
                 fontWeight: FontWeight.bold,
               ),
             ),

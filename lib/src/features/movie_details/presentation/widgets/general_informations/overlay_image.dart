@@ -11,11 +11,13 @@ class OverlayImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return BlocBuilder<MovieDetailsCubit, MovieDetailsState>(
       builder: (context, state) {
         if (state is MovieDetailsLoading) {
           return Padding(
-            padding: const EdgeInsets.only(top: 150),
+            padding: EdgeInsets.only(top: size.height * 0.4),
             child: Center(
               child: CircularProgressIndicator(),
             ),
@@ -28,11 +30,11 @@ class OverlayImage extends StatelessWidget {
         }
         if (state is MovieDetailsLoaded) {
           return Positioned(
-            top: 160,
-            left: 20,
+            top: size.height * 0.188,
+            left: size.width * 0.051,
             child: Container(
-              height: 175,
-              width: 120,
+              height: size.height * 0.2055,
+              width: size.width * 0.305,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(
