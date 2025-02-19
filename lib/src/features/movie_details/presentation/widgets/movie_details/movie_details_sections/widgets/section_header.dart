@@ -7,12 +7,15 @@ class SectionHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final scaler = MediaQuery.of(context).textScaler;
     return Padding(
-      padding: const EdgeInsets.only(left: 30, bottom: 10),
+      padding:
+          EdgeInsets.only(left: size.width * 0.07, bottom: size.height * 0.01),
       child: Text(
         title,
         style: TextStyle(
-          fontSize: 20,
+          fontSize: scaler.scale(20),
           fontWeight: FontWeight.bold,
           color: const Color.fromARGB(255, 53, 65, 93),
         ),

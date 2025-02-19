@@ -10,8 +10,11 @@ class ReviewBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final scaler = MediaQuery.of(context).textScaler;
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+      padding: EdgeInsets.symmetric(
+          vertical: size.height * 0.009, horizontal: size.width * 0.04),
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -40,7 +43,7 @@ class ReviewBox extends StatelessWidget {
                     radius: 20,
                     onBackgroundImageError: (_, __) {},
                   ),
-                  SizedBox(width: 10),
+                  SizedBox(width: size.width * 0.0225),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -48,35 +51,35 @@ class ReviewBox extends StatelessWidget {
                         review.authorName,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 16,
+                          fontSize: scaler.scale(16),
                         ),
                       ),
                       Text(
                         '@${review.authorUsername}',
                         style: TextStyle(
                           color: Colors.grey,
-                          fontSize: 14,
+                          fontSize: scaler.scale(14),
                         ),
                       ),
                     ],
                   ),
                 ],
               ),
-              SizedBox(height: 10),
+              SizedBox(height: size.height * 0.012),
               Text(
                 review.content,
                 style: TextStyle(
-                  fontSize: 14,
+                  fontSize: scaler.scale(14),
                   color: Colors.black87,
                 ),
               ),
-              SizedBox(height: 10),
+              SizedBox(height: size.height * 0.012),
               Row(
                 children: List.generate(5, (index) {
                   return Icon(
                     index < review.rating ? Icons.star : Icons.star_border,
                     color: CupertinoColors.systemYellow,
-                    size: 20,
+                    size: scaler.scale(20),
                   );
                 }),
               ),

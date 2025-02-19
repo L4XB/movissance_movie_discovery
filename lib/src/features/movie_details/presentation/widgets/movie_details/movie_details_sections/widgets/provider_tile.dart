@@ -10,8 +10,11 @@ class ProviderTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final scaler = MediaQuery.of(context).textScaler;
     return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 7),
+        padding: EdgeInsets.symmetric(
+            horizontal: size.width * 0.05, vertical: size.height * 0.008),
         child: Container(
           decoration: BoxDecoration(
             color: CupertinoColors.systemGrey5,
@@ -24,11 +27,12 @@ class ProviderTile extends StatelessWidget {
           child: ListTile(
             leading: Image.network(
               theMovieDatabaseApiImageBaseURL + provider.logoPath,
-              width: 40,
+              width: size.width * 0.1,
               fit: BoxFit.cover,
             ),
             title: Text(provider.providerName,
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
+                style: TextStyle(
+                    fontSize: scaler.scale(18), fontWeight: FontWeight.w500)),
           ),
         ));
   }
