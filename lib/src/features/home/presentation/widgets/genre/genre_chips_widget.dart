@@ -9,16 +9,18 @@ class GenreChipsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final scaler = MediaQuery.of(context).textScaler;
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(horizontal: size.width * 0.0525),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text("Popular Genres",
                   style: TextStyle(
-                      fontSize: 20,
+                      fontSize: scaler.scale(20),
                       fontWeight: FontWeight.bold,
                       color: const Color.fromARGB(255, 53, 65, 93))),
               GestureDetector(
@@ -32,7 +34,7 @@ class GenreChipsWidget extends StatelessWidget {
                 },
                 child: Text("View All",
                     style: TextStyle(
-                        fontSize: 12,
+                        fontSize: scaler.scale(12),
                         fontWeight: FontWeight.bold,
                         color: const Color.fromARGB(169, 0, 0, 0))),
               ),
@@ -57,10 +59,10 @@ class GenreChipsWidget extends StatelessWidget {
                   ? state.genres
                   : (state as HomeGenreSelected).genres;
 
-              final firstTenGenres = genres.take(10).toList();
+              final firstTenGenres = genres.take(8).toList();
 
               return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 18),
+                padding: EdgeInsets.symmetric(horizontal: size.width * 0.0475),
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(

@@ -15,13 +15,14 @@ class GenreChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return BlocBuilder<HomeGenreCubit, HomeGenreState>(
       builder: (context, state) {
         final selectedGenre = state is HomeGenreSelected ? state.genre : null;
         final isSelected = selectedGenre?.id == genreModel.id;
 
         return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 5),
+          padding: EdgeInsets.symmetric(horizontal: size.width * 0.013),
           child: GestureDetector(
             onTap: () {
               context.read<HomeGenreCubit>().selectGenre(genreModel);

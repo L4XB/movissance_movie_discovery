@@ -11,6 +11,7 @@ class GenreBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return BlocBuilder<HomeGenreCubit, HomeGenreState>(
       builder: (context, state) {
         if (state is HomeGenreLoading) {
@@ -35,7 +36,7 @@ class GenreBottomSheet extends StatelessWidget {
               borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
             ),
             child: Padding(
-              padding: const EdgeInsets.all(25.0),
+              padding: EdgeInsets.all(size.width * 0.065),
               child: Wrap(
                 children: genres.map((genre) {
                   return GenreChip(
