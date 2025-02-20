@@ -23,6 +23,7 @@ class HomeScreenContent extends StatefulWidget {
 class _HomeScreenContentState extends State<HomeScreenContent> {
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return RefreshIndicator(
       color: Colors.blueAccent,
       onRefresh: () async {
@@ -34,13 +35,13 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
           SliverToBoxAdapter(
             child: Column(
               children: [
-                SizedBoxExtension.height(60),
+                SizedBoxExtension.height(size.height * 0.0705),
                 GreetingWidget(
                   controller: widget.controller,
                 ),
-                SizedBoxExtension.height(20),
+                SizedBoxExtension.height(size.height * 0.0235),
                 SearchFieldWidget(),
-                SizedBoxExtension.height(20),
+                SizedBoxExtension.height(size.height * 0.0235),
                 Stack(children: [
                   MovieGridWidget(),
                   GenreChipsWidget(),
@@ -48,7 +49,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
                 DiscoverMoreButton(
                   controller: widget.controller,
                 ),
-                SizedBoxExtension.height(25),
+                SizedBoxExtension.height(size.height * 0.03),
               ],
             ),
           ),

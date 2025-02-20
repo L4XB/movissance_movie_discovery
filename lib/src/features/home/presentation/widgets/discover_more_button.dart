@@ -10,6 +10,7 @@ class DiscoverMoreButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scaler = MediaQuery.of(context).textScaler;
     return CupertinoButton(
       sizeStyle: CupertinoButtonSize.medium,
       color: const Color.fromARGB(41, 0, 123, 255),
@@ -20,7 +21,7 @@ class DiscoverMoreButton extends StatelessWidget {
         "Discover More",
         style: TextStyle(
             color: CupertinoColors.systemBlue,
-            fontSize: 14,
+            fontSize: scaler.scale(14),
             fontWeight: FontWeight.bold),
       ),
     );

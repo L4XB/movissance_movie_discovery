@@ -13,6 +13,8 @@ class GreetingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final scaler = MediaQuery.of(context).textScaler;
     return BlocProvider(
       create: (context) => UserDataCubit(),
       child: BlocBuilder<UserDataCubit, User?>(
@@ -27,7 +29,7 @@ class GreetingWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 20),
+                padding: EdgeInsets.only(left: size.width * 0.05),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -35,11 +37,11 @@ class GreetingWidget extends StatelessWidget {
                     Text(
                       "Hello, $displayName 👋",
                       style: TextStyle(
-                        fontSize: 27,
+                        fontSize: scaler.scale(27),
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBoxExtension.height(5),
+                    SizedBoxExtension.height(size.height * 0.0055),
                     Text(
                       "Explore the World of Movies",
                       style:
@@ -49,7 +51,7 @@ class GreetingWidget extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(right: 20),
+                padding: EdgeInsets.only(right: size.width * 0.05),
                 child: GestureDetector(
                   onTap: () {
                     controller.jumpToTab(3);
