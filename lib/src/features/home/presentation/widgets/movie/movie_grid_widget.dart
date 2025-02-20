@@ -23,7 +23,10 @@ class MovieGridWidget extends StatelessWidget {
           }
           if (state is HomeMovieErrorState) {
             return Center(
-              child: Text(state.message),
+              child: Padding(
+                padding: EdgeInsets.only(top: size.height * 0.35),
+                child: Text(state.message),
+              ),
             );
           }
           if (state is HomeMovieLoadedState) {

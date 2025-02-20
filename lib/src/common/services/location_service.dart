@@ -7,12 +7,12 @@ class LocationService {
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        return Future.error('Standortberechtigung verweigert');
+        return null;
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
-      return Future.error('Standortberechtigung dauerhaft verweigert');
+      return null;
     }
 
     Position position = await Geolocator.getCurrentPosition(
