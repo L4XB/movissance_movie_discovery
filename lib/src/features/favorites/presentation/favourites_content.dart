@@ -10,6 +10,7 @@ class FavouritesContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return BlocBuilder<FavouritesDataCubit, FavouritesDataState>(
       builder: (context, state) {
         if (state is FavouritesDataLoading) {
@@ -20,7 +21,7 @@ class FavouritesContent extends StatelessWidget {
         if (state is FavouritesDataLoaded) {
           return Expanded(
             child: ListView.builder(
-              padding: EdgeInsets.only(top: 10),
+              padding: EdgeInsets.only(top: size.height * 0.0125),
               itemCount: state.movies.length,
               itemBuilder: (context, index) {
                 final movie = state.movies[index];

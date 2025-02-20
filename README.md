@@ -1,4 +1,4 @@
-TODO: Filter auf dem Home Screen einbauen
+TODO: (Filter)
 TODO: Implement Notifications (Flutter local notifications)
 TODO: Implement Theme
 TODO: location mit einbauen

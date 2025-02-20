@@ -19,8 +19,11 @@ class FavouritsElement extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final scaler = MediaQuery.of(context).textScaler;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      padding: EdgeInsets.symmetric(
+          horizontal: size.width * 0.025, vertical: size.height * 0.006),
       child: GestureDetector(
         onTap: () {
           context.read<MovieDetailsCubit>().loadMovieDetail(movie.id);
@@ -40,10 +43,10 @@ class FavouritsElement extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: EdgeInsets.all(size.width * 0.02),
                 child: Container(
-                  width: 100,
-                  height: 150,
+                  width: size.width * 0.255,
+                  height: size.height * 0.1775,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -58,47 +61,47 @@ class FavouritsElement extends StatelessWidget {
               ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(size.width * 0.02),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         movie.title,
                         style: TextStyle(
-                          fontSize: 18,
+                          fontSize: scaler.scale(18),
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height: 5),
+                      SizedBox(height: size.height * 0.006),
                       Text(
                         'Release Date: ${movie.releaseDate}',
                         style: TextStyle(
-                          fontSize: 14,
+                          fontSize: scaler.scale(14),
                           color: Colors.grey,
                         ),
                       ),
-                      SizedBox(height: 5),
+                      SizedBox(height: size.height * 0.006),
                       Text(
                         movie.overview,
                         style: TextStyle(
-                          fontSize: 14,
+                          fontSize: scaler.scale(14),
                         ),
                         maxLines: 3,
                         overflow: TextOverflow.ellipsis,
                       ),
-                      SizedBox(height: 5),
+                      SizedBox(height: size.height * 0.006),
                       Row(
                         children: [
                           Icon(
                             Icons.star,
                             color: Colors.yellow,
-                            size: 20,
+                            size: scaler.scale(20),
                           ),
-                          SizedBox(width: 2),
+                          SizedBox(width: size.height * 0.0025),
                           Text(
                             '${movie.voteAverage.toStringAsFixed(1)} (${movie.voteCount} votes)',
                             style: TextStyle(
-                              fontSize: 14,
+                              fontSize: scaler.scale(14),
                             ),
                           ),
                         ],

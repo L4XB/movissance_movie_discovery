@@ -8,10 +8,11 @@ class Favourites extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       body: Column(
         children: [
-          SizedBoxExtension.height(60),
+          SizedBoxExtension.height(size.height * 0.0705),
           FavouritesSearchFieldWidget(),
           FavouritesContent()
         ],
