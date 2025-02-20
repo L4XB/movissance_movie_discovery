@@ -7,8 +7,10 @@ class EmailTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+      padding: EdgeInsets.symmetric(
+          horizontal: size.width * 0.04, vertical: size.height * 0.0125),
       child: TextFormField(
         validator: validator ?? (_) => null,
         controller: controller,
@@ -21,7 +23,7 @@ class EmailTextField extends StatelessWidget {
           ),
           filled: true,
           fillColor: Colors.white,
-          contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+          contentPadding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
         ),
       ),
     );

@@ -38,32 +38,33 @@ class _LoginScreenContentState extends State<LoginScreenContent> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final scaler = MediaQuery.of(context).textScaler;
     return Stack(
       children: [
         const BackgroundCircles(),
         Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox(height: 100),
+            SizedBox(height: size.height * 0.123),
             Center(
               child: Lottie.asset('assets/animations/login_animation.json',
-                  height: 250),
+                  height: size.height * 0.29),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 20),
+              padding: EdgeInsets.only(left: size.width * 0.053),
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: const Text(
+                child: Text(
                   'Sign in into your\nAccount',
                   textAlign: TextAlign.left,
                   style: TextStyle(
-                    fontSize: 27,
+                    fontSize: scaler.scale(27),
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: size.height * 0.025),
             EmailTextField(
               controller: _emailController,
             ),
@@ -71,7 +72,7 @@ class _LoginScreenContentState extends State<LoginScreenContent> {
               controller: _passwordController,
               label: "Password",
             ),
-            const SizedBox(height: 30),
+            SizedBox(height: size.height * 0.03),
             SizedBox(
               width: size.width * 0.9,
               child: ElevatedButton(
@@ -91,15 +92,17 @@ class _LoginScreenContentState extends State<LoginScreenContent> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: size.width * 0.14,
+                      vertical: size.height * 0.015),
                 ),
-                child: const Text('Login',
-                    style:
-                        TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+                child: Text('Login',
+                    style: TextStyle(
+                        fontSize: scaler.scale(15),
+                        fontWeight: FontWeight.bold)),
               ),
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: size.height * 0.02),
             TextButton(
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
@@ -114,8 +117,8 @@ class _LoginScreenContentState extends State<LoginScreenContent> {
             ),
             const Spacer(),
             Container(
-              height: 70,
-              width: 120,
+              height: size.height * 0.086,
+              width: size.width * 0.285,
               decoration: const BoxDecoration(
                 color: Colors.blueAccent,
                 borderRadius: BorderRadius.only(
@@ -123,12 +126,12 @@ class _LoginScreenContentState extends State<LoginScreenContent> {
                   topRight: Radius.circular(60),
                 ),
               ),
-              child: const Center(
+              child: Center(
                 child: Text(
                   "Sign up",
                   style: TextStyle(
                       color: Colors.white,
-                      fontSize: 17,
+                      fontSize: scaler.scale(17),
                       fontWeight: FontWeight.bold),
                   textAlign: TextAlign.center,
                 ),

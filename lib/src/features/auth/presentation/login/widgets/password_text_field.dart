@@ -27,8 +27,10 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+      padding: EdgeInsets.symmetric(
+          horizontal: size.width * 0.04, vertical: size.height * 0.0125),
       child: TextFormField(
         validator: widget.validator ?? (_) => null,
         controller: widget.controller,
@@ -41,7 +43,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
           ),
           filled: true,
           fillColor: Colors.white,
-          contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+          contentPadding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
           suffixIcon: IconButton(
             icon: Icon(
               _obscureText ? CupertinoIcons.eye_slash : CupertinoIcons.eye,

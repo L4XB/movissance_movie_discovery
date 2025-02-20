@@ -5,14 +5,15 @@ class BackgroundCircles extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Stack(
       children: [
         Positioned(
           top: -30,
           left: -50,
           child: Container(
-            width: 200,
-            height: 200,
+            width: size.width * 0.51,
+            height: size.width * 0.51,
             decoration: BoxDecoration(
               color: Colors.blueAccent.withAlpha(80),
               shape: BoxShape.circle,
@@ -23,8 +24,8 @@ class BackgroundCircles extends StatelessWidget {
           right: -50,
           top: -60,
           child: Container(
-            width: 200,
-            height: 200,
+            width: size.width * 0.51,
+            height: size.width * 0.51,
             decoration: BoxDecoration(
               color: Colors.pinkAccent.withAlpha(80),
               shape: BoxShape.circle,
@@ -35,8 +36,8 @@ class BackgroundCircles extends StatelessWidget {
           top: 150,
           right: -100,
           child: Container(
-            width: 150,
-            height: 150,
+            width: size.width * 0.375,
+            height: size.width * 0.375,
             decoration: BoxDecoration(
               color: Colors.greenAccent.withAlpha(70),
               shape: BoxShape.circle,
