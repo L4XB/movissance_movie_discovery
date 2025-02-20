@@ -11,6 +11,7 @@ class SwiperFavouritFoatingActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scaler = MediaQuery.of(context).textScaler;
     return BlocBuilder<SwiperContentCubit, SwiperContentState>(
       builder: (context, state) {
         if (state is SwiperContentLoaded) {
@@ -41,7 +42,7 @@ class SwiperFavouritFoatingActionButton extends StatelessWidget {
                   child: Icon(
                     isFavourite ? Icons.bookmark : Icons.bookmark_outline,
                     color: Colors.yellow,
-                    size: 35,
+                    size: scaler.scale(35),
                     key: ValueKey<bool>(isFavourite),
                   ),
                 ),
@@ -52,10 +53,10 @@ class SwiperFavouritFoatingActionButton extends StatelessWidget {
         return FloatingActionButton(
           onPressed: () {},
           backgroundColor: CupertinoColors.systemGrey3,
-          child: const Icon(
+          child: Icon(
             Icons.bookmark_outline,
             color: Colors.yellow,
-            size: 35,
+            size: scaler.scale(35),
           ),
         );
       },

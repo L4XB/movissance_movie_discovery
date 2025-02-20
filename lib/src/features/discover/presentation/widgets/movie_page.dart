@@ -15,6 +15,8 @@ class MoviePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final scaler = MediaQuery.of(context).textScaler;
     return GestureDetector(
       onTap: () {
         context.read<MovieDetailsCubit>().loadMovieDetail(movie.id);
@@ -41,8 +43,8 @@ class MoviePage extends StatelessWidget {
               begin: Alignment.bottomCenter,
               end: Alignment.topCenter,
               colors: [
-                Colors.black.withAlpha(204), // 0.8 * 255 = 204
-                Colors.black.withAlpha(51), // 0.2 * 255 = 51
+                Colors.black.withAlpha(204),
+                Colors.black.withAlpha(51),
               ],
             ),
           ),
@@ -54,41 +56,42 @@ class MoviePage extends StatelessWidget {
               children: [
                 Text(
                   movie.title,
-                  style: const TextStyle(
-                    fontSize: 28,
+                  style: TextStyle(
+                    fontSize: scaler.scale(28),
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
                 ),
-                const SizedBox(height: 10),
+                SizedBox(height: size.height * 0.012),
                 Text(
                   'Release Date: ${movie.releaseDate}',
-                  style: const TextStyle(
-                    fontSize: 16,
+                  style: TextStyle(
+                    fontSize: scaler.scale(16),
                     color: Colors.white70,
                   ),
                 ),
-                const SizedBox(height: 10),
+                SizedBox(height: size.height * 0.012),
                 Row(
                   children: [
-                    const Icon(Icons.star, color: Colors.yellow, size: 20),
-                    const SizedBox(width: 5),
+                    Icon(Icons.star,
+                        color: Colors.yellow, size: scaler.scale(20)),
+                    SizedBox(width: size.height * 0.006),
                     Text(
                       '${movie.voteAverage.toStringAsFixed(1)} / 10.0',
-                      style: const TextStyle(
-                        fontSize: 16,
+                      style: TextStyle(
+                        fontSize: scaler.scale(16),
                         color: Colors.white70,
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 10),
+                SizedBox(height: size.height * 0.012),
                 Padding(
-                  padding: const EdgeInsets.only(right: 50),
+                  padding: EdgeInsets.only(right: size.width * 0.125),
                   child: Text(
                     movie.overview,
-                    style: const TextStyle(
-                      fontSize: 16,
+                    style: TextStyle(
+                      fontSize: scaler.scale(16),
                       color: Colors.white70,
                     ),
                     maxLines: 5,
