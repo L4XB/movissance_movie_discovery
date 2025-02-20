@@ -10,6 +10,8 @@ class FilterBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final scaler = MediaQuery.of(context).textScaler;
     return BlocBuilder<FilterCubit, int>(
       builder: (context, selectedValue) {
         return Container(
@@ -18,18 +20,18 @@ class FilterBottomSheet extends StatelessWidget {
             borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
           ),
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(size.width * 0.04),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: 15),
+                  padding: EdgeInsets.only(left: size.width * 0.0375),
                   child: Row(
                     children: [
                       Text(
                         "Duration",
                         style: TextStyle(
-                          fontSize: 20,
+                          fontSize: scaler.scale(20),
                           fontWeight: FontWeight.bold,
                           color: const Color.fromARGB(255, 53, 65, 93),
                         ),

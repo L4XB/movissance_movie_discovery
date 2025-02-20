@@ -29,8 +29,10 @@ class _SearchFieldWidgetState extends State<SearchFieldWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+      padding: EdgeInsets.symmetric(
+          horizontal: size.width * 0.045, vertical: size.height * 0.012),
       child: TextField(
         controller: _searchController,
         decoration: InputDecoration(
@@ -41,7 +43,7 @@ class _SearchFieldWidgetState extends State<SearchFieldWidget> {
           ),
           filled: true,
           fillColor: Colors.white,
-          contentPadding: EdgeInsets.symmetric(horizontal: 20),
+          contentPadding: EdgeInsets.symmetric(horizontal: size.width * 0.045),
           prefixIcon: IconButton(
               icon: Icon(Icons.search),
               onPressed: () {

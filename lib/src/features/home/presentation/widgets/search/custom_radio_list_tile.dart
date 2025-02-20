@@ -16,6 +16,8 @@ class CustomRadioListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final scaler = MediaQuery.of(context).textScaler;
     return ListTile(
       title: Text(
         title,
@@ -24,8 +26,8 @@ class CustomRadioListTile extends StatelessWidget {
       leading: GestureDetector(
         onTap: () => onChanged(value),
         child: Container(
-          width: 24,
-          height: 24,
+          width: size.width * 0.06,
+          height: size.width * 0.06,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             border: Border.all(
@@ -37,7 +39,7 @@ class CustomRadioListTile extends StatelessWidget {
               ? Center(
                   child: Icon(
                     Icons.check,
-                    size: 18,
+                    size: scaler.scale(18),
                     color: Colors.blue,
                   ),
                 )
