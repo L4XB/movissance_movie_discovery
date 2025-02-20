@@ -7,8 +7,10 @@ class ImagePickerField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+      padding: EdgeInsets.symmetric(
+          horizontal: size.width * 0.04, vertical: size.height * 0.0125),
       child: ElevatedButton.icon(
         onPressed: () async {
           showModalBottomSheet(

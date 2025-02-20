@@ -9,20 +9,6 @@ import 'package:red_line/src/features/auth/presentation/login/widgets/password_t
 import 'package:red_line/src/features/auth/presentation/signup/widgets/image_picker_field.dart';
 import 'package:red_line/src/features/auth/presentation/signup/widgets/name_text_field.dart';
 
-class SignupScreen extends StatelessWidget {
-  final AuthRepository authRepository;
-  const SignupScreen({super.key, required this.authRepository});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.blueAccent,
-        body: SignUpCreenContent(
-          authRepository: authRepository,
-        ));
-  }
-}
-
 class SignUpCreenContent extends StatefulWidget {
   final AuthRepository authRepository;
   const SignUpCreenContent({super.key, required this.authRepository});
@@ -60,27 +46,28 @@ class _SignUpCreenContentState extends State<SignUpCreenContent> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final scaler = MediaQuery.of(context).textScaler;
     return Form(
       key: formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const SizedBox(height: 70),
+          SizedBox(height: size.height * 0.086),
           Padding(
-            padding: const EdgeInsets.only(left: 20),
+            padding: EdgeInsets.only(left: size.width * 0.053),
             child: Align(
               alignment: Alignment.centerLeft,
-              child: const Text(
+              child: Text(
                 'Create your\nAccount',
                 textAlign: TextAlign.left,
                 style: TextStyle(
-                    fontSize: 27,
+                    fontSize: scaler.scale(27),
                     fontWeight: FontWeight.bold,
                     color: Colors.white),
               ),
             ),
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: size.height * 0.025),
           EmailTextField(
             controller: _emailController,
             validator: TextfieldValidators.emailValidator,
@@ -103,14 +90,14 @@ class _SignUpCreenContentState extends State<SignUpCreenContent> {
               return TextfieldValidators.passwordValidator(value);
             },
           ),
-          const SizedBox(height: 30),
+          SizedBox(height: size.height * 0.037),
           _selectedImage != null
               ? ClipRRect(
                   borderRadius: BorderRadius.circular(70),
                   child: Image.file(
                     File(_selectedImage!.path),
-                    height: 110,
-                    width: 110,
+                    height: size.height * 0.135,
+                    width: size.height * 0.135,
                     fit: BoxFit.cover,
                   ),
                 )
@@ -118,12 +105,12 @@ class _SignUpCreenContentState extends State<SignUpCreenContent> {
                   borderRadius: BorderRadius.circular(70),
                   child: Image.asset(
                     'assets/images/placeholder.png',
-                    height: 110,
-                    width: 110,
+                    height: size.height * 0.135,
+                    width: size.height * 0.135,
                     fit: BoxFit.cover,
                   ),
                 ),
-          const SizedBox(height: 10),
+          SizedBox(height: size.height * 0.012),
           ImagePickerField(
             onImageSelected: (image) {
               setState(() {
@@ -131,7 +118,7 @@ class _SignUpCreenContentState extends State<SignUpCreenContent> {
               });
             },
           ),
-          const SizedBox(height: 30),
+          SizedBox(height: size.height * 0.037),
           SizedBox(
             width: size.width * 0.9,
             child: ElevatedButton(
@@ -150,11 +137,13 @@ class _SignUpCreenContentState extends State<SignUpCreenContent> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15),
                 ),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                padding: EdgeInsets.symmetric(
+                    horizontal: size.width * 0.133,
+                    vertical: size.height * 0.018),
               ),
-              child: const Text('Sign Up',
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+              child: Text('Sign Up',
+                  style: TextStyle(
+                      fontSize: scaler.scale(15), fontWeight: FontWeight.bold)),
             ),
           ),
         ],
