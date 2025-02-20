@@ -32,10 +32,10 @@ class HomeMovieCubit extends Cubit<HomeMovieState> {
     String? year,
     int? maxRuntime,
     int? minRuntime,
-    String? region,
   }) async {
     emit(HomeMovieLoadingState());
     try {
+      final region = await locationService.getCountryCode();
       final movies = await movieRepository.discoverMovies(page,
           genre: genreId,
           year: year,
@@ -52,10 +52,10 @@ class HomeMovieCubit extends Cubit<HomeMovieState> {
     String text,
     int page, {
     String? language,
-    String? region,
   }) async {
     emit(HomeMovieLoadingState());
     try {
+      final region = await locationService.getCountryCode();
       final query = StringFormater.textToQuery(text);
       final movies = await movieRepository.searchMovieByName(
         query,
