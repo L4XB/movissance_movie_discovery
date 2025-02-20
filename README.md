@@ -1,7 +1,6 @@
 TODO: Filter bei Favourites
 TODO: Implement Notifications (Flutter local notifications)
 TODO: Implement Theme
-TODO: location mit einbauen
 TODO: Implement state safe of settings screen
 TODO: Splashscreen hinzufügen
 TODO: App Icon adden
