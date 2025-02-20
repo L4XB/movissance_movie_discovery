@@ -12,10 +12,10 @@ import 'package:red_line/src/features/discover/cubit/swiper_content_cubit.dart';
 import 'package:red_line/src/features/favorites/bloc/favourites_cubit/favourites_cubit.dart';
 import 'package:red_line/src/features/favorites/bloc/favourites_data_cubit/favourites_data_cubit.dart';
 import 'package:red_line/src/features/favorites/bloc/favourites_filter_cubit/favourites_filter_cubit.dart';
+import 'package:red_line/src/features/home/bloc/filter_cubit/filter_cubit.dart';
 import 'package:red_line/src/features/home/bloc/home_genre_cubit/home_genre_cubit.dart';
 import 'package:red_line/src/features/home/bloc/home_movie_cubit/home_movie_cubit.dart';
 import 'package:red_line/src/features/movie_details/bloc/detials_selection_cubit/details_selection_cubit.dart';
-import 'package:red_line/src/features/movie_details/bloc/filter_cubit/filter_cubit.dart';
 import 'package:red_line/src/features/movie_details/bloc/movie_details_cubit/movie_details_cubit.dart';
 import 'package:red_line/src/features/movie_details/bloc/movie_provider_cubit/movie_provider_cubit.dart';
 import 'package:red_line/src/features/movie_details/bloc/movie_reviews_cubit/movie_reviews_cubit.dart';
@@ -36,7 +36,9 @@ class App extends StatelessWidget {
         BlocProvider<HomeMovieCubit>(
             create: (context) =>
                 HomeMovieCubit()..loadMovies(standartLoadingPage)),
-        BlocProvider<FilterCubit>(create: (context) => FilterCubit()),
+        BlocProvider<FilterCubit>(
+            create: (context) =>
+                FilterCubit(homeMovieCubit: context.read<HomeMovieCubit>())),
         BlocProvider<MovieDetailsCubit>(
             create: (context) => MovieDetailsCubit()),
         BlocProvider<FavouritesCubit>(

@@ -6,8 +6,12 @@ import 'package:red_line/src/features/movie_details/domain/movie_detail_model.da
 
 class ApiMovieRepository implements MovieRepository {
   @override
-  Future<List<MovieModel>> discoverMovies(
-      int page, int? genre, String? year) async {
+  Future<List<MovieModel>> discoverMovies(int page,
+      {int? genre,
+      String? year,
+      int? maxRuntime,
+      int? minRuntime,
+      String? region}) async {
     final Map<String, dynamic> queryParameters = {
       "api_key": theMovieDatabaseApiKey,
       "page": page,
@@ -19,6 +23,18 @@ class ApiMovieRepository implements MovieRepository {
 
     if (year != null) {
       queryParameters["primary_release_year"] = year;
+    }
+
+    if (maxRuntime != null) {
+      queryParameters["with_runtime.lte"] = maxRuntime;
+    }
+
+    if (minRuntime != null) {
+      queryParameters["with_runtime.gte"] = minRuntime;
+    }
+
+    if (region != null) {
+      queryParameters["region"] = region;
     }
 
     final Response response = await Dio().get(
@@ -122,12 +138,12 @@ class ApiMovieRepository implements MovieRepository {
   }
 
   @override
-  Future<List<MovieModel>> searchMovieByName(String query, int page,
-      {String? language,
-      String? region,
-      bool? includeAdult,
-      int? withRuntimeGte,
-      int? withRuntimeLte}) async {
+  Future<List<MovieModel>> searchMovieByName(
+    String query,
+    int page, {
+    String? language,
+    String? region,
+  }) async {
     final Map<String, dynamic> queryParameters = {
       "api_key": theMovieDatabaseApiKey,
       "query": query,
@@ -140,18 +156,6 @@ class ApiMovieRepository implements MovieRepository {
 
     if (region != null) {
       queryParameters["region"] = region;
-    }
-
-    if (includeAdult != null) {
-      queryParameters["include_adult"] = includeAdult;
-    }
-
-    if (withRuntimeGte != null) {
-      queryParameters["with_runtime.gte"] = withRuntimeGte;
-    }
-
-    if (withRuntimeLte != null) {
-      queryParameters["with_runtime.lte"] = withRuntimeLte;
     }
 
     final Response response = await Dio().get(

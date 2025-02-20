@@ -22,31 +22,43 @@ class HomeMovieCubit extends Cubit<HomeMovieState> {
     }
   }
 
-  void loadMoviesByGenre(int genreId, int page) async {
+  void loadMoviesByGenre(
+    int page, {
+    int? genreId,
+    String? year,
+    int? maxRuntime,
+    int? minRuntime,
+    String? region,
+  }) async {
     emit(HomeMovieLoadingState());
     try {
-      final movies = await movieRepository.discoverMovies(page, genreId, null);
+      final movies = await movieRepository.discoverMovies(page,
+          genre: genreId,
+          year: year,
+          maxRuntime: maxRuntime,
+          minRuntime: minRuntime,
+          region: region);
       emit(HomeMovieLoadedState(movies, page));
     } catch (e) {
       emit(HomeMovieErrorState(e.toString()));
     }
   }
 
-  void loadMoviesBySearch(String text, int page,
-      {String? language,
-      String? region,
-      bool? includeAdult,
-      int? withRuntimeGte,
-      int? withRuntimeLte}) async {
+  void loadMoviesBySearch(
+    String text,
+    int page, {
+    String? language,
+    String? region,
+  }) async {
     emit(HomeMovieLoadingState());
     try {
       final query = StringFormater.textToQuery(text);
-      final movies = await movieRepository.searchMovieByName(query, page,
-          language: language,
-          region: region,
-          includeAdult: includeAdult,
-          withRuntimeGte: withRuntimeGte,
-          withRuntimeLte: withRuntimeLte);
+      final movies = await movieRepository.searchMovieByName(
+        query,
+        page,
+        language: language,
+        region: region,
+      );
       emit(HomeMovieLoadedState(movies, page));
     } catch (e) {
       emit(HomeMovieErrorState(e.toString()));

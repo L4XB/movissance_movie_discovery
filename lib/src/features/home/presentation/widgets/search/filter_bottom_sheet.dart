@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:red_line/src/features/home/bloc/filter_cubit/filter_cubit.dart';
 import 'package:red_line/src/features/home/presentation/widgets/search/custom_radio_list_tile.dart';
-import 'package:red_line/src/features/movie_details/bloc/filter_cubit/filter_cubit.dart';
 
 class FilterBottomSheet extends StatelessWidget {
   const FilterBottomSheet({

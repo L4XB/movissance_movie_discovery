@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:red_line/src/common/utils/runtime_range_calculator.dart';
 import 'package:red_line/src/features/home/bloc/home_movie_cubit/home_movie_cubit.dart';
 import 'package:red_line/src/features/home/presentation/widgets/search/filter_bottom_sheet.dart';
-import 'package:red_line/src/features/movie_details/bloc/filter_cubit/filter_cubit.dart';
 
 class SearchFieldWidget extends StatefulWidget {
   const SearchFieldWidget({super.key});
@@ -47,13 +45,10 @@ class _SearchFieldWidgetState extends State<SearchFieldWidget> {
           prefixIcon: IconButton(
               icon: Icon(Icons.search),
               onPressed: () {
-                final int duration = context.read<FilterCubit>().state;
-                (int?, int?) runtimeRange =
-                    RuntimeRangeCalculator.getRuntimeRange(duration);
                 context.read<HomeMovieCubit>().loadMoviesBySearch(
-                    _searchController.text, 1,
-                    withRuntimeGte: runtimeRange.$1,
-                    withRuntimeLte: runtimeRange.$2);
+                      _searchController.text,
+                      1,
+                    );
               }),
           suffixIcon: Row(
             mainAxisSize: MainAxisSize.min,

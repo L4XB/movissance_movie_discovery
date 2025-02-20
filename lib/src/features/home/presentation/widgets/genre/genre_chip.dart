@@ -28,7 +28,7 @@ class GenreChip extends StatelessWidget {
               context.read<HomeGenreCubit>().selectGenre(genreModel);
               context
                   .read<HomeMovieCubit>()
-                  .loadMoviesByGenre(genreModel.id, 1);
+                  .loadMoviesByGenre(1, genreId: genreModel.id);
             },
             child: Chip(
               label: Text(
