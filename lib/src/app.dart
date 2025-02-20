@@ -56,7 +56,8 @@ class App extends StatelessWidget {
               FavouritesDataCubit(context.read<FavouritesCubit>()),
         ),
         BlocProvider<FavouritesFilterCubit>(
-          create: (context) => FavouritesFilterCubit(),
+          create: (context) => FavouritesFilterCubit(
+              favouritesDataCubit: context.read<FavouritesDataCubit>()),
         ),
         BlocProvider<SwiperContentCubit>(
           create: (context) => SwiperContentCubit()..loadMovies(),

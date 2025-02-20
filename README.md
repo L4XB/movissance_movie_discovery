@@ -1,4 +1,3 @@
-TODO: Filter bei Favourites
 TODO: Implement Notifications (Flutter local notifications)
 TODO: Implement Theme
 TODO: Implement state safe of settings screen

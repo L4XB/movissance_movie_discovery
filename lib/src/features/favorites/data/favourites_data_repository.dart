@@ -1,5 +1,5 @@
-import 'package:red_line/src/features/home/domain/movie_model.dart';
+import 'package:red_line/src/features/movie_details/domain/movie_detail_model.dart';
 
 abstract class FavouritesDataRepository {
-  Future<List<MovieModel>> getFavouritesData(List<int> favourites);
+  Future<List<MovieDetailModel>> getFavouritesData(List<int> favourites);
 }

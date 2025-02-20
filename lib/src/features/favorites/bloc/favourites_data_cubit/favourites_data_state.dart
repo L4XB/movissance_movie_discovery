@@ -8,7 +8,7 @@ final class FavouritesDataInitial extends FavouritesDataState {}
 final class FavouritesDataLoading extends FavouritesDataState {}
 
 final class FavouritesDataLoaded extends FavouritesDataState {
-  final List<MovieModel> movies;
+  final List<MovieDetailModel> movies;
 
   FavouritesDataLoaded(this.movies);
 }

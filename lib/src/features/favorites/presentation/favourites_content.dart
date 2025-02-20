@@ -19,6 +19,11 @@ class FavouritesContent extends StatelessWidget {
           );
         }
         if (state is FavouritesDataLoaded) {
+          if (state.movies.isEmpty) {
+            return const Center(
+              child: Text("No favourites found."),
+            );
+          }
           return Expanded(
             child: ListView.builder(
               padding: EdgeInsets.only(top: size.height * 0.0125),

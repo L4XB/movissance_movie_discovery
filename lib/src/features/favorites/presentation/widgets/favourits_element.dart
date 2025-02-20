@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:red_line/src/common/config/config.dart';
-import 'package:red_line/src/features/home/domain/movie_model.dart';
 import 'package:red_line/src/features/movie_details/bloc/movie_details_cubit/movie_details_cubit.dart';
 import 'package:red_line/src/features/movie_details/bloc/movie_provider_cubit/movie_provider_cubit.dart';
 import 'package:red_line/src/features/movie_details/bloc/movie_reviews_cubit/movie_reviews_cubit.dart';
+import 'package:red_line/src/features/movie_details/domain/movie_detail_model.dart';
 import 'package:red_line/src/features/movie_details/presentation/movie_details.dart';
 
 class FavouritsElement extends StatelessWidget {
@@ -15,7 +15,7 @@ class FavouritsElement extends StatelessWidget {
     required this.movie,
   });
 
-  final MovieModel movie;
+  final MovieDetailModel movie;
 
   @override
   Widget build(BuildContext context) {
