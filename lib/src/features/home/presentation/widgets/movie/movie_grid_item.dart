@@ -14,6 +14,8 @@ class MovieGridItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final scaler = MediaQuery.of(context).textScaler;
     return GestureDetector(
       onTap: () {
         context.read<MovieDetailsCubit>().loadMovieDetail(movie.id);
@@ -38,35 +40,43 @@ class MovieGridItem extends StatelessWidget {
               borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
               child: Image.network(
                 "https://image.tmdb.org/t/p/w500${movie.posterPath}",
-                height: 180,
+                height: size.height * 0.212,
                 width: double.infinity,
                 fit: BoxFit.fill,
               ),
             ),
             Padding(
-                padding:
-                    const EdgeInsets.only(top: 8, left: 8, right: 8, bottom: 4),
-                child: AutoSizeText(
-                  movie.title,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  maxLines: 1,
-                  minFontSize: 12,
-                  overflow: TextOverflow.ellipsis,
-                  wrapWords: false,
-                )),
+              padding: EdgeInsets.only(
+                  top: size.height * 0.009,
+                  left: size.width * 0.025,
+                  bottom: size.height * 0.0045),
+              child: AutoSizeText(
+                movie.title,
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+                maxLines: 1,
+                minFontSize: 12,
+                overflow: TextOverflow.ellipsis,
+                wrapWords: false,
+              ),
+            ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              padding: EdgeInsets.symmetric(horizontal: size.width * 0.022),
               child: Row(
                 children: [
-                  Icon(Icons.star,
-                      color: const Color.fromARGB(255, 228, 214, 90), size: 20),
-                  SizedBox(width: 2),
+                  Icon(
+                    Icons.star,
+                    color: const Color.fromARGB(255, 228, 214, 90),
+                    size: scaler.scale(20),
+                  ),
+                  SizedBox(width: size.width * 0.007),
                   Text(
                     movie.voteAverage.toStringAsFixed(1),
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontSize: scaler.scale(14),
+                        fontWeight: FontWeight.bold),
                   ),
                 ],
               ),

@@ -8,13 +8,14 @@ class MovieGridWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Padding(
-      padding: const EdgeInsets.only(top: 40),
+      padding: EdgeInsets.only(top: size.height * 0.0475),
       child: BlocBuilder<HomeMovieCubit, HomeMovieState>(
         builder: (context, state) {
           if (state is HomeMovieLoadingState) {
             return Padding(
-              padding: const EdgeInsets.only(top: 150),
+              padding: EdgeInsets.only(top: size.height * 0.35),
               child: Center(
                 child: CircularProgressIndicator(),
               ),
@@ -27,7 +28,7 @@ class MovieGridWidget extends StatelessWidget {
           }
           if (state is HomeMovieLoadedState) {
             return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 18),
+              padding: EdgeInsets.symmetric(horizontal: size.width * 0.048),
               child: GridView.builder(
                 shrinkWrap: true,
                 physics: BouncingScrollPhysics(),
