@@ -2,7 +2,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 
 class LocationService {
-  Future<String> getCountryCode() async {
+  Future<String?> getCountryCode() async {
     LocationPermission permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
@@ -24,10 +24,6 @@ class LocationService {
     List<Placemark> placemarks =
         await placemarkFromCoordinates(position.latitude, position.longitude);
 
-    if (placemarks.isNotEmpty) {
-      return placemarks.first.isoCountryCode ?? 'Unbekannt';
-    } else {
-      return 'Unbekannt';
-    }
+    return placemarks.first.isoCountryCode;
   }
 }

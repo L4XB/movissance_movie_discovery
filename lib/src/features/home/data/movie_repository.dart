@@ -8,7 +8,7 @@ abstract class MovieRepository {
     String? language,
     String? region,
   });
-  Future<List<MovieModel>> getPopularMovies(int page);
+  Future<List<MovieModel>> getPopularMovies(int page, {String? region});
   Future<List<MovieModel>> getTopRatedMovies(int page);
   Future<List<MovieModel>> getUpcomingMovies(int page);
   Future<List<MovieModel>> discoverMovies(int page,

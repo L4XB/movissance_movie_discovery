@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:red_line/src/common/services/location_service.dart';
 import 'package:red_line/src/common/utils/string_formater.dart';
 import 'package:red_line/src/features/home/data/api_movie_repository.dart';
 import 'package:red_line/src/features/home/data/movie_repository.dart';
@@ -11,11 +12,14 @@ class HomeMovieCubit extends Cubit<HomeMovieState> {
   HomeMovieCubit() : super(HomeMovieInitial());
 
   MovieRepository movieRepository = ApiMovieRepository();
+  LocationService locationService = LocationService();
 
   void loadMovies(int page) async {
     emit(HomeMovieLoadingState());
     try {
-      final movies = await movieRepository.getPopularMovies(page);
+      final countryCode = await locationService.getCountryCode();
+      final movies =
+          await movieRepository.getPopularMovies(page, region: countryCode);
       emit(HomeMovieLoadedState(movies, page));
     } catch (e) {
       emit(HomeMovieErrorState(e.toString()));

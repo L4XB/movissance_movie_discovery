@@ -65,12 +65,19 @@ class ApiMovieRepository implements MovieRepository {
   }
 
   @override
-  Future<List<MovieModel>> getPopularMovies(int page) async {
-    final Response response = await Dio()
-        .get("$theMovieDatabaseApiBaseURL/movie/popular", queryParameters: {
+  Future<List<MovieModel>> getPopularMovies(int page, {String? region}) async {
+    final Map<String, dynamic> queryParameters = {
       "api_key": theMovieDatabaseApiKey,
       "page": page,
-    });
+    };
+
+    if (region != null) {
+      queryParameters["region"] = region;
+    }
+
+    final Response response = await Dio().get(
+        "$theMovieDatabaseApiBaseURL/movie/popular",
+        queryParameters: queryParameters);
 
     if (response.statusCode == 200 || response.statusCode == 201) {
       final List<MovieModel> movies = (response.data["results"] as List)
