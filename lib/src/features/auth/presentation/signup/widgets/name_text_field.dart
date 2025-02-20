@@ -13,6 +13,7 @@ class NameTextField extends StatelessWidget {
           horizontal: size.width * 0.04, vertical: size.height * 0.0125),
       child: TextFormField(
         key: fromKey,
+        validator: (value) => value!.isEmpty ? 'Name cannot be empty' : null,
         controller: controller,
         decoration: InputDecoration(
           labelText: 'Name',
