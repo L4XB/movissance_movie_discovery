@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:red_line/src/config.dart';
+import 'package:red_line/src/common/config/config.dart';
 import 'package:red_line/src/features/movie_details/domain/review_model.dart';
 
 class ReviewBox extends StatelessWidget {

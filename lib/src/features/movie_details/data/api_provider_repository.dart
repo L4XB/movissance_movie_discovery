@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:red_line/src/config.dart';
+import 'package:red_line/src/common/config/config.dart';
 import 'package:red_line/src/features/movie_details/data/provider_repository.dart';
 import 'package:red_line/src/features/movie_details/domain/provider_model.dart';
 

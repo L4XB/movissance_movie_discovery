@@ -15,31 +15,35 @@ class _PasswordResetScreenState extends State<PasswordResetScreen> {
   Widget build(BuildContext context) {
     final TextEditingController emailController = TextEditingController();
     final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+    final size = MediaQuery.of(context).size;
+    final scaler = MediaQuery.of(context).textScaler;
 
     return Scaffold(
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 70),
+            padding: EdgeInsets.only(top: size.height * 0.086),
             child: Align(
                 alignment: Alignment.centerLeft, child: CustomBackButton()),
           ),
           Expanded(
             child: Center(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: EdgeInsets.symmetric(horizontal: size.width * 0.053),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: const Text(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: size.width * 0.053),
+                      child: Text(
                         "Please enter your email address to reset your password.",
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 16, color: Colors.black54),
+                        style: TextStyle(
+                            fontSize: scaler.scale(16), color: Colors.black54),
                       ),
                     ),
-                    const SizedBox(height: 20),
+                    SizedBox(height: size.height * 0.025),
                     Form(
                       key: formKey,
                       child: TextFormField(
@@ -57,12 +61,12 @@ class _PasswordResetScreenState extends State<PasswordResetScreen> {
                           ),
                           filled: true,
                           fillColor: Colors.white,
-                          contentPadding:
-                              const EdgeInsets.symmetric(horizontal: 20),
+                          contentPadding: EdgeInsets.symmetric(
+                              horizontal: size.width * 0.053),
                         ),
                       ),
                     ),
-                    const SizedBox(height: 20),
+                    SizedBox(height: size.height * 0.025),
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
@@ -79,13 +83,15 @@ class _PasswordResetScreenState extends State<PasswordResetScreen> {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15),
                           ),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 50, vertical: 15),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: size.width * 0.133,
+                              vertical: size.height * 0.018),
                         ),
-                        child: const Text(
+                        child: Text(
                           'Reset Password',
                           style: TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.bold),
+                              fontSize: scaler.scale(15),
+                              fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),

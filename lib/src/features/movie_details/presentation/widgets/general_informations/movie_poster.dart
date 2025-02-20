@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:red_line/src/config.dart';
+import 'package:red_line/src/common/config/config.dart';
 
 class MoviePoster extends StatelessWidget {
   final String backdropPath;

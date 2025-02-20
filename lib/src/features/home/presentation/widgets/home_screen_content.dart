@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
+import 'package:red_line/src/common/config/config.dart';
 import 'package:red_line/src/common/extensions/sized_box_extension.dart';
-import 'package:red_line/src/config.dart';
 import 'package:red_line/src/features/home/bloc/home_genre_cubit/home_genre_cubit.dart';
 import 'package:red_line/src/features/home/bloc/home_movie_cubit/home_movie_cubit.dart';
 import 'package:red_line/src/features/home/presentation/widgets/discover_more_button.dart';
