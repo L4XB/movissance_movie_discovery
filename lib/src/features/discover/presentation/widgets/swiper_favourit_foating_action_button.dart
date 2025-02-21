@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dart';
 import 'package:red_line/src/features/discover/cubit/swiper_content_cubit.dart';
 import 'package:red_line/src/features/favorites/bloc/favourites_cubit/favourites_cubit.dart';
 
@@ -12,6 +12,8 @@ class SwiperFavouritFoatingActionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scaler = MediaQuery.of(context).textScaler;
+    final themeExtension =
+        Theme.of(context).extension<CustomThemeColorsExtension>();
     return BlocBuilder<SwiperContentCubit, SwiperContentState>(
       builder: (context, state) {
         if (state is SwiperContentLoaded) {
@@ -32,7 +34,7 @@ class SwiperFavouritFoatingActionButton extends StatelessWidget {
                         .addFavourite(currentMovie.id);
                   }
                 },
-                backgroundColor: CupertinoColors.systemGrey3,
+                backgroundColor: themeExtension?.overlayElementBackgroundColor,
                 child: AnimatedSwitcher(
                   duration: const Duration(milliseconds: 300),
                   transitionBuilder:
@@ -41,7 +43,7 @@ class SwiperFavouritFoatingActionButton extends StatelessWidget {
                   },
                   child: Icon(
                     isFavourite ? Icons.bookmark : Icons.bookmark_outline,
-                    color: Colors.yellow,
+                    color: themeExtension?.favoritesIconColor,
                     size: scaler.scale(35),
                     key: ValueKey<bool>(isFavourite),
                   ),
@@ -52,10 +54,10 @@ class SwiperFavouritFoatingActionButton extends StatelessWidget {
         }
         return FloatingActionButton(
           onPressed: () {},
-          backgroundColor: CupertinoColors.systemGrey3,
+          backgroundColor: themeExtension?.overlayElementBackgroundColor,
           child: Icon(
             Icons.bookmark_outline,
-            color: Colors.yellow,
+            color: themeExtension?.favoritesIconColor,
             size: scaler.scale(35),
           ),
         );

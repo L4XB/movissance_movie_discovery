@@ -25,6 +25,8 @@ class CustomThemeColorsExtension
   final Color? tabBarSelectedFillColor;
   final Color? decentLabelColor;
   final Color? secondaryOverlayElementBackgroundColor;
+  final Color? discoverPageOverlayColorOne;
+  final Color? discoverPageOverlayColorTwo;
 
   CustomThemeColorsExtension({
     required this.mainBackGroundColor,
@@ -50,6 +52,8 @@ class CustomThemeColorsExtension
     required this.decentLabelColor,
     required this.contrastBorderColor,
     required this.secondaryOverlayElementBackgroundColor,
+    required this.discoverPageOverlayColorOne,
+    required this.discoverPageOverlayColorTwo,
   });
 
   @override
@@ -77,6 +81,8 @@ class CustomThemeColorsExtension
     Color? decentLabelColor,
     Color? contrastBorderColor,
     Color? secondaryOverlayElementBackgroundColor,
+    Color? discoverPageOverlayColorOne,
+    Color? discoverPageOverlayColorTwo,
   }) {
     return CustomThemeColorsExtension(
       mainBackGroundColor: mainBackGroundColor ?? this.mainBackGroundColor,
@@ -110,6 +116,10 @@ class CustomThemeColorsExtension
       secondaryOverlayElementBackgroundColor:
           secondaryOverlayElementBackgroundColor ??
               this.secondaryOverlayElementBackgroundColor,
+      discoverPageOverlayColorOne:
+          discoverPageOverlayColorOne ?? this.discoverPageOverlayColorOne,
+      discoverPageOverlayColorTwo:
+          discoverPageOverlayColorTwo ?? this.discoverPageOverlayColorTwo,
     );
   }
 
@@ -160,6 +170,10 @@ class CustomThemeColorsExtension
           secondaryOverlayElementBackgroundColor,
           other.secondaryOverlayElementBackgroundColor,
           t),
+      discoverPageOverlayColorOne: Color.lerp(
+          discoverPageOverlayColorOne, other.discoverPageOverlayColorOne, t),
+      discoverPageOverlayColorTwo: Color.lerp(
+          discoverPageOverlayColorTwo, other.discoverPageOverlayColorTwo, t),
     );
   }
 }

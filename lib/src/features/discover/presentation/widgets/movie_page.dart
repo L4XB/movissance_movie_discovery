@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:red_line/src/common/config/config.dart';
+import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dart';
 import 'package:red_line/src/features/home/domain/movie_model.dart';
 import 'package:red_line/src/features/movie_details/bloc/movie_details_cubit/movie_details_cubit.dart';
 import 'package:red_line/src/features/movie_details/bloc/movie_provider_cubit/movie_provider_cubit.dart';
@@ -17,6 +18,8 @@ class MoviePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final scaler = MediaQuery.of(context).textScaler;
+    final themeExtension =
+        Theme.of(context).extension<CustomThemeColorsExtension>();
     return GestureDetector(
       onTap: () {
         context.read<MovieDetailsCubit>().loadMovieDetail(movie.id);
@@ -43,8 +46,8 @@ class MoviePage extends StatelessWidget {
               begin: Alignment.bottomCenter,
               end: Alignment.topCenter,
               colors: [
-                Colors.black.withAlpha(204),
-                Colors.black.withAlpha(51),
+                themeExtension?.discoverPageOverlayColorOne as Color,
+                themeExtension?.discoverPageOverlayColorTwo as Color,
               ],
             ),
           ),
@@ -59,7 +62,7 @@ class MoviePage extends StatelessWidget {
                   style: TextStyle(
                     fontSize: scaler.scale(28),
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                    color: themeExtension?.contrastTextColor,
                   ),
                 ),
                 SizedBox(height: size.height * 0.012),
@@ -67,20 +70,21 @@ class MoviePage extends StatelessWidget {
                   'Release Date: ${movie.releaseDate}',
                   style: TextStyle(
                     fontSize: scaler.scale(16),
-                    color: Colors.white70,
+                    color: themeExtension?.decentLabelColor,
                   ),
                 ),
                 SizedBox(height: size.height * 0.012),
                 Row(
                   children: [
                     Icon(Icons.star,
-                        color: Colors.yellow, size: scaler.scale(20)),
+                        color: themeExtension?.starIconColor,
+                        size: scaler.scale(20)),
                     SizedBox(width: size.height * 0.006),
                     Text(
                       '${movie.voteAverage.toStringAsFixed(1)} / 10.0',
                       style: TextStyle(
                         fontSize: scaler.scale(16),
-                        color: Colors.white70,
+                        color: themeExtension?.decentLabelColor,
                       ),
                     ),
                   ],
@@ -92,7 +96,7 @@ class MoviePage extends StatelessWidget {
                     movie.overview,
                     style: TextStyle(
                       fontSize: scaler.scale(16),
-                      color: Colors.white70,
+                      color: themeExtension?.decentLabelColor,
                     ),
                     maxLines: 5,
                     overflow: TextOverflow.ellipsis,

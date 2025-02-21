@@ -27,5 +27,7 @@ final lightTheme = ThemeData(extensions: [
     decentLabelColor: CupertinoColors.systemGrey,
     contrastBorderColor: Colors.white,
     secondaryOverlayElementBackgroundColor: CupertinoColors.systemGrey6,
+    discoverPageOverlayColorOne: Colors.black.withAlpha(204),
+    discoverPageOverlayColorTwo: Colors.black.withAlpha(51),
   ),
 ]);
