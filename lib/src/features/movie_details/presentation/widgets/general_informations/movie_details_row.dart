@@ -1,4 +1,5 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dart';
 import 'package:red_line/src/common/utils/string_formater.dart';
 import 'package:red_line/src/features/movie_details/domain/movie_detail_model.dart';
 
@@ -11,6 +12,8 @@ class MovieDetailsRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final scaler = MediaQuery.of(context).textScaler;
+    final themeExtension =
+        Theme.of(context).extension<CustomThemeColorsExtension>();
     return Padding(
       padding: EdgeInsets.only(left: size.width * 0.382),
       child: Row(
@@ -22,7 +25,7 @@ class MovieDetailsRow extends StatelessWidget {
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: scaler.scale(14),
-                color: CupertinoColors.systemGrey,
+                color: themeExtension?.decentLabelColor,
               ),
             ),
           ),
@@ -30,7 +33,7 @@ class MovieDetailsRow extends StatelessWidget {
             " ● ",
             style: TextStyle(
               fontSize: scaler.scale(5),
-              color: CupertinoColors.systemGrey,
+              color: themeExtension?.decentLabelColor,
             ),
           ),
           Padding(
@@ -40,7 +43,7 @@ class MovieDetailsRow extends StatelessWidget {
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: scaler.scale(14),
-                color: CupertinoColors.systemGrey,
+                color: themeExtension?.decentLabelColor,
               ),
             ),
           ),
@@ -48,7 +51,7 @@ class MovieDetailsRow extends StatelessWidget {
             " ● ",
             style: TextStyle(
               fontSize: scaler.scale(5),
-              color: CupertinoColors.systemGrey,
+              color: themeExtension?.decentLabelColor,
             ),
           ),
           Padding(
@@ -58,7 +61,7 @@ class MovieDetailsRow extends StatelessWidget {
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: scaler.scale(14),
-                color: CupertinoColors.systemGrey,
+                color: themeExtension?.decentLabelColor,
               ),
             ),
           ),

@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dart';
 
 class MovieTitle extends StatelessWidget {
   final String title;
@@ -10,6 +11,8 @@ class MovieTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final scaler = MediaQuery.of(context).textScaler;
+    final themeExtension =
+        Theme.of(context).extension<CustomThemeColorsExtension>();
     return Padding(
       padding: EdgeInsets.only(
         left: size.width * 0.382,
@@ -20,6 +23,7 @@ class MovieTitle extends StatelessWidget {
         style: TextStyle(
           fontSize: scaler.scale(20),
           fontWeight: FontWeight.bold,
+          color: themeExtension?.mainTextColor,
         ),
         maxLines: 1,
         minFontSize: 12,

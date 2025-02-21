@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:red_line/src/common/config/config.dart';
+import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dart';
 import 'package:red_line/src/features/movie_details/bloc/movie_details_cubit/movie_details_cubit.dart';
 
 class OverlayImage extends StatelessWidget {
@@ -12,6 +12,8 @@ class OverlayImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final themeExtension =
+        Theme.of(context).extension<CustomThemeColorsExtension>();
 
     return BlocBuilder<MovieDetailsCubit, MovieDetailsState>(
       builder: (context, state) {
@@ -38,7 +40,7 @@ class OverlayImage extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(
-                  color: CupertinoColors.white,
+                  color: themeExtension?.contrastBorderColor as Color,
                   width: 2,
                 ),
                 image: DecorationImage(

@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dart';
 import 'package:red_line/src/features/movie_details/domain/movie_detail_model.dart';
 
 class MovieRatingRow extends StatelessWidget {
@@ -11,6 +11,8 @@ class MovieRatingRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final scaler = MediaQuery.of(context).textScaler;
+    final themeExtension =
+        Theme.of(context).extension<CustomThemeColorsExtension>();
     return Padding(
       padding: EdgeInsets.only(left: size.width * 0.38),
       child: Row(
@@ -19,7 +21,7 @@ class MovieRatingRow extends StatelessWidget {
             padding: EdgeInsets.only(top: size.height * 0.005),
             child: Icon(
               Icons.star,
-              color: CupertinoColors.systemYellow,
+              color: themeExtension?.starIconColor,
               size: scaler.scale(20),
             ),
           ),
@@ -33,6 +35,7 @@ class MovieRatingRow extends StatelessWidget {
               style: TextStyle(
                 fontSize: scaler.scale(14),
                 fontWeight: FontWeight.bold,
+                color: themeExtension?.mainTextColor,
               ),
             ),
           ),
@@ -42,7 +45,7 @@ class MovieRatingRow extends StatelessWidget {
             child: Text(
               "/10.0",
               style: TextStyle(
-                color: CupertinoColors.systemGrey,
+                color: themeExtension?.decentLabelColor,
                 fontSize: scaler.scale(14),
                 fontWeight: FontWeight.bold,
               ),
@@ -54,7 +57,7 @@ class MovieRatingRow extends StatelessWidget {
               " ● ",
               style: TextStyle(
                 fontSize: scaler.scale(5),
-                color: CupertinoColors.systemGrey,
+                color: themeExtension?.decentLabelColor,
               ),
             ),
           ),
@@ -64,7 +67,7 @@ class MovieRatingRow extends StatelessWidget {
             child: Text(
               "${movie.voteCount} votes",
               style: TextStyle(
-                color: CupertinoColors.black,
+                color: themeExtension?.mainTextColor,
                 fontSize: scaler.scale(14),
                 fontWeight: FontWeight.bold,
               ),

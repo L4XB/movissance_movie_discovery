@@ -24,5 +24,7 @@ final lightTheme = ThemeData(extensions: [
     tabBarUnselectedFillColor: Color.fromARGB(255, 235, 235, 251),
     tabBarSelectedFillColor: Colors.white,
     thirdBackgroundColor: CupertinoColors.secondarySystemBackground,
+    decentLabelColor: CupertinoColors.systemGrey,
+    contrastBorderColor: Colors.white,
   ),
 ]);
