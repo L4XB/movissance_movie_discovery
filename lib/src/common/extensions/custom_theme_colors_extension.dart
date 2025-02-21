@@ -24,6 +24,7 @@ class CustomThemeColorsExtension
   final Color? tabBarUnselectedFillColor;
   final Color? tabBarSelectedFillColor;
   final Color? decentLabelColor;
+  final Color? secondaryOverlayElementBackgroundColor;
 
   CustomThemeColorsExtension({
     required this.mainBackGroundColor,
@@ -48,6 +49,7 @@ class CustomThemeColorsExtension
     required this.tabBarSelectedFillColor,
     required this.decentLabelColor,
     required this.contrastBorderColor,
+    required this.secondaryOverlayElementBackgroundColor,
   });
 
   @override
@@ -74,6 +76,7 @@ class CustomThemeColorsExtension
     Color? tabBarSelectedFillColor,
     Color? decentLabelColor,
     Color? contrastBorderColor,
+    Color? secondaryOverlayElementBackgroundColor,
   }) {
     return CustomThemeColorsExtension(
       mainBackGroundColor: mainBackGroundColor ?? this.mainBackGroundColor,
@@ -104,6 +107,9 @@ class CustomThemeColorsExtension
       thirdBackgroundColor: thirdBackgroundColor ?? this.thirdBackgroundColor,
       decentLabelColor: decentLabelColor ?? this.decentLabelColor,
       contrastBorderColor: contrastBorderColor ?? this.contrastBorderColor,
+      secondaryOverlayElementBackgroundColor:
+          secondaryOverlayElementBackgroundColor ??
+              this.secondaryOverlayElementBackgroundColor,
     );
   }
 
@@ -150,6 +156,10 @@ class CustomThemeColorsExtension
       decentLabelColor: Color.lerp(decentLabelColor, other.decentLabelColor, t),
       contrastBorderColor:
           Color.lerp(contrastBorderColor, other.contrastBorderColor, t),
+      secondaryOverlayElementBackgroundColor: Color.lerp(
+          secondaryOverlayElementBackgroundColor,
+          other.secondaryOverlayElementBackgroundColor,
+          t),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dart';
 import 'package:red_line/src/common/extensions/sized_box_extension.dart';
 import 'package:red_line/src/features/auth/data/auth_repository.dart';
 import 'package:red_line/src/features/profile/presentation/widgtes/account_bar.dart';
@@ -12,7 +13,10 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final textScaler = MediaQuery.of(context).textScaler;
+    final themeExtension =
+        Theme.of(context).extension<CustomThemeColorsExtension>();
     return Scaffold(
+      backgroundColor: themeExtension?.mainBackGroundColor,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -23,7 +27,7 @@ class ProfileScreen extends StatelessWidget {
                 style: TextStyle(
                     fontSize: textScaler.scale(25),
                     fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(255, 53, 65, 93))),
+                    color: themeExtension?.headLineTextColor)),
           ),
           SizedBoxExtension.height(size.height * 0.025),
           AccountBar(
@@ -36,7 +40,7 @@ class ProfileScreen extends StatelessWidget {
                 style: TextStyle(
                     fontSize: textScaler.scale(25),
                     fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(255, 53, 65, 93))),
+                    color: themeExtension?.headLineTextColor)),
           ),
           SizedBoxExtension.height(size.height * 0.025),
           SettingsSection(

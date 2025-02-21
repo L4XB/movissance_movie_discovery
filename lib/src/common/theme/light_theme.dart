@@ -26,5 +26,6 @@ final lightTheme = ThemeData(extensions: [
     thirdBackgroundColor: CupertinoColors.secondarySystemBackground,
     decentLabelColor: CupertinoColors.systemGrey,
     contrastBorderColor: Colors.white,
+    secondaryOverlayElementBackgroundColor: CupertinoColors.systemGrey6,
   ),
 ]);

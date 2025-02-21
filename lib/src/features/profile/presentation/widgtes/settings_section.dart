@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
+import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dart';
 import 'package:red_line/src/features/auth/data/auth_repository.dart';
 import 'package:red_line/src/features/auth/presentation/password_reset/password_reset.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -13,13 +13,15 @@ class SettingsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final textScaler = MediaQuery.of(context).textScaler;
+    final themeExtension =
+        Theme.of(context).extension<CustomThemeColorsExtension>();
     return Center(
       child: Material(
         elevation: 3,
         borderRadius: BorderRadius.circular(10),
         child: Container(
           decoration: BoxDecoration(
-            color: CupertinoColors.systemGrey6,
+            color: themeExtension?.secondaryOverlayElementBackgroundColor,
             borderRadius: BorderRadius.circular(10),
           ),
           width: size.width * 0.9,
@@ -31,11 +33,12 @@ class SettingsSection extends StatelessWidget {
                 child: ListTile(
                   title: Text("Dark Mode",
                       style: TextStyle(
+                          color: themeExtension?.mainTextColor,
                           fontSize: textScaler.scale(15),
                           fontWeight: FontWeight.bold)),
                   trailing: Switch(
                     value: true,
-                    activeColor: CupertinoColors.activeBlue,
+                    activeColor: themeExtension?.secondaryColor,
                     onChanged: (value) {},
                   ),
                 ),
@@ -45,7 +48,7 @@ class SettingsSection extends StatelessWidget {
                 child: Divider(
                   height: 1,
                   thickness: 1.5,
-                  color: CupertinoColors.systemGrey,
+                  color: themeExtension?.inputFieldBorderColor,
                 ),
               ),
               Padding(
@@ -53,10 +56,11 @@ class SettingsSection extends StatelessWidget {
                 child: ListTile(
                   title: Text("Notifications",
                       style: TextStyle(
+                          color: themeExtension?.mainTextColor,
                           fontSize: textScaler.scale(15),
                           fontWeight: FontWeight.bold)),
                   trailing: Switch(
-                    activeColor: CupertinoColors.activeBlue,
+                    activeColor: themeExtension?.secondaryColor,
                     value: true,
                     onChanged: (value) {},
                   ),
@@ -67,7 +71,7 @@ class SettingsSection extends StatelessWidget {
                 child: Divider(
                   height: 1,
                   thickness: 1.5,
-                  color: CupertinoColors.systemGrey,
+                  color: themeExtension?.inputFieldBorderColor,
                 ),
               ),
               Padding(
@@ -87,12 +91,14 @@ class SettingsSection extends StatelessWidget {
                   child: ListTile(
                     title: Text("Reset Password",
                         style: TextStyle(
+                            color: themeExtension?.mainTextColor,
                             fontSize: textScaler.scale(15),
                             fontWeight: FontWeight.bold)),
                     trailing: Padding(
                       padding: EdgeInsets.only(right: size.width * 0.025),
                       child: Icon(
                         Icons.arrow_forward_ios,
+                        color: themeExtension?.mainIconColor,
                         size: textScaler.scale(18),
                       ),
                     ),
@@ -104,7 +110,7 @@ class SettingsSection extends StatelessWidget {
                 child: Divider(
                   height: 1,
                   thickness: 1.5,
-                  color: CupertinoColors.systemGrey,
+                  color: themeExtension?.inputFieldBorderColor,
                 ),
               ),
               Padding(
@@ -123,12 +129,14 @@ class SettingsSection extends StatelessWidget {
                   },
                   title: Text("Support",
                       style: TextStyle(
+                          color: themeExtension?.mainTextColor,
                           fontSize: textScaler.scale(15),
                           fontWeight: FontWeight.bold)),
                   trailing: Padding(
                     padding: EdgeInsets.only(right: size.width * 0.025),
                     child: Icon(
                       Icons.arrow_forward_ios,
+                      color: themeExtension?.mainIconColor,
                       size: textScaler.scale(18),
                     ),
                   ),

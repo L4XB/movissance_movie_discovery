@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dart';
 import 'package:red_line/src/common/extensions/sized_box_extension.dart';
 import 'package:red_line/src/features/auth/cubit/user_data_cubit.dart';
 import 'package:red_line/src/features/auth/data/auth_repository.dart';
@@ -25,6 +26,8 @@ class AccountBar extends StatelessWidget {
           final imagePath = currentUser?.photoURL;
           final imageFile = imagePath != null ? File(imagePath) : null;
           final imageExists = imageFile?.existsSync() ?? false;
+          final themeExtension =
+              Theme.of(context).extension<CustomThemeColorsExtension>();
 
           return Center(
             child: Material(
@@ -33,7 +36,7 @@ class AccountBar extends StatelessWidget {
               child: Container(
                 width: size.width * 0.90,
                 decoration: BoxDecoration(
-                  color: CupertinoColors.systemGrey6,
+                  color: themeExtension?.secondaryOverlayElementBackgroundColor,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Padding(
@@ -55,14 +58,14 @@ class AccountBar extends StatelessWidget {
                               "Welcome, ",
                               style: TextStyle(
                                   fontSize: textScaler.scale(18),
-                                  color: CupertinoColors.secondaryLabel),
+                                  color: themeExtension?.decentLabelColor),
                             ),
                             Text(
                               displayName,
                               style: TextStyle(
                                 fontSize: textScaler.scale(20),
                                 fontWeight: FontWeight.bold,
-                                color: const Color.fromARGB(232, 46, 46, 48),
+                                color: themeExtension?.mainTextColor,
                               ),
                             ),
                             Spacer(),
@@ -71,7 +74,7 @@ class AccountBar extends StatelessWidget {
                                 authRepository.logoutUser();
                               },
                               child: Icon(CupertinoIcons.square_arrow_right,
-                                  color: Color.fromARGB(255, 53, 65, 93),
+                                  color: themeExtension?.mainIconColor,
                                   weight: 30,
                                   size: textScaler.scale(25)),
                             ),
