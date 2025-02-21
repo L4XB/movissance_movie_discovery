@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dart';
 import 'package:red_line/src/features/home/bloc/home_genre_cubit/home_genre_cubit.dart';
 import 'package:red_line/src/features/home/presentation/widgets/genre/genre_bottom_sheet.dart';
 import 'package:red_line/src/features/home/presentation/widgets/genre/genre_chip.dart';
@@ -11,6 +12,8 @@ class GenreChipsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final scaler = MediaQuery.of(context).textScaler;
+    final themeExtension =
+        Theme.of(context).extension<CustomThemeColorsExtension>();
     return Column(
       children: [
         Padding(
@@ -22,7 +25,7 @@ class GenreChipsWidget extends StatelessWidget {
                   style: TextStyle(
                       fontSize: scaler.scale(20),
                       fontWeight: FontWeight.bold,
-                      color: const Color.fromARGB(255, 53, 65, 93))),
+                      color: themeExtension?.headLineTextColor)),
               GestureDetector(
                 onTap: () {
                   showModalBottomSheet(
@@ -36,7 +39,7 @@ class GenreChipsWidget extends StatelessWidget {
                     style: TextStyle(
                         fontSize: scaler.scale(12),
                         fontWeight: FontWeight.bold,
-                        color: const Color.fromARGB(169, 0, 0, 0))),
+                        color: themeExtension?.secondaryLabelColor)),
               ),
             ],
           ),

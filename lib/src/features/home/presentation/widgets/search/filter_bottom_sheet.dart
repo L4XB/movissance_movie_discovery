@@ -1,5 +1,6 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dart';
 import 'package:red_line/src/features/home/bloc/filter_cubit/filter_cubit.dart';
 import 'package:red_line/src/features/home/presentation/widgets/search/custom_radio_list_tile.dart';
 
@@ -12,11 +13,13 @@ class FilterBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final scaler = MediaQuery.of(context).textScaler;
+    final themeExtension =
+        Theme.of(context).extension<CustomThemeColorsExtension>();
     return BlocBuilder<FilterCubit, int>(
       builder: (context, selectedValue) {
         return Container(
           decoration: BoxDecoration(
-            color: CupertinoColors.systemBackground,
+            color: themeExtension?.secondaryBackgroundColor,
             borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
           ),
           child: Padding(
@@ -33,7 +36,7 @@ class FilterBottomSheet extends StatelessWidget {
                         style: TextStyle(
                           fontSize: scaler.scale(20),
                           fontWeight: FontWeight.bold,
-                          color: const Color.fromARGB(255, 53, 65, 93),
+                          color: themeExtension?.headLineTextColor,
                         ),
                       ),
                     ],

@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
+import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dart';
 import 'package:red_line/src/features/home/domain/movie_model.dart';
 import 'package:red_line/src/features/movie_details/bloc/movie_details_cubit/movie_details_cubit.dart';
 import 'package:red_line/src/features/movie_details/bloc/movie_provider_cubit/movie_provider_cubit.dart';
@@ -16,6 +17,8 @@ class MovieGridItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final scaler = MediaQuery.of(context).textScaler;
+    final themeExtension =
+        Theme.of(context).extension<CustomThemeColorsExtension>();
     return GestureDetector(
       onTap: () {
         context.read<MovieDetailsCubit>().loadMovieDetail(movie.id);
@@ -29,6 +32,7 @@ class MovieGridItem extends StatelessWidget {
         );
       },
       child: Card(
+        color: themeExtension?.cardColor,
         elevation: 2,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
@@ -53,6 +57,7 @@ class MovieGridItem extends StatelessWidget {
               child: AutoSizeText(
                 movie.title,
                 style: TextStyle(
+                  color: themeExtension?.mainTextColor,
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
@@ -68,7 +73,7 @@ class MovieGridItem extends StatelessWidget {
                 children: [
                   Icon(
                     Icons.star,
-                    color: const Color.fromARGB(255, 228, 214, 90),
+                    color: themeExtension?.starIconColor,
                     size: scaler.scale(20),
                   ),
                   SizedBox(width: size.width * 0.007),
@@ -76,7 +81,8 @@ class MovieGridItem extends StatelessWidget {
                     movie.voteAverage.toStringAsFixed(1),
                     style: TextStyle(
                         fontSize: scaler.scale(14),
-                        fontWeight: FontWeight.bold),
+                        fontWeight: FontWeight.bold,
+                        color: themeExtension?.mainTextColor),
                   ),
                 ],
               ),

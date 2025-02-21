@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dart';
 import 'package:red_line/src/features/home/bloc/home_movie_cubit/home_movie_cubit.dart';
 import 'package:red_line/src/features/home/presentation/widgets/search/filter_bottom_sheet.dart';
 
@@ -28,6 +29,8 @@ class _SearchFieldWidgetState extends State<SearchFieldWidget> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final themeExtension =
+        Theme.of(context).extension<CustomThemeColorsExtension>();
     return Padding(
       padding: EdgeInsets.symmetric(
           horizontal: size.width * 0.045, vertical: size.height * 0.012),
@@ -37,13 +40,17 @@ class _SearchFieldWidgetState extends State<SearchFieldWidget> {
           hintText: 'Search...',
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15),
-            borderSide: BorderSide(color: Colors.grey),
+            borderSide: BorderSide(
+                color: themeExtension?.inputFieldBorderColor as Color),
           ),
           filled: true,
-          fillColor: Colors.white,
+          fillColor: themeExtension?.inputFieldFillColor,
           contentPadding: EdgeInsets.symmetric(horizontal: size.width * 0.045),
           prefixIcon: IconButton(
-              icon: Icon(Icons.search),
+              icon: Icon(
+                Icons.search,
+                color: themeExtension?.mainIconColor,
+              ),
               onPressed: () {
                 context.read<HomeMovieCubit>().loadMoviesBySearch(
                       _searchController.text,
@@ -54,7 +61,10 @@ class _SearchFieldWidgetState extends State<SearchFieldWidget> {
             mainAxisSize: MainAxisSize.min,
             children: [
               IconButton(
-                icon: Icon(Icons.tune),
+                icon: Icon(
+                  Icons.tune,
+                  color: themeExtension?.mainIconColor,
+                ),
                 onPressed: () {
                   showModalBottomSheet(
                     context: context,

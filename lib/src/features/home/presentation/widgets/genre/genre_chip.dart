@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dart';
 import 'package:red_line/src/features/home/bloc/home_genre_cubit/home_genre_cubit.dart';
 import 'package:red_line/src/features/home/bloc/home_movie_cubit/home_movie_cubit.dart';
 import 'package:red_line/src/features/home/domain/genre_model.dart';
@@ -16,6 +16,8 @@ class GenreChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final themeExtension =
+        Theme.of(context).extension<CustomThemeColorsExtension>();
     return BlocBuilder<HomeGenreCubit, HomeGenreState>(
       builder: (context, state) {
         final selectedGenre = state is HomeGenreSelected ? state.genre : null;
@@ -33,11 +35,14 @@ class GenreChip extends StatelessWidget {
             child: Chip(
               label: Text(
                 genreModel.name,
-                style:
-                    TextStyle(color: isSelected ? Colors.white : Colors.black),
+                style: TextStyle(
+                    color: isSelected
+                        ? themeExtension?.contrastTextColor
+                        : themeExtension?.mainTextColor),
               ),
-              backgroundColor:
-                  isSelected ? CupertinoColors.activeBlue : Colors.white,
+              backgroundColor: isSelected
+                  ? themeExtension?.secondaryColor
+                  : themeExtension?.contrastTextColor,
               elevation: 3,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15),

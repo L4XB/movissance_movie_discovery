@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dart';
 
 class CustomRadioListTile extends StatelessWidget {
   final String title;
@@ -18,10 +19,13 @@ class CustomRadioListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final scaler = MediaQuery.of(context).textScaler;
+    final themeExtension =
+        Theme.of(context).extension<CustomThemeColorsExtension>();
     return ListTile(
       title: Text(
         title,
-        style: TextStyle(fontWeight: FontWeight.bold),
+        style: TextStyle(
+            fontWeight: FontWeight.bold, color: themeExtension?.mainTextColor),
       ),
       leading: GestureDetector(
         onTap: () => onChanged(value),
@@ -31,7 +35,9 @@ class CustomRadioListTile extends StatelessWidget {
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             border: Border.all(
-              color: groupValue == value ? Colors.blue : Colors.grey,
+              color: groupValue == value
+                  ? themeExtension?.secondaryColor as Color
+                  : themeExtension?.mainIconColor as Color,
               width: 2.5,
             ),
           ),
@@ -40,7 +46,7 @@ class CustomRadioListTile extends StatelessWidget {
                   child: Icon(
                     Icons.check,
                     size: scaler.scale(18),
-                    color: Colors.blue,
+                    color: themeExtension?.secondaryColor,
                   ),
                 )
               : null,
