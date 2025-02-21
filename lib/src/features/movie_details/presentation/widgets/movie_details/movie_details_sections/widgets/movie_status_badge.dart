@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:red_line/src/common/config/config.dart';
+import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dart';
 
 class MovieStatusBadge extends StatelessWidget {
   final String status;
@@ -11,10 +11,13 @@ class MovieStatusBadge extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final scaler = MediaQuery.of(context).textScaler;
+    final themeExtension =
+        Theme.of(context).extension<CustomThemeColorsExtension>();
     return Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: statusColor[status] ?? CupertinoColors.systemGrey2),
+          color: statusColor[status] ??
+              themeExtension?.overlayElementBackgroundColor),
       child: Padding(
         padding: EdgeInsets.symmetric(
             horizontal: size.width * 0.025, vertical: size.height * 0.003),
@@ -23,7 +26,7 @@ class MovieStatusBadge extends StatelessWidget {
           style: TextStyle(
             fontSize: scaler.scale(15),
             fontWeight: FontWeight.bold,
-            color: Colors.white,
+            color: themeExtension?.contrastTextColor,
           ),
         ),
       ),

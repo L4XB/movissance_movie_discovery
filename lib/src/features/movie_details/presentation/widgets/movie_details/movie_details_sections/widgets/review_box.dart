@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:red_line/src/common/config/config.dart';
+import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dart';
 import 'package:red_line/src/features/movie_details/domain/review_model.dart';
 
 class ReviewBox extends StatelessWidget {
@@ -12,16 +12,18 @@ class ReviewBox extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final scaler = MediaQuery.of(context).textScaler;
+    final themeExtension =
+        Theme.of(context).extension<CustomThemeColorsExtension>();
     return Padding(
       padding: EdgeInsets.symmetric(
           vertical: size.height * 0.009, horizontal: size.width * 0.04),
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: themeExtension?.inputFieldFillColor,
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
-              color: Colors.black12,
+              color: themeExtension?.boxshadowColor as Color,
               blurRadius: 5,
               spreadRadius: 2,
               offset: Offset(0, 3),
@@ -52,12 +54,13 @@ class ReviewBox extends StatelessWidget {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: scaler.scale(16),
+                          color: themeExtension?.mainTextColor,
                         ),
                       ),
                       Text(
                         '@${review.authorUsername}',
                         style: TextStyle(
-                          color: Colors.grey,
+                          color: themeExtension?.secondaryLabelColor,
                           fontSize: scaler.scale(14),
                         ),
                       ),
@@ -70,7 +73,7 @@ class ReviewBox extends StatelessWidget {
                 review.content,
                 style: TextStyle(
                   fontSize: scaler.scale(14),
-                  color: Colors.black87,
+                  color: themeExtension?.mainTextColor,
                 ),
               ),
               SizedBox(height: size.height * 0.012),
@@ -78,7 +81,7 @@ class ReviewBox extends StatelessWidget {
                 children: List.generate(5, (index) {
                   return Icon(
                     index < review.rating ? Icons.star : Icons.star_border,
-                    color: CupertinoColors.systemYellow,
+                    color: themeExtension?.starIconColor,
                     size: scaler.scale(20),
                   );
                 }),

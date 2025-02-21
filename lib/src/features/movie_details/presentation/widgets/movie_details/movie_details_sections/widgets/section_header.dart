@@ -1,4 +1,5 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dart';
 
 class SectionHeader extends StatelessWidget {
   final String title;
@@ -9,6 +10,8 @@ class SectionHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final scaler = MediaQuery.of(context).textScaler;
+    final themeExtension =
+        Theme.of(context).extension<CustomThemeColorsExtension>();
     return Padding(
       padding:
           EdgeInsets.only(left: size.width * 0.07, bottom: size.height * 0.01),
@@ -17,7 +20,7 @@ class SectionHeader extends StatelessWidget {
         style: TextStyle(
           fontSize: scaler.scale(20),
           fontWeight: FontWeight.bold,
-          color: const Color.fromARGB(255, 53, 65, 93),
+          color: themeExtension?.headLineTextColor,
         ),
       ),
     );

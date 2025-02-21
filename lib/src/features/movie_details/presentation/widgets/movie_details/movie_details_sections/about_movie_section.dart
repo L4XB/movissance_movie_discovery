@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dart';
 import 'package:red_line/src/common/extensions/sized_box_extension.dart';
 import 'package:red_line/src/features/movie_details/bloc/movie_details_cubit/movie_details_cubit.dart';
 import 'package:red_line/src/features/movie_details/presentation/widgets/movie_details/movie_overview.dart';
@@ -11,6 +12,8 @@ class AboutMovieSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final scaler = MediaQuery.of(context).textScaler;
+    final themeExtension =
+        Theme.of(context).extension<CustomThemeColorsExtension>();
     return Column(
       children: [
         Row(
@@ -23,7 +26,7 @@ class AboutMovieSection extends StatelessWidget {
                   style: TextStyle(
                       fontSize: scaler.scale(20),
                       fontWeight: FontWeight.bold,
-                      color: const Color.fromARGB(255, 53, 65, 93))),
+                      color: themeExtension?.headLineTextColor)),
             ),
           ],
         ),

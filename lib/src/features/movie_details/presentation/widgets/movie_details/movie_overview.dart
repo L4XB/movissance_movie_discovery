@@ -1,4 +1,5 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dart';
 import 'package:red_line/src/common/extensions/sized_box_extension.dart';
 import 'package:red_line/src/features/movie_details/presentation/widgets/movie_details/movie_details_sections/widgets/movie_status_badge.dart';
 
@@ -17,6 +18,8 @@ class MovieOverview extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final scaler = MediaQuery.of(context).textScaler;
+    final themeExtension =
+        Theme.of(context).extension<CustomThemeColorsExtension>();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -26,7 +29,7 @@ class MovieOverview extends StatelessWidget {
             "Tagline: $tagline",
             style: TextStyle(
                 fontSize: scaler.scale(14),
-                color: CupertinoColors.black,
+                color: themeExtension?.mainTextColor,
                 fontWeight: FontWeight.bold),
           ),
         ),
@@ -41,7 +44,7 @@ class MovieOverview extends StatelessWidget {
             overview,
             style: TextStyle(
               fontSize: scaler.scale(14),
-              color: CupertinoColors.black,
+              color: themeExtension?.mainTextColor,
             ),
           ),
         ),

@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:red_line/src/common/config/config.dart';
+import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dart';
 import 'package:red_line/src/features/movie_details/domain/provider_model.dart';
 
 class ProviderTile extends StatelessWidget {
@@ -12,14 +12,16 @@ class ProviderTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final scaler = MediaQuery.of(context).textScaler;
+    final themeExtension =
+        Theme.of(context).extension<CustomThemeColorsExtension>();
     return Padding(
         padding: EdgeInsets.symmetric(
             horizontal: size.width * 0.05, vertical: size.height * 0.008),
         child: Container(
           decoration: BoxDecoration(
-            color: CupertinoColors.systemGrey5,
+            color: themeExtension?.overlayElementBackgroundColor,
             border: Border.all(
-              color: Colors.grey,
+              color: themeExtension?.inputFieldBorderColor as Color,
               width: 1,
             ),
             borderRadius: BorderRadius.circular(5),
@@ -32,7 +34,9 @@ class ProviderTile extends StatelessWidget {
             ),
             title: Text(provider.providerName,
                 style: TextStyle(
-                    fontSize: scaler.scale(18), fontWeight: FontWeight.w500)),
+                    fontSize: scaler.scale(18),
+                    fontWeight: FontWeight.w500,
+                    color: themeExtension?.mainTextColor)),
           ),
         ));
   }

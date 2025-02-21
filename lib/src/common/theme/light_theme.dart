@@ -18,5 +18,11 @@ final lightTheme = ThemeData(extensions: [
     starIconColor: Color.fromARGB(255, 228, 214, 90),
     cardColor: Color.fromARGB(255, 246, 242, 250),
     contrastTextColor: Colors.white,
+    favoritesIconColor: CupertinoColors.systemYellow,
+    overlayElementBackgroundColor: CupertinoColors.systemGrey5,
+    boxshadowColor: Color.fromARGB(25, 8, 64, 88),
+    tabBarUnselectedFillColor: Color.fromARGB(255, 235, 235, 251),
+    tabBarSelectedFillColor: Colors.white,
+    thirdBackgroundColor: CupertinoColors.secondarySystemBackground,
   ),
 ]);

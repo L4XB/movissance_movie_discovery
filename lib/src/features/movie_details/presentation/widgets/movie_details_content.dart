@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dart';
 import 'package:red_line/src/common/extensions/sized_box_extension.dart';
 import 'package:red_line/src/common/widgets/back_button.dart';
 import 'package:red_line/src/features/movie_details/bloc/detials_selection_cubit/details_selection_cubit.dart';
@@ -18,6 +18,8 @@ class MovieDetailsContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final themeExtension =
+        Theme.of(context).extension<CustomThemeColorsExtension>();
     return Column(
       children: [
         Stack(
@@ -36,14 +38,14 @@ class MovieDetailsContent extends StatelessWidget {
           child: Container(
             width: double.infinity,
             decoration: BoxDecoration(
-              color: CupertinoColors.secondarySystemBackground,
+              color: themeExtension?.thirdBackgroundColor,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(30),
                 topRight: Radius.circular(30),
               ),
               boxShadow: [
                 BoxShadow(
-                    color: const Color.fromARGB(255, 8, 64, 88).withAlpha(25),
+                    color: themeExtension?.boxshadowColor as Color,
                     spreadRadius: 5,
                     blurRadius: 7,
                     offset: Offset(0, -2)),
@@ -53,19 +55,28 @@ class MovieDetailsContent extends StatelessWidget {
               children: [
                 SizedBoxExtension.height(size.height * 0.0225),
                 SegmentedButton(
-                  segments: const [
+                  segments: [
                     ButtonSegment(
                       value: 0,
-                      label: Text('About'),
+                      label: Text(
+                        'About',
+                        style: TextStyle(color: themeExtension?.mainTextColor),
+                      ),
                     ),
                     ButtonSegment<int>(
                       value: 1,
-                      label: Text('Providers'),
+                      label: Text(
+                        'Providers',
+                        style: TextStyle(color: themeExtension?.mainTextColor),
+                      ),
                     ),
                     ButtonSegment<int>(
-                      value: 2,
-                      label: Text('Reviews'),
-                    ),
+                        value: 2,
+                        label: Text(
+                          'Reviews',
+                          style:
+                              TextStyle(color: themeExtension?.mainTextColor),
+                        )),
                   ],
                   onSelectionChanged: (Set<int> newSelection) {
                     context.read<DetailsSelectionCubit>().setDetailsSelection(
@@ -77,9 +88,9 @@ class MovieDetailsContent extends StatelessWidget {
                     backgroundColor: WidgetStateProperty.resolveWith(
                       (Set<WidgetState> states) {
                         if (states.contains(WidgetState.selected)) {
-                          return Colors.white;
+                          return themeExtension?.tabBarSelectedFillColor;
                         }
-                        return const Color.fromARGB(255, 235, 235, 251);
+                        return themeExtension?.tabBarUnselectedFillColor;
                       },
                     ),
                     shape: WidgetStateProperty.all(
