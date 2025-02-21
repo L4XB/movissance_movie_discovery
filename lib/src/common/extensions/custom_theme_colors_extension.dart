@@ -27,6 +27,7 @@ class CustomThemeColorsExtension
   final Color? secondaryOverlayElementBackgroundColor;
   final Color? discoverPageOverlayColorOne;
   final Color? discoverPageOverlayColorTwo;
+  final Color? backButtonBackgroundColor;
 
   CustomThemeColorsExtension({
     required this.mainBackGroundColor,
@@ -54,6 +55,7 @@ class CustomThemeColorsExtension
     required this.secondaryOverlayElementBackgroundColor,
     required this.discoverPageOverlayColorOne,
     required this.discoverPageOverlayColorTwo,
+    required this.backButtonBackgroundColor,
   });
 
   @override
@@ -83,6 +85,7 @@ class CustomThemeColorsExtension
     Color? secondaryOverlayElementBackgroundColor,
     Color? discoverPageOverlayColorOne,
     Color? discoverPageOverlayColorTwo,
+    Color? backButtonBackgroundColor,
   }) {
     return CustomThemeColorsExtension(
       mainBackGroundColor: mainBackGroundColor ?? this.mainBackGroundColor,
@@ -120,6 +123,8 @@ class CustomThemeColorsExtension
           discoverPageOverlayColorOne ?? this.discoverPageOverlayColorOne,
       discoverPageOverlayColorTwo:
           discoverPageOverlayColorTwo ?? this.discoverPageOverlayColorTwo,
+      backButtonBackgroundColor:
+          backButtonBackgroundColor ?? this.backButtonBackgroundColor,
     );
   }
 
@@ -174,6 +179,8 @@ class CustomThemeColorsExtension
           discoverPageOverlayColorOne, other.discoverPageOverlayColorOne, t),
       discoverPageOverlayColorTwo: Color.lerp(
           discoverPageOverlayColorTwo, other.discoverPageOverlayColorTwo, t),
+      backButtonBackgroundColor: Color.lerp(
+          backButtonBackgroundColor, other.backButtonBackgroundColor, t),
     );
   }
 }

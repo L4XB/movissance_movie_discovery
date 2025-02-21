@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
+import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dart';
 import 'package:red_line/src/features/auth/data/auth_repository.dart';
 import 'package:red_line/src/features/discover/presentation/discover.dart';
 import 'package:red_line/src/features/favorites/presentation/favourites.dart';
@@ -15,11 +16,13 @@ class PersistentBottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeExtension =
+        Theme.of(context).extension<CustomThemeColorsExtension>();
     return PersistentTabView(
       context,
       controller: controller,
       screens: _buildScreens(),
-      items: _navBarsItems(),
+      items: _navBarsItems(themeExtension),
       handleAndroidBackButtonPress: true,
       resizeToAvoidBottomInset: true,
       hideNavigationBarWhenKeyboardAppears: true,
@@ -42,31 +45,32 @@ class PersistentBottomNavBar extends StatelessWidget {
     );
   }
 
-  List<PersistentBottomNavBarItem> _navBarsItems() {
+  List<PersistentBottomNavBarItem> _navBarsItems(
+      CustomThemeColorsExtension? themeExtension) {
     return [
       PersistentBottomNavBarItem(
         icon: Icon(Icons.home),
         title: ("Home"),
-        activeColorPrimary: CupertinoColors.activeBlue,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
+        activeColorPrimary: themeExtension?.secondaryColor as Color,
+        inactiveColorPrimary: themeExtension?.mainIconColor,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(Icons.bookmark_outline),
         title: ("Favorites"),
-        activeColorPrimary: CupertinoColors.activeBlue,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
+        activeColorPrimary: themeExtension?.secondaryColor as Color,
+        inactiveColorPrimary: themeExtension?.mainIconColor,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(Icons.explore_outlined),
         title: ("Discover"),
-        activeColorPrimary: CupertinoColors.activeBlue,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
+        activeColorPrimary: themeExtension?.secondaryColor as Color,
+        inactiveColorPrimary: themeExtension?.mainIconColor,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(Icons.person_outline),
         title: ("Account"),
-        activeColorPrimary: CupertinoColors.activeBlue,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
+        activeColorPrimary: themeExtension?.secondaryColor as Color,
+        inactiveColorPrimary: themeExtension?.mainIconColor,
       ),
     ];
   }
