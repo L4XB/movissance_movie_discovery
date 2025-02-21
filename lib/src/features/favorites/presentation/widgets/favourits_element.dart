@@ -1,8 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:red_line/src/common/config/config.dart';
+import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dart';
 import 'package:red_line/src/features/movie_details/bloc/movie_details_cubit/movie_details_cubit.dart';
 import 'package:red_line/src/features/movie_details/bloc/movie_provider_cubit/movie_provider_cubit.dart';
 import 'package:red_line/src/features/movie_details/bloc/movie_reviews_cubit/movie_reviews_cubit.dart';
@@ -21,6 +21,8 @@ class FavouritsElement extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final scaler = MediaQuery.of(context).textScaler;
+    final themeExtension =
+        Theme.of(context).extension<CustomThemeColorsExtension>();
     return Padding(
       padding: EdgeInsets.symmetric(
           horizontal: size.width * 0.025, vertical: size.height * 0.006),
@@ -38,7 +40,7 @@ class FavouritsElement extends StatelessWidget {
         },
         child: Card(
           elevation: 5,
-          color: CupertinoColors.systemGrey6,
+          color: themeExtension?.secondaryOverlayElementBackgroundColor,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -70,6 +72,7 @@ class FavouritsElement extends StatelessWidget {
                         style: TextStyle(
                           fontSize: scaler.scale(18),
                           fontWeight: FontWeight.bold,
+                          color: themeExtension?.mainTextColor,
                         ),
                       ),
                       SizedBox(height: size.height * 0.006),
@@ -77,7 +80,7 @@ class FavouritsElement extends StatelessWidget {
                         'Release Date: ${movie.releaseDate}',
                         style: TextStyle(
                           fontSize: scaler.scale(14),
-                          color: Colors.grey,
+                          color: themeExtension?.decentLabelColor,
                         ),
                       ),
                       SizedBox(height: size.height * 0.006),
@@ -85,6 +88,7 @@ class FavouritsElement extends StatelessWidget {
                         movie.overview,
                         style: TextStyle(
                           fontSize: scaler.scale(14),
+                          color: themeExtension?.mainTextColor,
                         ),
                         maxLines: 3,
                         overflow: TextOverflow.ellipsis,
@@ -94,13 +98,14 @@ class FavouritsElement extends StatelessWidget {
                         children: [
                           Icon(
                             Icons.star,
-                            color: Colors.yellow,
+                            color: themeExtension?.starIconColor,
                             size: scaler.scale(20),
                           ),
                           SizedBox(width: size.height * 0.0025),
                           Text(
                             '${movie.voteAverage.toStringAsFixed(1)} (${movie.voteCount} votes)',
                             style: TextStyle(
+                              color: themeExtension?.mainTextColor,
                               fontSize: scaler.scale(14),
                             ),
                           ),

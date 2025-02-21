@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dart';
 import 'package:red_line/src/features/favorites/bloc/favourites_data_cubit/favourites_data_cubit.dart';
 import 'package:red_line/src/features/favorites/presentation/widgets/favourits_element.dart';
 
@@ -11,6 +12,8 @@ class FavouritesContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final themeExtension =
+        Theme.of(context).extension<CustomThemeColorsExtension>();
     return BlocBuilder<FavouritesDataCubit, FavouritesDataState>(
       builder: (context, state) {
         if (state is FavouritesDataLoading) {
@@ -20,8 +23,11 @@ class FavouritesContent extends StatelessWidget {
         }
         if (state is FavouritesDataLoaded) {
           if (state.movies.isEmpty) {
-            return const Center(
-              child: Text("No favourites found."),
+            return Center(
+              child: Text(
+                "No favourites found.",
+                style: TextStyle(color: themeExtension?.mainTextColor),
+              ),
             );
           }
           return Expanded(
@@ -35,7 +41,8 @@ class FavouritesContent extends StatelessWidget {
             ),
           );
         }
-        return const Text("Unknown state");
+        return Text("Unknown state",
+            style: TextStyle(color: themeExtension?.mainTextColor));
       },
     );
   }
