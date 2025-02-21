@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dart';
 
 class NameTextField extends StatelessWidget {
   final TextEditingController controller;
@@ -7,6 +8,8 @@ class NameTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeExtension =
+        Theme.of(context).extension<CustomThemeColorsExtension>();
     final size = MediaQuery.of(context).size;
     return Padding(
       padding: EdgeInsets.symmetric(
@@ -20,10 +23,11 @@ class NameTextField extends StatelessWidget {
           hintText: 'Name',
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15),
-            borderSide: const BorderSide(color: Colors.grey),
+            borderSide: BorderSide(
+                color: themeExtension?.inputFieldBorderColor as Color),
           ),
           filled: true,
-          fillColor: Colors.white,
+          fillColor: themeExtension?.inputFieldFillColor,
           contentPadding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
         ),
       ),

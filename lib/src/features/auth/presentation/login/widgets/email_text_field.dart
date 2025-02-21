@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dart';
 
 class EmailTextField extends StatelessWidget {
   final TextEditingController controller;
@@ -8,6 +9,8 @@ class EmailTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final themeExtension =
+        Theme.of(context).extension<CustomThemeColorsExtension>();
     return Padding(
       padding: EdgeInsets.symmetric(
           horizontal: size.width * 0.04, vertical: size.height * 0.0125),
@@ -19,10 +22,11 @@ class EmailTextField extends StatelessWidget {
           hintText: 'Email',
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15),
-            borderSide: const BorderSide(color: Colors.grey),
+            borderSide: BorderSide(
+                color: themeExtension?.inputFieldBorderColor as Color),
           ),
           filled: true,
-          fillColor: Colors.white,
+          fillColor: themeExtension?.inputFieldFillColor,
           contentPadding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
         ),
       ),

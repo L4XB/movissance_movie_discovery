@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dart';
 import 'package:red_line/src/common/widgets/back_button.dart';
 import 'package:red_line/src/features/auth/data/auth_repository.dart';
 
@@ -17,8 +18,10 @@ class _PasswordResetScreenState extends State<PasswordResetScreen> {
     final GlobalKey<FormState> formKey = GlobalKey<FormState>();
     final size = MediaQuery.of(context).size;
     final scaler = MediaQuery.of(context).textScaler;
-
+    final themeExtension =
+        Theme.of(context).extension<CustomThemeColorsExtension>();
     return Scaffold(
+      backgroundColor: themeExtension?.mainBackGroundColor,
       body: Column(
         children: [
           Padding(
@@ -40,7 +43,8 @@ class _PasswordResetScreenState extends State<PasswordResetScreen> {
                         "Please enter your email address to reset your password.",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontSize: scaler.scale(16), color: Colors.black54),
+                            fontSize: scaler.scale(16),
+                            color: themeExtension?.secondaryLabelColor),
                       ),
                     ),
                     SizedBox(height: size.height * 0.025),
@@ -60,7 +64,7 @@ class _PasswordResetScreenState extends State<PasswordResetScreen> {
                             borderRadius: BorderRadius.circular(15),
                           ),
                           filled: true,
-                          fillColor: Colors.white,
+                          fillColor: themeExtension?.inputFieldFillColor,
                           contentPadding: EdgeInsets.symmetric(
                               horizontal: size.width * 0.053),
                         ),
@@ -78,8 +82,8 @@ class _PasswordResetScreenState extends State<PasswordResetScreen> {
                           }
                         },
                         style: ElevatedButton.styleFrom(
-                          foregroundColor: Colors.white,
-                          backgroundColor: Colors.blueAccent,
+                          foregroundColor: themeExtension?.contrastTextColor,
+                          backgroundColor: themeExtension?.primaryColor,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15),
                           ),
@@ -90,6 +94,7 @@ class _PasswordResetScreenState extends State<PasswordResetScreen> {
                         child: Text(
                           'Reset Password',
                           style: TextStyle(
+                              color: themeExtension?.contrastBorderColor,
                               fontSize: scaler.scale(15),
                               fontWeight: FontWeight.bold),
                         ),

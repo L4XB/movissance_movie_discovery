@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dart';
 
 class ImagePickerField extends StatelessWidget {
   final Function(XFile?) onImageSelected;
@@ -8,6 +9,8 @@ class ImagePickerField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final themeExtension =
+        Theme.of(context).extension<CustomThemeColorsExtension>();
     return Padding(
       padding: EdgeInsets.symmetric(
           horizontal: size.width * 0.04, vertical: size.height * 0.0125),
@@ -20,8 +23,11 @@ class ImagePickerField extends StatelessWidget {
                 child: Wrap(
                   children: <Widget>[
                     ListTile(
-                      leading: const Icon(Icons.photo_library),
-                      title: const Text("Gallery"),
+                      leading: Icon(Icons.photo_library,
+                          color: themeExtension?.mainIconColor),
+                      title: Text("Gallery",
+                          style:
+                              TextStyle(color: themeExtension?.mainTextColor)),
                       onTap: () async {
                         final ImagePicker picker = ImagePicker();
                         final XFile? image =
@@ -33,8 +39,12 @@ class ImagePickerField extends StatelessWidget {
                       },
                     ),
                     ListTile(
-                      leading: const Icon(Icons.photo_camera),
-                      title: const Text("Camera"),
+                      leading: Icon(Icons.photo_camera,
+                          color: themeExtension?.mainIconColor),
+                      title: Text(
+                        "Camera",
+                        style: TextStyle(color: themeExtension?.mainTextColor),
+                      ),
                       onTap: () async {
                         final ImagePicker picker = ImagePicker();
                         final XFile? image =
@@ -51,11 +61,14 @@ class ImagePickerField extends StatelessWidget {
             },
           );
         },
-        icon: const Icon(Icons.image),
-        label: const Text('Select Profile Image'),
+        icon: Icon(Icons.image, color: themeExtension?.mainIconColor),
+        label: Text(
+          "Select Profile Image",
+          style: TextStyle(color: themeExtension?.primaryColor),
+        ),
         style: ElevatedButton.styleFrom(
-          foregroundColor: Colors.blueAccent,
-          backgroundColor: Colors.white,
+          foregroundColor: themeExtension?.primaryColor,
+          backgroundColor: themeExtension?.contrastTextColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),
           ),

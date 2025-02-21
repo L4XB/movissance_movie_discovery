@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dart';
 
 class PasswordTextField extends StatefulWidget {
   final TextEditingController controller;
@@ -28,6 +29,8 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final themeExtension =
+        Theme.of(context).extension<CustomThemeColorsExtension>();
     return Padding(
       padding: EdgeInsets.symmetric(
           horizontal: size.width * 0.04, vertical: size.height * 0.0125),
@@ -39,14 +42,16 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
           hintText: widget.label,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15),
-            borderSide: const BorderSide(color: Colors.grey),
+            borderSide: BorderSide(
+                color: themeExtension?.inputFieldBorderColor as Color),
           ),
           filled: true,
-          fillColor: Colors.white,
+          fillColor: themeExtension?.inputFieldFillColor,
           contentPadding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
           suffixIcon: IconButton(
             icon: Icon(
               _obscureText ? CupertinoIcons.eye_slash : CupertinoIcons.eye,
+              color: themeExtension?.mainIconColor,
             ),
             onPressed: _togglePasswordVisibility,
           ),

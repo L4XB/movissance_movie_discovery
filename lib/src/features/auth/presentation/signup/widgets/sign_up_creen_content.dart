@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dart';
 import 'package:red_line/src/common/utils/textfield_validators.dart';
 import 'package:red_line/src/features/auth/data/auth_repository.dart';
 import 'package:red_line/src/features/auth/presentation/login/widgets/email_text_field.dart';
@@ -47,6 +48,8 @@ class _SignUpCreenContentState extends State<SignUpCreenContent> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final scaler = MediaQuery.of(context).textScaler;
+    final themeExtension =
+        Theme.of(context).extension<CustomThemeColorsExtension>();
     return Form(
       key: formKey,
       child: Column(
@@ -63,7 +66,7 @@ class _SignUpCreenContentState extends State<SignUpCreenContent> {
                 style: TextStyle(
                     fontSize: scaler.scale(27),
                     fontWeight: FontWeight.bold,
-                    color: Colors.white),
+                    color: themeExtension?.contrastTextColor),
               ),
             ),
           ),
@@ -132,8 +135,8 @@ class _SignUpCreenContentState extends State<SignUpCreenContent> {
                 }
               },
               style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.blueAccent,
-                backgroundColor: Colors.white,
+                foregroundColor: themeExtension?.primaryColor,
+                backgroundColor: themeExtension?.contrastTextColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15),
                 ),
@@ -143,7 +146,9 @@ class _SignUpCreenContentState extends State<SignUpCreenContent> {
               ),
               child: Text('Sign Up',
                   style: TextStyle(
-                      fontSize: scaler.scale(15), fontWeight: FontWeight.bold)),
+                      color: themeExtension?.primaryColor,
+                      fontSize: scaler.scale(15),
+                      fontWeight: FontWeight.bold)),
             ),
           ),
         ],

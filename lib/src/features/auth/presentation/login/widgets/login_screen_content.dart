@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dart';
 import 'package:red_line/src/features/auth/data/auth_repository.dart';
 import 'package:red_line/src/features/auth/presentation/login/widgets/background_circles.dart';
 import 'package:red_line/src/features/auth/presentation/login/widgets/email_text_field.dart';
@@ -39,6 +40,8 @@ class _LoginScreenContentState extends State<LoginScreenContent> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final scaler = MediaQuery.of(context).textScaler;
+    final themeExtension =
+        Theme.of(context).extension<CustomThemeColorsExtension>();
     return Stack(
       children: [
         const BackgroundCircles(),
@@ -60,6 +63,7 @@ class _LoginScreenContentState extends State<LoginScreenContent> {
                   style: TextStyle(
                     fontSize: scaler.scale(27),
                     fontWeight: FontWeight.bold,
+                    color: themeExtension?.mainTextColor,
                   ),
                 ),
               ),
@@ -87,8 +91,8 @@ class _LoginScreenContentState extends State<LoginScreenContent> {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.white,
-                  backgroundColor: Colors.blueAccent,
+                  foregroundColor: themeExtension?.contrastTextColor,
+                  backgroundColor: themeExtension?.primaryColor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),
@@ -99,6 +103,7 @@ class _LoginScreenContentState extends State<LoginScreenContent> {
                 child: Text('Login',
                     style: TextStyle(
                         fontSize: scaler.scale(15),
+                        color: themeExtension?.contrastTextColor,
                         fontWeight: FontWeight.bold)),
               ),
             ),
@@ -110,17 +115,17 @@ class _LoginScreenContentState extends State<LoginScreenContent> {
                           authRepository: widget.authRepository,
                         )));
               },
-              child: const Text(
+              child: Text(
                 'Forgot Password?',
-                style: TextStyle(color: Colors.blueAccent),
+                style: TextStyle(color: themeExtension?.primaryColor),
               ),
             ),
             const Spacer(),
             Container(
               height: size.height * 0.086,
               width: size.width * 0.285,
-              decoration: const BoxDecoration(
-                color: Colors.blueAccent,
+              decoration: BoxDecoration(
+                color: themeExtension?.primaryColor,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(60),
                   topRight: Radius.circular(60),
@@ -130,7 +135,7 @@ class _LoginScreenContentState extends State<LoginScreenContent> {
                 child: Text(
                   "Sign up",
                   style: TextStyle(
-                      color: Colors.white,
+                      color: themeExtension?.contrastTextColor,
                       fontSize: scaler.scale(17),
                       fontWeight: FontWeight.bold),
                   textAlign: TextAlign.center,
