@@ -20,6 +20,7 @@ import 'package:red_line/src/features/movie_details/bloc/detials_selection_cubit
 import 'package:red_line/src/features/movie_details/bloc/movie_details_cubit/movie_details_cubit.dart';
 import 'package:red_line/src/features/movie_details/bloc/movie_provider_cubit/movie_provider_cubit.dart';
 import 'package:red_line/src/features/movie_details/bloc/movie_reviews_cubit/movie_reviews_cubit.dart';
+import 'package:red_line/src/features/profile/cubit/profile_cubit.dart';
 
 class App extends StatelessWidget {
   App({super.key});
@@ -67,26 +68,37 @@ class App extends StatelessWidget {
         BlocProvider<UserDataCubit>(
           create: (context) => UserDataCubit(),
         ),
+        BlocProvider<ProfileCubit>(
+          create: (context) => ProfileCubit()..loadProfileSettings(),
+        ),
       ],
-      child: MaterialApp(
-        theme: lightTheme,
-        darkTheme: darkTheme,
-        themeMode: ThemeMode.dark,
-        debugShowCheckedModeBanner: false,
-        home: StreamBuilder(
-            stream: authRepository.onAuthStateChanged,
-            builder: (context, snapshot) {
-              if (snapshot.hasData && snapshot.data != null) {
-                return PersistentBottomNavBar(
-                  authRepository: authRepository,
-                  controller: controller,
-                );
-              } else {
-                return LoginScreen(
-                  authRepository: authRepository,
-                );
-              }
-            }),
+      child: BlocBuilder<ProfileCubit, ProfileState>(
+        builder: (context, state) {
+          if (state is ProfileLoaded) {
+            return MaterialApp(
+              theme: lightTheme,
+              darkTheme: darkTheme,
+              themeMode: state.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+              debugShowCheckedModeBanner: false,
+              home: StreamBuilder(
+                  stream: authRepository.onAuthStateChanged,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData && snapshot.data != null) {
+                      return PersistentBottomNavBar(
+                        authRepository: authRepository,
+                        controller: controller,
+                      );
+                    } else {
+                      return LoginScreen(
+                        authRepository: authRepository,
+                      );
+                    }
+                  }),
+            );
+          } else {
+            return CircularProgressIndicator();
+          }
+        },
       ),
     );
   }
