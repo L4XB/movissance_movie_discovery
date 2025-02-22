@@ -30,6 +30,7 @@ dependencies:
   geolocator: ^13.0.2
   geocoding: ^3.0.0
   flutter_native_splash: ^2.4.5
+  flutter_launcher_icons: ^0.14.3
 
 dev_dependencies:
   flutter_test:
@@ -51,3 +52,9 @@ flutter_native_splash:
   image: assets/images/splashscreen.png
   android_gravity: fill
   ios_content_mode: scaleAspectFill
+
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/app_icon.png"
