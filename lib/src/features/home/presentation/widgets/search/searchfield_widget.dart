@@ -34,9 +34,16 @@ class _SearchFieldWidgetState extends State<SearchFieldWidget> {
     return Padding(
       padding: EdgeInsets.symmetric(
           horizontal: size.width * 0.045, vertical: size.height * 0.012),
-      child: TextField(
+      child: TextFormField(
+        style: TextStyle(color: themeExtension?.mainTextColor),
+        cursorColor: themeExtension?.mainTextColor,
         controller: _searchController,
         decoration: InputDecoration(
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide:
+                BorderSide(color: themeExtension?.mainTextColor as Color),
+          ),
           hintText: 'Search...',
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15),

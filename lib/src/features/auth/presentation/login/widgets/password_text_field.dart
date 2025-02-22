@@ -35,10 +35,18 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
       padding: EdgeInsets.symmetric(
           horizontal: size.width * 0.04, vertical: size.height * 0.0125),
       child: TextFormField(
+        style: TextStyle(color: themeExtension?.mainTextColor),
+        cursorColor: themeExtension?.mainTextColor,
         validator: widget.validator ?? (_) => null,
         controller: widget.controller,
         decoration: InputDecoration(
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide:
+                BorderSide(color: themeExtension?.mainTextColor as Color),
+          ),
           labelText: widget.label,
+          labelStyle: TextStyle(color: themeExtension?.mainTextColor),
           hintText: widget.label,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15),

@@ -15,10 +15,18 @@ class NameTextField extends StatelessWidget {
       padding: EdgeInsets.symmetric(
           horizontal: size.width * 0.04, vertical: size.height * 0.0125),
       child: TextFormField(
+        style: TextStyle(color: themeExtension?.mainTextColor),
+        cursorColor: themeExtension?.mainTextColor,
         key: fromKey,
         validator: (value) => value!.isEmpty ? 'Name cannot be empty' : null,
         controller: controller,
         decoration: InputDecoration(
+          labelStyle: TextStyle(color: themeExtension?.mainTextColor),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide:
+                BorderSide(color: themeExtension?.mainTextColor as Color),
+          ),
           labelText: 'Name',
           hintText: 'Name',
           border: OutlineInputBorder(

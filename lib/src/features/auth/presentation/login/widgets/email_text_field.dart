@@ -17,8 +17,18 @@ class EmailTextField extends StatelessWidget {
       child: TextFormField(
         validator: validator ?? (_) => null,
         controller: controller,
+        cursorColor: themeExtension?.mainTextColor,
+        style: TextStyle(color: themeExtension?.mainTextColor),
         decoration: InputDecoration(
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide:
+                BorderSide(color: themeExtension?.mainTextColor as Color),
+          ),
           labelText: 'Email',
+          labelStyle: TextStyle(
+            color: themeExtension?.mainTextColor,
+          ),
           hintText: 'Email',
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15),

@@ -71,7 +71,7 @@ class App extends StatelessWidget {
       child: MaterialApp(
         theme: lightTheme,
         darkTheme: darkTheme,
-        themeMode: ThemeMode.light,
+        themeMode: ThemeMode.dark,
         debugShowCheckedModeBanner: false,
         home: StreamBuilder(
             stream: authRepository.onAuthStateChanged,

@@ -37,9 +37,16 @@ class _FavouritesSearchFieldWidgetState
     return Padding(
       padding: EdgeInsets.symmetric(
           horizontal: size.width * 0.045, vertical: size.height * 0.012),
-      child: TextField(
+      child: TextFormField(
+        cursorColor: themeExtension?.mainTextColor,
+        style: TextStyle(color: themeExtension?.mainTextColor),
         controller: _searchController,
         decoration: InputDecoration(
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide:
+                BorderSide(color: themeExtension?.mainTextColor as Color),
+          ),
           hintText: 'Search...',
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15),

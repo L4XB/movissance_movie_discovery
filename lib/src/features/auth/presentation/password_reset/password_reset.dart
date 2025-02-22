@@ -52,14 +52,23 @@ class _PasswordResetScreenState extends State<PasswordResetScreen> {
                       key: formKey,
                       child: TextFormField(
                         controller: emailController,
+                        style: TextStyle(color: themeExtension?.mainTextColor),
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'Email is required';
                           }
                           return null;
                         },
+                        cursorColor: themeExtension?.mainTextColor,
                         decoration: InputDecoration(
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: BorderSide(
+                                color: themeExtension?.mainTextColor as Color),
+                          ),
                           labelText: "Email",
+                          labelStyle:
+                              TextStyle(color: themeExtension?.mainTextColor),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(15),
                           ),
