@@ -63,4 +63,8 @@ class FavouritesDataCubit extends Cubit<FavouritesDataState> {
       emit(FavouritesDataError(e.toString()));
     }
   }
+
+  void reset() {
+    emit(FavouritesDataInitial());
+  }
 }

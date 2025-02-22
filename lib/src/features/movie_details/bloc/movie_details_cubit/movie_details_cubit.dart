@@ -20,4 +20,8 @@ class MovieDetailsCubit extends Cubit<MovieDetailsState> {
       emit(MovieDetailsError(e.toString()));
     }
   }
+
+  void reset() {
+    emit(MovieDetailsInitial());
+  }
 }

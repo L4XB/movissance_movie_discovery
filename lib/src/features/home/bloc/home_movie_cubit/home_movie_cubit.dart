@@ -79,4 +79,8 @@ class HomeMovieCubit extends Cubit<HomeMovieState> {
       emit(HomeMovieErrorState(e.toString()));
     }
   }
+
+  void reset() {
+    emit(HomeMovieInitial());
+  }
 }

@@ -70,4 +70,8 @@ class SwiperContentCubit extends Cubit<SwiperContentState> {
           currentState.movies, _currentPage, _currentIndex));
     }
   }
+
+  void reset() {
+    emit(SwiperContentInitial());
+  }
 }

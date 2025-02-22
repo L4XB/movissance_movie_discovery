@@ -32,4 +32,8 @@ class ProfileCubit extends Cubit<ProfileState> {
     await profileRepository.setCountryCode(countryCode);
     emit((state as ProfileLoaded).copyWith(countryCode: countryCode));
   }
+
+  void reset() {
+    emit(ProfileInitial());
+  }
 }

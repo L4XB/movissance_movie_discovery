@@ -8,8 +8,6 @@ class FilterCubit extends Cubit<int> {
 
   void setFilter(int value) {
     (int?, int?) runtime = RuntimeRangeCalculator.getRuntimeRange(value);
-    print(value);
-    print(runtime);
     homeMovieCubit.loadMoviesByGenre(
       1,
       minRuntime: runtime.$1,
@@ -17,5 +15,9 @@ class FilterCubit extends Cubit<int> {
     );
 
     emit(value);
+  }
+
+  void reset() {
+    emit(1);
   }
 }

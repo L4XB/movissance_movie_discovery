@@ -21,4 +21,8 @@ class MovieProviderCubit extends Cubit<MovieProviderState> {
       emit(MovieProviderError(e.toString()));
     }
   }
+
+  void reset() {
+    emit(MovieProviderInitial());
+  }
 }

@@ -36,4 +36,8 @@ class HomeGenreCubit extends Cubit<HomeGenreState> {
       emit(HomeGenreError(e.toString()));
     }
   }
+
+  void reset() {
+    emit(HomeGenreInitial());
+  }
 }

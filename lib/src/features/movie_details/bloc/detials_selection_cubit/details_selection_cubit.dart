@@ -6,4 +6,8 @@ class DetailsSelectionCubit extends Cubit<int> {
   void setDetailsSelection(int value) {
     emit(value);
   }
+
+  void reset() {
+    emit(0);
+  }
 }

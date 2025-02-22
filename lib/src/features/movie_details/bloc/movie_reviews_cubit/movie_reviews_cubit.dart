@@ -21,4 +21,8 @@ class MovieReviewsCubit extends Cubit<MovieReviewsState> {
       emit(MovieReviewsError(e.toString()));
     }
   }
+
+  void reset() {
+    emit(MovieReviewsInitial());
+  }
 }

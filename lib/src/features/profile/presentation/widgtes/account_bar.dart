@@ -4,14 +4,18 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dart';
 import 'package:red_line/src/common/extensions/sized_box_extension.dart';
+import 'package:red_line/src/common/services/cubit_reset_service.dart';
 import 'package:red_line/src/features/auth/cubit/user_data_cubit.dart';
 import 'package:red_line/src/features/auth/data/auth_repository.dart';
 
 class AccountBar extends StatelessWidget {
   final AuthRepository authRepository;
-  const AccountBar({super.key, required this.authRepository});
+  final PersistentTabController controller;
+  const AccountBar(
+      {super.key, required this.authRepository, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -70,8 +74,12 @@ class AccountBar extends StatelessWidget {
                             ),
                             Spacer(),
                             GestureDetector(
-                              onTap: () {
-                                authRepository.logoutUser();
+                              onTap: () async {
+                                await authRepository.logoutUser();
+                                if (context.mounted) {
+                                  CubitResetService.resetCubits(context);
+                                  controller.jumpToTab(0);
+                                }
                               },
                               child: Icon(CupertinoIcons.square_arrow_right,
                                   color: themeExtension?.mainIconColor,

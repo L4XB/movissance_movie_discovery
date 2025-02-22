@@ -35,4 +35,8 @@ class FavouritesCubit extends Cubit<List<int>> {
       Vibration.vibrate(duration: 100);
     }
   }
+
+  void reset() {
+    emit([]);
+  }
 }
