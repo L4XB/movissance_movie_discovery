@@ -1,4 +1,3 @@
-TODO: App Icon adden
 TODO: Erro Management noch überall rein
 TODO: Fehler bei Image fixen
 TODO: Alles kommentierenx
