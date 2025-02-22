@@ -54,19 +54,19 @@ class PersistentBottomNavBar extends StatelessWidget {
         inactiveColorPrimary: themeExtension?.mainIconColor,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.bookmark_outline),
+        icon: Icon(Icons.bookmark),
         title: ("Favorites"),
         activeColorPrimary: themeExtension?.secondaryColor as Color,
         inactiveColorPrimary: themeExtension?.mainIconColor,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.explore_outlined),
+        icon: Icon(Icons.explore),
         title: ("Discover"),
         activeColorPrimary: themeExtension?.secondaryColor as Color,
         inactiveColorPrimary: themeExtension?.mainIconColor,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.person_outline),
+        icon: Icon(Icons.person),
         title: ("Account"),
         activeColorPrimary: themeExtension?.secondaryColor as Color,
         inactiveColorPrimary: themeExtension?.mainIconColor,
