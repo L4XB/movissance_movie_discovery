@@ -3,7 +3,7 @@ import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dar
 import 'package:red_line/src/common/extensions/sized_box_extension.dart';
 import 'package:red_line/src/features/auth/data/auth_repository.dart';
 import 'package:red_line/src/features/profile/presentation/widgtes/account_bar.dart';
-import 'package:red_line/src/features/profile/presentation/widgtes/settings_section.dart';
+import 'package:red_line/src/features/profile/presentation/widgtes/settings_section/settings_section.dart';
 
 class ProfileScreen extends StatelessWidget {
   final AuthRepository authRepository;
