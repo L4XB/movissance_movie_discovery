@@ -35,9 +35,13 @@ class App extends StatelessWidget {
         BlocProvider<HomeGenreCubit>(
             create: (context) =>
                 HomeGenreCubit()..loadGenres(standartLoadingPage)),
+        BlocProvider<ProfileCubit>(
+          create: (context) => ProfileCubit()..loadProfileSettings(),
+        ),
         BlocProvider<HomeMovieCubit>(
             create: (context) =>
-                HomeMovieCubit()..loadMovies(standartLoadingPage)),
+                HomeMovieCubit(profileCubit: context.read<ProfileCubit>())
+                  ..loadMovies(standartLoadingPage)),
         BlocProvider<FilterCubit>(
             create: (context) =>
                 FilterCubit(homeMovieCubit: context.read<HomeMovieCubit>())),
@@ -67,9 +71,6 @@ class App extends StatelessWidget {
         ),
         BlocProvider<UserDataCubit>(
           create: (context) => UserDataCubit(),
-        ),
-        BlocProvider<ProfileCubit>(
-          create: (context) => ProfileCubit()..loadProfileSettings(),
         ),
       ],
       child: BlocBuilder<ProfileCubit, ProfileState>(
