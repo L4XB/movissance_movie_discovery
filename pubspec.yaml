@@ -53,7 +53,6 @@ flutter_native_splash:
   android_gravity: fill
   ios_content_mode: scaleAspectFill
 
-
 flutter_icons:
   android: true
   ios: true
