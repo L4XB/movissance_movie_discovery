@@ -29,6 +29,7 @@ dependencies:
   timezone: ^0.10.0
   geolocator: ^13.0.2
   geocoding: ^3.0.0
+  flutter_native_splash: ^2.4.5
 
 dev_dependencies:
   flutter_test:
@@ -42,3 +43,11 @@ flutter:
     - assets/images/
     - assets/animations/
 
+flutter_native_splash:
+  android: true
+  ios: true
+  fullscreen: true
+  color: "#ffffff"
+  image: assets/images/splashscreen.png
+  android_gravity: fill
+  ios_content_mode: scaleAspectFill
