@@ -25,12 +25,15 @@ class MovieOverview extends StatelessWidget {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: size.width * 0.075),
-          child: Text(
-            "Tagline: $tagline",
-            style: TextStyle(
-                fontSize: scaler.scale(14),
-                color: themeExtension?.mainTextColor,
-                fontWeight: FontWeight.bold),
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              "Tagline: $tagline",
+              style: TextStyle(
+                  fontSize: scaler.scale(14),
+                  color: themeExtension?.mainTextColor,
+                  fontWeight: FontWeight.bold),
+            ),
           ),
         ),
         SizedBoxExtension.height(size.height * 0.018),

@@ -44,8 +44,10 @@ class OverlayImage extends StatelessWidget {
                   width: 2,
                 ),
                 image: DecorationImage(
-                  image: NetworkImage(
-                      theMovieDatabaseApiImageBaseURL + state.movie.posterPath),
+                  image: state.movie.posterPath != ""
+                      ? NetworkImage(theMovieDatabaseApiImageBaseURL +
+                          state.movie.posterPath)
+                      : AssetImage("assets/images/no_image_placeholder.png"),
                   fit: BoxFit.fill,
                 ),
               ),

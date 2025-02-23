@@ -13,10 +13,13 @@ class MoviePoster extends StatelessWidget {
       height: size.height * 0.294,
       width: double.infinity,
       decoration: BoxDecoration(
-        image: DecorationImage(
-          image: NetworkImage(theMovieDatabaseApiImageBaseURL + backdropPath),
-          fit: BoxFit.fill,
-        ),
+        image: backdropPath != ""
+            ? DecorationImage(
+                image: NetworkImage(
+                    theMovieDatabaseApiImageBaseURL + backdropPath),
+                fit: BoxFit.fill,
+              )
+            : null,
       ),
     );
   }

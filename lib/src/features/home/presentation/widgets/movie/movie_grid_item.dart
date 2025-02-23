@@ -42,18 +42,26 @@ class MovieGridItem extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
-              child: Image.network(
-                "https://image.tmdb.org/t/p/w500${movie.posterPath}",
-                height: size.height * 0.212,
-                width: double.infinity,
-                fit: BoxFit.fill,
-              ),
+              child: movie.posterPath != ""
+                  ? Image.network(
+                      "https://image.tmdb.org/t/p/w500${movie.posterPath}",
+                      height: size.height * 0.212,
+                      width: double.infinity,
+                      fit: BoxFit.fill,
+                    )
+                  : Image.asset(
+                      "assets/images/no_image_placeholder.png",
+                      height: size.height * 0.212,
+                      width: double.infinity,
+                      fit: BoxFit.fill,
+                    ),
             ),
             Padding(
               padding: EdgeInsets.only(
-                  top: size.height * 0.009,
-                  left: size.width * 0.025,
-                  bottom: size.height * 0.0045),
+                top: size.height * 0.009,
+                left: size.width * 0.025,
+                bottom: size.height * 0.0045,
+              ),
               child: AutoSizeText(
                 movie.title,
                 style: TextStyle(
