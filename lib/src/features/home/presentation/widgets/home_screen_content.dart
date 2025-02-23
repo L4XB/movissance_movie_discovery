@@ -46,7 +46,9 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
                 SearchFieldWidget(),
                 SizedBoxExtension.height(size.height * 0.0235),
                 Stack(children: [
-                  MovieGridWidget(),
+                  MovieGridWidget(
+                    controller: widget.controller,
+                  ),
                   GenreChipsWidget(),
                 ]),
                 DiscoverMoreButton(

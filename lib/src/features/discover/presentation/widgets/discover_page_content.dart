@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:red_line/src/features/discover/cubit/swiper_content_cubit.dart';
 import 'package:red_line/src/features/discover/presentation/widgets/movie_page.dart';
 
 class DiscoverPageContent extends StatelessWidget {
+  final PersistentTabController controller;
   const DiscoverPageContent({
     super.key,
+    required this.controller,
   });
 
   @override
@@ -34,7 +37,7 @@ class DiscoverPageContent extends StatelessWidget {
                 if (index == state.movies.length - 5) {
                   context.read<SwiperContentCubit>().checkAndLoadMoreMovies(5);
                 }
-                return MoviePage(movie: movie);
+                return MoviePage(movie: movie, controller: controller);
               },
             ),
           );

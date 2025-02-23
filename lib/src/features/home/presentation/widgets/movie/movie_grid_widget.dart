@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:red_line/src/features/home/bloc/home_movie_cubit/home_movie_cubit.dart';
 import 'package:red_line/src/features/home/presentation/widgets/movie/movie_grid_item.dart';
 
 class MovieGridWidget extends StatelessWidget {
-  const MovieGridWidget({super.key});
+  final PersistentTabController controller;
+  const MovieGridWidget({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +46,7 @@ class MovieGridWidget extends StatelessWidget {
                 itemCount: state.movies.length,
                 itemBuilder: (context, index) {
                   final movie = state.movies[index];
-                  return MovieGridItem(movie: movie);
+                  return MovieGridItem(movie: movie, controller: controller);
                 },
               ),
             );

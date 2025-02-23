@@ -11,8 +11,9 @@ import 'package:red_line/src/features/movie_details/presentation/movie_details.d
 
 class MoviePage extends StatelessWidget {
   final MovieModel movie;
+  final PersistentTabController controller;
 
-  const MoviePage({required this.movie, super.key});
+  const MoviePage({required this.movie, super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,9 @@ class MoviePage extends StatelessWidget {
         context.read<MovieReviewsCubit>().getReviews(movie.id);
         PersistentNavBarNavigator.pushNewScreen(
           context,
-          screen: MovieDetails(),
+          screen: MovieDetails(
+            controller: controller,
+          ),
           withNavBar: false,
           pageTransitionAnimation: PageTransitionAnimation.cupertino,
         );

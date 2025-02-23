@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dart';
 import 'package:red_line/src/features/favorites/bloc/favourites_data_cubit/favourites_data_cubit.dart';
 import 'package:red_line/src/features/favorites/presentation/widgets/favourits_element.dart';
@@ -7,7 +8,10 @@ import 'package:red_line/src/features/favorites/presentation/widgets/favourits_e
 class FavouritesContent extends StatelessWidget {
   const FavouritesContent({
     super.key,
+    required this.controller,
   });
+
+  final PersistentTabController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +40,7 @@ class FavouritesContent extends StatelessWidget {
               itemCount: state.movies.length,
               itemBuilder: (context, index) {
                 final movie = state.movies[index];
-                return FavouritsElement(movie: movie);
+                return FavouritsElement(movie: movie, controller: controller);
               },
             ),
           );

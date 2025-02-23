@@ -13,8 +13,10 @@ class FavouritsElement extends StatelessWidget {
   const FavouritsElement({
     super.key,
     required this.movie,
+    required this.controller,
   });
 
+  final PersistentTabController controller;
   final MovieDetailModel movie;
 
   @override
@@ -33,7 +35,9 @@ class FavouritsElement extends StatelessWidget {
           context.read<MovieReviewsCubit>().getReviews(movie.id);
           PersistentNavBarNavigator.pushNewScreen(
             context,
-            screen: MovieDetails(),
+            screen: MovieDetails(
+              controller: controller,
+            ),
             withNavBar: false,
             pageTransitionAnimation: PageTransitionAnimation.cupertino,
           );
