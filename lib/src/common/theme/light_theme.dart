@@ -30,5 +30,6 @@ final lightTheme = ThemeData(extensions: [
     discoverPageOverlayColorOne: Colors.black.withAlpha(204),
     discoverPageOverlayColorTwo: Colors.black.withAlpha(51),
     backButtonBackgroundColor: Color.fromARGB(177, 189, 190, 191),
+    warningColor: Colors.red,
   ),
 ]);

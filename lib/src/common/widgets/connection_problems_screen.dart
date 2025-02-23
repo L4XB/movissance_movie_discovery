@@ -4,7 +4,6 @@ import 'package:lottie/lottie.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:red_line/src/common/cubit/connectivity_cubit.dart';
 import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dart';
-import 'package:red_line/src/features/home/presentation/home.dart';
 
 class ConnectionProblemsScreen extends StatelessWidget {
   final PersistentTabController controller;
@@ -18,14 +17,7 @@ class ConnectionProblemsScreen extends StatelessWidget {
     return BlocListener<ConnectivityCubit, ConnectivityState>(
       listener: (context, state) {
         if (state is ConnectivityConnected) {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => HomeScreen(
-                controller: controller,
-              ),
-            ),
-          );
+          PersistentNavBarNavigator.pop(context);
         }
       },
       child: Scaffold(

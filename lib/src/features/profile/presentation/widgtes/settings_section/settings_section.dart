@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dart';
 import 'package:red_line/src/features/auth/data/auth_repository.dart';
 import 'package:red_line/src/features/profile/cubit/profile_cubit.dart';
 import 'package:red_line/src/features/profile/presentation/widgtes/settings_section/widgets/country_code_tile.dart';
 import 'package:red_line/src/features/profile/presentation/widgtes/settings_section/widgets/dark_mode_tile.dart';
+import 'package:red_line/src/features/profile/presentation/widgtes/settings_section/widgets/delete_account_tile.dart';
 import 'package:red_line/src/features/profile/presentation/widgtes/settings_section/widgets/divider_tile.dart';
 import 'package:red_line/src/features/profile/presentation/widgtes/settings_section/widgets/notifications_tile.dart';
 import 'package:red_line/src/features/profile/presentation/widgtes/settings_section/widgets/reset_password_tile.dart';
@@ -12,7 +14,9 @@ import 'package:red_line/src/features/profile/presentation/widgtes/settings_sect
 
 class SettingsSection extends StatelessWidget {
   final AuthRepository authRepository;
-  const SettingsSection({super.key, required this.authRepository});
+  final PersistentTabController controller;
+  const SettingsSection(
+      {super.key, required this.authRepository, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -70,6 +74,10 @@ class SettingsSection extends StatelessWidget {
                       textScaler: textScaler,
                       themeExtension: themeExtension,
                     ),
+                    DividerTile(size: size, themeExtension: themeExtension),
+                    DeleteAccountTile(
+                      controller: controller,
+                    )
                   ],
                 );
               } else {

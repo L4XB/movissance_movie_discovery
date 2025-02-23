@@ -24,11 +24,13 @@ class ProfileScreen extends StatelessWidget {
     return BlocListener<ConnectivityCubit, ConnectivityState>(
       listener: (context, state) {
         if (state is ConnectivityDisconnected) {
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(
-                builder: (context) => ConnectionProblemsScreen(
-                      controller: controller,
-                    )),
+          PersistentNavBarNavigator.pushNewScreen(
+            context,
+            screen: ConnectionProblemsScreen(
+              controller: controller,
+            ),
+            withNavBar: false,
+            pageTransitionAnimation: PageTransitionAnimation.cupertino,
           );
         }
       },
@@ -63,6 +65,7 @@ class ProfileScreen extends StatelessWidget {
             SizedBoxExtension.height(size.height * 0.025),
             SettingsSection(
               authRepository: authRepository,
+              controller: controller,
             ),
           ],
         ),
