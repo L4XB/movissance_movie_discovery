@@ -36,12 +36,11 @@ class FirebaseMessagingService {
           notification.body,
           NotificationDetails(
             android: AndroidNotificationDetails(
-              'your_channel_id',
-              'your_channel_name',
-              channelDescription: 'your_channel_description',
+              'channel_id',
+              'hannel_name',
+              channelDescription: 'channel_description',
               importance: Importance.max,
               priority: Priority.high,
-              showWhen: false,
             ),
           ),
         );
@@ -63,14 +62,14 @@ class FirebaseMessagingService {
 
     await _flutterLocalNotificationsPlugin.zonedSchedule(
       0,
-      'Scheduled Notification',
-      'This is a scheduled notification',
+      'Redline. News',
+      'Discover new Movies or just drop by again!',
       scheduledDate,
       const NotificationDetails(
         android: AndroidNotificationDetails(
-          'your_channel_id',
-          'your_channel_name',
-          channelDescription: 'your_channel_description',
+          'channel_id',
+          'channel_name',
+          channelDescription: 'channel_description',
           importance: Importance.max,
           priority: Priority.high,
         ),
