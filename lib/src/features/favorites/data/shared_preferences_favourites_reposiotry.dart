@@ -4,6 +4,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 class SharedPreferencesFavouritesReposiotry implements FavouritesRepository {
   static const String _favouritesKey = 'favourites';
 
+  static String get favouritesKey => _favouritesKey;
+
   @override
   Future<void> addFavourite(int movieId) async {
     try {
@@ -14,7 +16,7 @@ class SharedPreferencesFavouritesReposiotry implements FavouritesRepository {
         await prefs.setStringList(_favouritesKey, favourites);
       }
     } catch (e) {
-      print('Error adding favourite: $e');
+      throw Exception('Error adding favourite: $e');
     }
   }
 
@@ -25,8 +27,7 @@ class SharedPreferencesFavouritesReposiotry implements FavouritesRepository {
       final List<String> favourites = prefs.getStringList(_favouritesKey) ?? [];
       return favourites.map((id) => int.parse(id)).toList();
     } catch (e) {
-      print('Error getting favourites: $e');
-      return [];
+      throw Exception('Error getting favourites: $e');
     }
   }
 
@@ -40,7 +41,7 @@ class SharedPreferencesFavouritesReposiotry implements FavouritesRepository {
         await prefs.setStringList(_favouritesKey, favourites);
       }
     } catch (e) {
-      print('Error removing favourite: $e');
+      throw Exception('Error removing favourite: $e');
     }
   }
 }
