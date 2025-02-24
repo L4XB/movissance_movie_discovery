@@ -11,7 +11,6 @@ class ConnectivityCubit extends Cubit<ConnectivityState> {
 
   ConnectivityCubit() : super(ConnectivityInitial()) {
     _subscription = Connectivity().onConnectivityChanged.listen((event) {
-      print(event);
       if (event.contains(ConnectivityResult.none)) {
         emit(ConnectivityDisconnected());
       } else if (event.contains(ConnectivityResult.mobile) ||
