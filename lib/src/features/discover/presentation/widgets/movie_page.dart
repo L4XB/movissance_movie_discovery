@@ -65,7 +65,7 @@ class MoviePage extends StatelessWidget {
                   style: TextStyle(
                     fontSize: scaler.scale(28),
                     fontWeight: FontWeight.bold,
-                    color: themeExtension?.contrastTextColor,
+                    color: Colors.white,
                   ),
                 ),
                 SizedBox(height: size.height * 0.012),

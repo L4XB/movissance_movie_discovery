@@ -50,108 +50,119 @@ class _SignUpCreenContentState extends State<SignUpCreenContent> {
     final scaler = MediaQuery.of(context).textScaler;
     final themeExtension =
         Theme.of(context).extension<CustomThemeColorsExtension>();
-    return Form(
-      key: formKey,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SizedBox(height: size.height * 0.086),
-          Padding(
-            padding: EdgeInsets.only(left: size.width * 0.053),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'Create your\nAccount',
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                    fontSize: scaler.scale(27),
-                    fontWeight: FontWeight.bold,
-                    color: themeExtension?.contrastTextColor),
-              ),
-            ),
-          ),
-          SizedBox(height: size.height * 0.025),
-          EmailTextField(
-            controller: _emailController,
-            validator: TextfieldValidators.emailValidator,
-          ),
-          NameTextField(
-            controller: _nameController,
-          ),
-          PasswordTextField(
-            controller: _passwordController,
-            validator: TextfieldValidators.passwordValidator,
-            label: 'Password',
-          ),
-          PasswordTextField(
-            controller: _confirmPasswordController,
-            label: 'Confirm Password',
-            validator: (value) {
-              if (value != _passwordController.text) {
-                return 'Passwords do not match';
-              }
-              return TextfieldValidators.passwordValidator(value);
-            },
-          ),
-          SizedBox(height: size.height * 0.037),
-          _selectedImage != null
-              ? ClipRRect(
-                  borderRadius: BorderRadius.circular(70),
-                  child: Image.file(
-                    File(_selectedImage!.path),
-                    height: size.height * 0.135,
-                    width: size.height * 0.135,
-                    fit: BoxFit.cover,
-                  ),
-                )
-              : ClipRRect(
-                  borderRadius: BorderRadius.circular(70),
-                  child: Image.asset(
-                    'assets/images/placeholder.png',
-                    height: size.height * 0.135,
-                    width: size.height * 0.135,
-                    fit: BoxFit.cover,
+    return SingleChildScrollView(
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          minHeight: size.height,
+        ),
+        child: IntrinsicHeight(
+          child: Form(
+            key: formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(height: size.height * 0.086),
+                Padding(
+                  padding: EdgeInsets.only(left: size.width * 0.053),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'Create your\nAccount',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                          fontSize: scaler.scale(27),
+                          fontWeight: FontWeight.bold,
+                          color: themeExtension?.contrastTextColor),
+                    ),
                   ),
                 ),
-          SizedBox(height: size.height * 0.012),
-          ImagePickerField(
-            onImageSelected: (image) {
-              setState(() {
-                _selectedImage = image;
-              });
-            },
-          ),
-          SizedBox(height: size.height * 0.037),
-          SizedBox(
-            width: size.width * 0.9,
-            child: ElevatedButton(
-              onPressed: () {
-                final mail = _emailController.text;
-                final password = _passwordController.text;
-                final name = _nameController.text;
-                final imagePath = _selectedImage?.path;
-                if (formKey.currentState!.validate()) {
-                  widget.authRepository.signUp(mail, password, name, imagePath);
-                }
-              },
-              style: ElevatedButton.styleFrom(
-                foregroundColor: themeExtension?.primaryColor,
-                backgroundColor: themeExtension?.contrastTextColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
+                SizedBox(height: size.height * 0.025),
+                EmailTextField(
+                  controller: _emailController,
+                  validator: TextfieldValidators.emailValidator,
                 ),
-                padding: EdgeInsets.symmetric(
-                    horizontal: size.width * 0.133,
-                    vertical: size.height * 0.018),
-              ),
-              child: Text('Sign Up',
-                  style: TextStyle(
-                      color: themeExtension?.primaryColor,
-                      fontSize: scaler.scale(15),
-                      fontWeight: FontWeight.bold)),
+                NameTextField(
+                  controller: _nameController,
+                ),
+                PasswordTextField(
+                  controller: _passwordController,
+                  validator: TextfieldValidators.passwordValidator,
+                  label: 'Password',
+                ),
+                PasswordTextField(
+                  controller: _confirmPasswordController,
+                  label: 'Confirm Password',
+                  validator: (value) {
+                    if (value != _passwordController.text) {
+                      return 'Passwords do not match';
+                    }
+                    return TextfieldValidators.passwordValidator(value);
+                  },
+                ),
+                SizedBox(height: size.height * 0.037),
+                _selectedImage != null
+                    ? ClipRRect(
+                        borderRadius: BorderRadius.circular(70),
+                        child: Image.file(
+                          File(_selectedImage!.path),
+                          height: size.height * 0.135,
+                          width: size.height * 0.135,
+                          fit: BoxFit.cover,
+                        ),
+                      )
+                    : ClipRRect(
+                        borderRadius: BorderRadius.circular(70),
+                        child: Image.asset(
+                          'assets/images/placeholder.png',
+                          height: size.height * 0.135,
+                          width: size.height * 0.135,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                SizedBox(height: size.height * 0.012),
+                ImagePickerField(
+                  onImageSelected: (image) {
+                    setState(() {
+                      _selectedImage = image;
+                    });
+                  },
+                ),
+                SizedBox(height: size.height * 0.037),
+                SizedBox(
+                  width: size.width * 0.9,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      final mail = _emailController.text;
+                      final password = _passwordController.text;
+                      final name = _nameController.text;
+                      final imagePath = _selectedImage?.path;
+                      if (formKey.currentState!.validate()) {
+                        widget.authRepository
+                            .signUp(mail, password, name, imagePath);
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: themeExtension?.primaryColor,
+                      backgroundColor: themeExtension?.contrastTextColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: size.width * 0.133,
+                          vertical: size.height * 0.018),
+                    ),
+                    child: Text('Sign Up',
+                        style: TextStyle(
+                            color: themeExtension?.primaryColor,
+                            fontSize: scaler.scale(15),
+                            fontWeight: FontWeight.bold)),
+                  ),
+                ),
+                Spacer(),
+              ],
             ),
           ),
-        ],
+        ),
       ),
     );
   }

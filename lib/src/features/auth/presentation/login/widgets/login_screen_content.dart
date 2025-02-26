@@ -45,104 +45,114 @@ class _LoginScreenContentState extends State<LoginScreenContent> {
     return Stack(
       children: [
         const BackgroundCircles(),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(height: size.height * 0.123),
-            Center(
-              child: Lottie.asset('assets/animations/login_animation.json',
-                  height: size.height * 0.29),
+        SingleChildScrollView(
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              minHeight: size.height,
             ),
-            Padding(
-              padding: EdgeInsets.only(left: size.width * 0.053),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Sign in into your\nAccount',
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    fontSize: scaler.scale(27),
-                    fontWeight: FontWeight.bold,
-                    color: themeExtension?.mainTextColor,
+            child: IntrinsicHeight(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: size.height * 0.123),
+                  Center(
+                    child: Lottie.asset(
+                        'assets/animations/login_animation.json',
+                        height: size.height * 0.29),
                   ),
-                ),
-              ),
-            ),
-            SizedBox(height: size.height * 0.025),
-            EmailTextField(
-              controller: _emailController,
-            ),
-            PasswordTextField(
-              controller: _passwordController,
-              label: "Password",
-            ),
-            SizedBox(height: size.height * 0.03),
-            SizedBox(
-              width: size.width * 0.9,
-              child: ElevatedButton(
-                onPressed: () {
-                  try {
-                    widget.authRepository.loginUser(
-                      _emailController.text,
-                      _passwordController.text,
-                    );
-                  } catch (e) {
-                    print(e);
-                  }
-                },
-                style: ElevatedButton.styleFrom(
-                  foregroundColor: themeExtension?.contrastTextColor,
-                  backgroundColor: themeExtension?.primaryColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
+                  Padding(
+                    padding: EdgeInsets.only(left: size.width * 0.053),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Sign in into your\nAccount',
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          fontSize: scaler.scale(27),
+                          fontWeight: FontWeight.bold,
+                          color: themeExtension?.mainTextColor,
+                        ),
+                      ),
+                    ),
                   ),
-                  padding: EdgeInsets.symmetric(
-                      horizontal: size.width * 0.14,
-                      vertical: size.height * 0.015),
-                ),
-                child: Text('Login',
-                    style: TextStyle(
-                        fontSize: scaler.scale(15),
-                        color: themeExtension?.contrastTextColor,
-                        fontWeight: FontWeight.bold)),
+                  SizedBox(height: size.height * 0.025),
+                  EmailTextField(
+                    controller: _emailController,
+                  ),
+                  PasswordTextField(
+                    controller: _passwordController,
+                    label: "Password",
+                  ),
+                  SizedBox(height: size.height * 0.03),
+                  SizedBox(
+                    width: size.width * 0.9,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        try {
+                          widget.authRepository.loginUser(
+                            _emailController.text,
+                            _passwordController.text,
+                          );
+                        } catch (e) {
+                          print(e);
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: themeExtension?.contrastTextColor,
+                        backgroundColor: themeExtension?.primaryColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: size.width * 0.14,
+                            vertical: size.height * 0.015),
+                      ),
+                      child: Text('Login',
+                          style: TextStyle(
+                              fontSize: scaler.scale(15),
+                              color: themeExtension?.contrastTextColor,
+                              fontWeight: FontWeight.bold)),
+                    ),
+                  ),
+                  SizedBox(height: size.height * 0.02),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => PasswordResetScreen(
+                                authRepository: widget.authRepository,
+                              )));
+                    },
+                    child: Text(
+                      'Forgot Password?',
+                      style: TextStyle(color: themeExtension?.primaryColor),
+                    ),
+                  ),
+                  Spacer(),
+                  Container(
+                    height: size.height * 0.086,
+                    width: size.width * 0.285,
+                    decoration: BoxDecoration(
+                      color: themeExtension?.primaryColor,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(60),
+                        topRight: Radius.circular(60),
+                      ),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "Sign up",
+                        style: TextStyle(
+                            color: themeExtension?.contrastTextColor,
+                            fontSize: scaler.scale(17),
+                            fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  )
+                ],
               ),
             ),
-            SizedBox(height: size.height * 0.02),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => PasswordResetScreen(
-                          authRepository: widget.authRepository,
-                        )));
-              },
-              child: Text(
-                'Forgot Password?',
-                style: TextStyle(color: themeExtension?.primaryColor),
-              ),
-            ),
-            const Spacer(),
-            Container(
-              height: size.height * 0.086,
-              width: size.width * 0.285,
-              decoration: BoxDecoration(
-                color: themeExtension?.primaryColor,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(60),
-                  topRight: Radius.circular(60),
-                ),
-              ),
-              child: Center(
-                child: Text(
-                  "Sign up",
-                  style: TextStyle(
-                      color: themeExtension?.contrastTextColor,
-                      fontSize: scaler.scale(17),
-                      fontWeight: FontWeight.bold),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            )
-          ],
+          ),
         ),
       ],
     );
