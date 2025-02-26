@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:red_line/src/common/config/config.dart';
 import 'package:red_line/src/common/cubit/connectivity_cubit.dart';
+import 'package:red_line/src/common/services/firebase_messaging_service.dart';
 import 'package:red_line/src/common/theme/dark_theme.dart';
 import 'package:red_line/src/common/theme/light_theme.dart';
 import 'package:red_line/src/common/widgets/persistent_bottom_nav_bar.dart';
@@ -79,6 +80,12 @@ class App extends StatelessWidget {
       child: BlocBuilder<ProfileCubit, ProfileState>(
         builder: (context, state) {
           if (state is ProfileLoaded) {
+            final FirebaseMessagingService firebaseMessagingService =
+                FirebaseMessagingService();
+            firebaseMessagingService.initialize();
+            if (state.isNotificationsEnabled) {
+              firebaseMessagingService.scheduleNotification(10, 0);
+            }
             return MaterialApp(
               theme: lightTheme,
               darkTheme: darkTheme,
