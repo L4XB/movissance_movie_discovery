@@ -11,28 +11,34 @@ class FirebaseAuthRepository implements AuthRepository {
   User? get currentUser => _firebaseAuth.currentUser;
 
   @override
-  Future<void> loginUser(String email, String password) {
+  Future<void> loginUser(String email, String password) async {
     try {
-      return _firebaseAuth.signInWithEmailAndPassword(
+      await _firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
+    } on FirebaseAuthException catch (e) {
+      throw Exception(e.code);
     } catch (e) {
       throw Exception(e);
     }
   }
 
   @override
-  Future<void> logoutUser() {
+  Future<void> logoutUser() async {
     try {
-      return _firebaseAuth.signOut();
+      await _firebaseAuth.signOut();
+    } on FirebaseAuthException catch (e) {
+      throw Exception(e);
     } catch (e) {
       throw Exception(e);
     }
   }
 
   @override
-  Future<void> resetPassword(String email) {
+  Future<void> resetPassword(String email) async {
     try {
-      return _firebaseAuth.sendPasswordResetEmail(email: email);
+      await _firebaseAuth.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e) {
+      throw Exception(e);
     } catch (e) {
       throw Exception(e);
     }
@@ -46,6 +52,8 @@ class FirebaseAuthRepository implements AuthRepository {
           email: email, password: password);
       await _firebaseAuth.currentUser!
           .updateProfile(displayName: name, photoURL: image);
+    } on FirebaseAuthException catch (e) {
+      throw Exception(e);
     } catch (e) {
       throw Exception(e);
     }

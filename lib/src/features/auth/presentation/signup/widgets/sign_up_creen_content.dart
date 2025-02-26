@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dart';
+import 'package:red_line/src/common/utils/firebase_error_text_converter.dart';
+import 'package:red_line/src/common/utils/snack_bars.dart';
 import 'package:red_line/src/common/utils/textfield_validators.dart';
 import 'package:red_line/src/features/auth/data/auth_repository.dart';
 import 'package:red_line/src/features/auth/presentation/login/widgets/email_text_field.dart';
@@ -132,13 +134,22 @@ class _SignUpCreenContentState extends State<SignUpCreenContent> {
                   width: size.width * 0.9,
                   child: ElevatedButton(
                     onPressed: () {
-                      final mail = _emailController.text;
-                      final password = _passwordController.text;
-                      final name = _nameController.text;
-                      final imagePath = _selectedImage?.path;
-                      if (formKey.currentState!.validate()) {
-                        widget.authRepository
-                            .signUp(mail, password, name, imagePath);
+                      try {
+                        if (formKey.currentState!.validate()) {
+                          widget.authRepository.signUp(
+                            _emailController.text,
+                            _passwordController.text,
+                            _nameController.text,
+                            _selectedImage?.path,
+                          );
+                        }
+                      } catch (e) {
+                        final errorText =
+                            FirebaseErrorTextConverter.convertFirebaseError(
+                                e.toString());
+                        if (context.mounted) {
+                          SnackBars.showErrorSnackbar(errorText, context);
+                        }
                       }
                     },
                     style: ElevatedButton.styleFrom(

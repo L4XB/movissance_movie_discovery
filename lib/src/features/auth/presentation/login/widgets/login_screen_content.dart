@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dart';
+import 'package:red_line/src/common/utils/firebase_error_text_converter.dart';
+import 'package:red_line/src/common/utils/snack_bars.dart';
 import 'package:red_line/src/features/auth/data/auth_repository.dart';
 import 'package:red_line/src/features/auth/presentation/login/widgets/background_circles.dart';
 import 'package:red_line/src/features/auth/presentation/login/widgets/email_text_field.dart';
@@ -87,14 +89,19 @@ class _LoginScreenContentState extends State<LoginScreenContent> {
                   SizedBox(
                     width: size.width * 0.9,
                     child: ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
                         try {
-                          widget.authRepository.loginUser(
+                          await widget.authRepository.loginUser(
                             _emailController.text,
                             _passwordController.text,
                           );
                         } catch (e) {
-                          print(e);
+                          if (context.mounted) {
+                            final errorText =
+                                FirebaseErrorTextConverter.convertFirebaseError(
+                                    e.toString());
+                            SnackBars.showErrorSnackbar(errorText, context);
+                          }
                         }
                       },
                       style: ElevatedButton.styleFrom(

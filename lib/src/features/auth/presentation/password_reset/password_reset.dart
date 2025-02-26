@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dart';
+import 'package:red_line/src/common/utils/firebase_error_text_converter.dart';
+import 'package:red_line/src/common/utils/snack_bars.dart';
 import 'package:red_line/src/common/widgets/back_button.dart';
 import 'package:red_line/src/features/auth/data/auth_repository.dart';
 
@@ -83,11 +85,22 @@ class _PasswordResetScreenState extends State<PasswordResetScreen> {
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: () {
-                          if (formKey.currentState!.validate()) {
-                            widget.authRepository
-                                .resetPassword(emailController.text);
-                            Navigator.pop(context);
+                        onPressed: () async {
+                          try {
+                            if (formKey.currentState!.validate()) {
+                              await widget.authRepository
+                                  .resetPassword(emailController.text);
+                              if (context.mounted) {
+                                Navigator.pop(context);
+                              }
+                            }
+                          } catch (e) {
+                            final errorText =
+                                FirebaseErrorTextConverter.convertFirebaseError(
+                                    e.toString());
+                            if (context.mounted) {
+                              SnackBars.showErrorSnackbar(errorText, context);
+                            }
                           }
                         },
                         style: ElevatedButton.styleFrom(
