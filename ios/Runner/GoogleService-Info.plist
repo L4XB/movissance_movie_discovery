@@ -9,7 +9,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.redLine</string>
+	<string>com.redLine.Movies</string>
 	<key>PROJECT_ID</key>
 	<string>red-line-8eb32</string>
 	<key>STORAGE_BUCKET</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:1060674366308:ios:e09719b90a9b0c98d6e871</string>
+	<string>1:1060674366308:ios:d18287e345866460d6e871</string>
 </dict>
 </plist>
