@@ -28,6 +28,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
         Theme.of(context).extension<CustomThemeColorsExtension>();
     final size = MediaQuery.of(context).size;
     return RefreshIndicator(
+      backgroundColor: themeExtension?.overlayElementBackgroundColor,
       color: themeExtension?.primaryColor,
       onRefresh: () async {
         context.read<HomeMovieCubit>().loadMovies(standartLoadingPage);

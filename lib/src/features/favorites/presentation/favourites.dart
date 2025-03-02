@@ -5,6 +5,7 @@ import 'package:red_line/src/common/cubit/connectivity_cubit.dart';
 import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dart';
 import 'package:red_line/src/common/extensions/sized_box_extension.dart';
 import 'package:red_line/src/common/widgets/connection_problems_screen.dart';
+import 'package:red_line/src/features/favorites/bloc/favourites_filter_cubit/favourites_filter_cubit.dart';
 import 'package:red_line/src/features/favorites/presentation/favourites_content.dart';
 import 'package:red_line/src/features/favorites/presentation/widgets/favourites_search_field_widget.dart';
 
@@ -33,14 +34,21 @@ class Favourites extends StatelessWidget {
       },
       child: Scaffold(
         backgroundColor: themeExtension?.mainBackGroundColor,
-        body: Column(
-          children: [
-            SizedBoxExtension.height(size.height * 0.0705),
-            FavouritesSearchFieldWidget(),
-            FavouritesContent(
-              controller: controller,
-            )
-          ],
+        body: RefreshIndicator(
+          onRefresh: () async {
+            BlocProvider.of<FavouritesFilterCubit>(context).resetFilter();
+          },
+          color: themeExtension?.primaryColor,
+          backgroundColor: themeExtension?.overlayElementBackgroundColor,
+          child: Column(
+            children: [
+              SizedBoxExtension.height(size.height * 0.0705),
+              FavouritesSearchFieldWidget(),
+              FavouritesContent(
+                controller: controller,
+              )
+            ],
+          ),
         ),
       ),
     );

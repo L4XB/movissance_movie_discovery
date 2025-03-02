@@ -14,4 +14,8 @@ class FavouritesFilterCubit extends Cubit<int> {
   void reset() {
     emit(1);
   }
+
+  void resetFilter() {
+    favouritesDataCubit.resetFilter();
+  }
 }
