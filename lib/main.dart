@@ -10,5 +10,4 @@ void main() async {
   );
 
   runApp(App());
-  //
 }
