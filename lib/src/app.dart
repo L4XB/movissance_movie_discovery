@@ -32,6 +32,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// bloc provider for all the blocs in the app
     return MultiBlocProvider(
       providers: [
         BlocProvider<HomeGenreCubit>(
@@ -80,6 +81,7 @@ class App extends StatelessWidget {
       ],
       child: BlocBuilder<ProfileCubit, ProfileState>(
         builder: (context, state) {
+          /// set up firebase messaging service and schedule notification if enabled
           if (state is ProfileLoaded) {
             final FirebaseMessagingService firebaseMessagingService =
                 FirebaseMessagingService();
@@ -87,12 +89,18 @@ class App extends StatelessWidget {
             if (state.isNotificationsEnabled) {
               firebaseMessagingService.scheduleNotification(10, 0);
             }
+
             return MaterialApp(
+              /// set up theme and set the theme mode based on the profile settings
               theme: lightTheme,
               darkTheme: darkTheme,
               themeMode: state.isDarkMode ? ThemeMode.dark : ThemeMode.light,
               debugShowCheckedModeBanner: false,
+
+              /// show login or home screen based on the firebase auth state
               home: StreamBuilder(
+
+                  /// listen to the firebase auth state
                   stream: authRepository.onAuthStateChanged,
                   builder: (context, snapshot) {
                     if (snapshot.hasData && snapshot.data != null) {
