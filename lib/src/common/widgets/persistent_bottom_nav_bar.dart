@@ -17,6 +17,7 @@ class PersistentBottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeExtension =
         Theme.of(context).extension<CustomThemeColorsExtension>();
+    print(themeExtension);
     return PersistentTabView(
       context,
       controller: controller,
