@@ -13,9 +13,15 @@ class SwiperContentCubit extends Cubit<SwiperContentState> {
 
   final MovieRepository _movieRepository = ApiMovieRepository();
   final Random _random = Random();
+
+  /// current page of the movies from the API
   int _currentPage = 1;
+
+  /// current index of the swiper widget
   int _currentIndex = 0;
 
+  /// loads the movies from the API
+  /// is used to load the initial movies
   Future<void> loadMovies() async {
     try {
       emit(SwiperContentLoading());
@@ -26,6 +32,8 @@ class SwiperContentCubit extends Cubit<SwiperContentState> {
     }
   }
 
+  /// loads more movies from the API
+  /// is used to load more movies when the user swipes through the movies
   Future<void> loadMoreMovies() async {
     if (state is SwiperContentLoaded) {
       try {
@@ -41,6 +49,10 @@ class SwiperContentCubit extends Cubit<SwiperContentState> {
     }
   }
 
+  /// is used to fetch random movies from the API
+  /// the movies are from the categories [top_rated], [upcoming] and [popular]
+  /// the [category] is chosen [randomly]
+  /// [page] is the page of the movies
   Future<List<MovieModel>> _fetchRandomCategoryMovies(int page) async {
     final categories = ['top_rated', 'upcoming', 'popular'];
     final category = categories[_random.nextInt(categories.length)];
@@ -56,12 +68,17 @@ class SwiperContentCubit extends Cubit<SwiperContentState> {
     }
   }
 
+  /// checks if there are less than 5 movies left
+  /// if so, it loads more movies
+  /// [remainingMovies] is the number of movies left
   void checkAndLoadMoreMovies(int remainingMovies) {
     if (remainingMovies <= 5) {
       loadMoreMovies();
     }
   }
 
+  /// updates the current index of the swiper widget
+  /// [index] is the current index
   void updateCurrentIndex(int index) {
     if (state is SwiperContentLoaded) {
       final currentState = state as SwiperContentLoaded;
@@ -71,6 +88,7 @@ class SwiperContentCubit extends Cubit<SwiperContentState> {
     }
   }
 
+  /// resets the cubit
   void reset() {
     emit(SwiperContentInitial());
   }
