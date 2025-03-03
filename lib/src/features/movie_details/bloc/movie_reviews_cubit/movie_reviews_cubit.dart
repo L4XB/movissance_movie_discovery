@@ -11,6 +11,8 @@ class MovieReviewsCubit extends Cubit<MovieReviewsState> {
 
   final ReviewsRepository _reviewsRepository = ApiReviewsRepository();
 
+  /// loads the reviews of the movie from the API
+  /// [movieId] is the movie id
   Future<void> getReviews(int movieId) async {
     try {
       emit(MovieReviewsLoading());
@@ -22,6 +24,7 @@ class MovieReviewsCubit extends Cubit<MovieReviewsState> {
     }
   }
 
+  /// resets the reviews
   void reset() {
     emit(MovieReviewsInitial());
   }

@@ -41,4 +41,10 @@ class SharedPrefsProfileRepository implements ProfileRepository {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getString(countryCodeKey) ?? 'US';
   }
+
+  @override
+  Future<void> clearData() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.clear();
+  }
 }

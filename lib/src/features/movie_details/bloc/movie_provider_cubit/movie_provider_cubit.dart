@@ -11,6 +11,8 @@ class MovieProviderCubit extends Cubit<MovieProviderState> {
 
   final ProviderRepository providerRepository = ApiProviderRepository();
 
+  /// loads the provider details from the API
+  /// [id] is the movie id
   void getProvider(int id) async {
     emit(MovieProviderLoading());
     try {
@@ -22,6 +24,7 @@ class MovieProviderCubit extends Cubit<MovieProviderState> {
     }
   }
 
+  /// resets the provider details
   void reset() {
     emit(MovieProviderInitial());
   }

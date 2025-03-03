@@ -11,6 +11,8 @@ class MovieDetailsCubit extends Cubit<MovieDetailsState> {
 
   final MovieRepository movieRepository = ApiMovieRepository();
 
+  /// loads the movie details from the API
+  /// [id] is the movie id
   void loadMovieDetail(int id) async {
     emit(MovieDetailsLoading());
     try {
@@ -21,6 +23,7 @@ class MovieDetailsCubit extends Cubit<MovieDetailsState> {
     }
   }
 
+  /// resets the movie details
   void reset() {
     emit(MovieDetailsInitial());
   }
