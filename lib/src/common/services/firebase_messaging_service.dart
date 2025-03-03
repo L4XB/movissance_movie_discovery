@@ -62,7 +62,7 @@ class FirebaseMessagingService {
 
     await _flutterLocalNotificationsPlugin.zonedSchedule(
       0,
-      'Redline. News',
+      'Movissance. News',
       'Discover new Movies or just drop by again!',
       scheduledDate,
       const NotificationDetails(
