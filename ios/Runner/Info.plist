@@ -75,7 +75,7 @@
 		<key>UIViewControllerBasedStatusBarAppearance</key>
 		<false/>
 		<key>NSMicrophoneUsageDescription</key>
-		<string>Wir benötigen Zugriff auf Ihr Mikrofon, um Audioaufnahmen zu machen.</string>
+		<string>We need access to your microphone to make audio recordings.</string>
 		<key>NSSpeechRecognitionUsageDescription</key>
 		<string>Wir benötigen Zugriff auf die Spracherkennung, um gesprochene Befehle zu verarbeiten.</string>
 		<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
