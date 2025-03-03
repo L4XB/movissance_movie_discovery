@@ -27,7 +27,7 @@ class FirebaseAuthRepository implements AuthRepository {
     try {
       await _firebaseAuth.signOut();
     } on FirebaseAuthException catch (e) {
-      throw Exception(e);
+      throw Exception(e.code);
     } catch (e) {
       throw Exception(e);
     }
@@ -38,7 +38,7 @@ class FirebaseAuthRepository implements AuthRepository {
     try {
       await _firebaseAuth.sendPasswordResetEmail(email: email);
     } on FirebaseAuthException catch (e) {
-      throw Exception(e);
+      throw Exception(e.code);
     } catch (e) {
       throw Exception(e);
     }
@@ -53,7 +53,7 @@ class FirebaseAuthRepository implements AuthRepository {
       await _firebaseAuth.currentUser!
           .updateProfile(displayName: name, photoURL: image);
     } on FirebaseAuthException catch (e) {
-      throw Exception(e);
+      throw Exception(e.code);
     } catch (e) {
       throw Exception(e);
     }
