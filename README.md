@@ -36,7 +36,7 @@ Welcome to **Movissance**, the ultimate movie recommendation app! This app helps
 ## Usage
 
 Start the app with the following command:
-    ```sh
+    ```
     flutter run
     ```
 
