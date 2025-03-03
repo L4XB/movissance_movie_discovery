@@ -16,6 +16,10 @@ class HomeMovieCubit extends Cubit<HomeMovieState> {
   MovieRepository movieRepository = ApiMovieRepository();
   LocationService locationService = LocationService();
 
+  /// loads popular movies from the API
+  /// [page] is the page of the movies
+  /// the movies are loaded from the [region] if the user has a country code
+  /// if the user does not have a country code the movies are loaded from the default region
   void loadMovies(int page) async {
     emit(HomeMovieLoadingState());
     try {
@@ -31,6 +35,13 @@ class HomeMovieCubit extends Cubit<HomeMovieState> {
     }
   }
 
+  /// loads movies by the [genreId] from the API
+  /// [page] is the page of the movies
+  /// [year] is the year of the movies
+  /// [maxRuntime] is the maximum runtime of the movies
+  /// [minRuntime] is the minimum runtime of the movies
+  /// the movies are loaded from the [region] if the user has a country code
+  /// if the user does not have a country code the movies are loaded from the default region
   void loadMoviesByGenre(
     int page, {
     int? genreId,
@@ -56,6 +67,11 @@ class HomeMovieCubit extends Cubit<HomeMovieState> {
     }
   }
 
+  /// loads movies by the [searchText] from the API
+  /// [page] is the page of the movies
+  /// [language] is the language of the search
+  /// the movies are loaded from the [region] if the user has a country code
+  /// if the user does not have a country code the movies are loaded from the default region
   void loadMoviesBySearch(
     String text,
     int page, {
@@ -80,6 +96,7 @@ class HomeMovieCubit extends Cubit<HomeMovieState> {
     }
   }
 
+  /// resets the state of the cubit
   void reset() {
     emit(HomeMovieInitial());
   }

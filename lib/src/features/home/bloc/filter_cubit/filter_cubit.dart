@@ -6,6 +6,13 @@ class FilterCubit extends Cubit<int> {
   final HomeMovieCubit homeMovieCubit;
   FilterCubit({required this.homeMovieCubit}) : super(1);
 
+  /// sets the filter
+  /// [value] is the selected filter
+  /// [value] can be
+  /// [1] for all movies,
+  /// [2] for movies with runtime less than 120 minutes,
+  /// [3] for movies with runtime between 120 and 180 minutes,
+  /// [4] for movies with runtime more than 180 minutes
   void setFilter(int value) {
     (int?, int?) runtime = RuntimeRangeCalculator.getRuntimeRange(value);
     homeMovieCubit.loadMoviesByGenre(
@@ -17,6 +24,7 @@ class FilterCubit extends Cubit<int> {
     emit(value);
   }
 
+  /// resets the filter
   void reset() {
     emit(1);
   }

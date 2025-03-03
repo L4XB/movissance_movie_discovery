@@ -11,6 +11,8 @@ class HomeGenreCubit extends Cubit<HomeGenreState> {
 
   GenreRepository genreRepository = ApiGenreRepository();
 
+  /// used to select a genre in the UI
+  /// [genre] is the selected genre
   void selectGenre(GenreModel genre) {
     final currentState = state;
     if (currentState is HomeGenreLoaded) {
@@ -20,6 +22,7 @@ class HomeGenreCubit extends Cubit<HomeGenreState> {
     }
   }
 
+  /// used to unselect a genre in the UI
   void unselectAllGenres() {
     final currentState = state;
     if (currentState is HomeGenreSelected) {
@@ -27,6 +30,8 @@ class HomeGenreCubit extends Cubit<HomeGenreState> {
     }
   }
 
+  /// loads the genres from the API
+  /// [page] is the page of the genres
   void loadGenres(int page) async {
     emit(HomeGenreLoading());
     try {
@@ -37,6 +42,7 @@ class HomeGenreCubit extends Cubit<HomeGenreState> {
     }
   }
 
+  /// resets the state of the cubit
   void reset() {
     emit(HomeGenreInitial());
   }
