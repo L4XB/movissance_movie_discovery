@@ -19,43 +19,50 @@ class ImagePickerField extends StatelessWidget {
           showModalBottomSheet(
             context: context,
             builder: (BuildContext context) {
-              return SafeArea(
-                child: Wrap(
-                  children: <Widget>[
-                    ListTile(
-                      leading: Icon(Icons.photo_library,
-                          color: themeExtension?.mainIconColor),
-                      title: Text("Gallery",
+              return Container(
+                color: themeExtension?.mainBackGroundColor,
+                child: Padding(
+                  padding: EdgeInsets.only(bottom: size.height * 0.03),
+                  child: Wrap(
+                    children: <Widget>[
+                      ListTile(
+                        leading: Icon(Icons.photo_library,
+                            color: themeExtension?.mainIconColor),
+                        title: Text(
+                          "Gallery",
                           style:
-                              TextStyle(color: themeExtension?.mainTextColor)),
-                      onTap: () async {
-                        final ImagePicker picker = ImagePicker();
-                        final XFile? image =
-                            await picker.pickImage(source: ImageSource.gallery);
-                        onImageSelected(image);
-                        if (context.mounted) {
-                          Navigator.of(context).pop();
-                        }
-                      },
-                    ),
-                    ListTile(
-                      leading: Icon(Icons.photo_camera,
-                          color: themeExtension?.mainIconColor),
-                      title: Text(
-                        "Camera",
-                        style: TextStyle(color: themeExtension?.mainTextColor),
+                              TextStyle(color: themeExtension?.mainTextColor),
+                        ),
+                        onTap: () async {
+                          final ImagePicker picker = ImagePicker();
+                          final XFile? image = await picker.pickImage(
+                              source: ImageSource.gallery);
+                          onImageSelected(image);
+                          if (context.mounted) {
+                            Navigator.of(context).pop();
+                          }
+                        },
                       ),
-                      onTap: () async {
-                        final ImagePicker picker = ImagePicker();
-                        final XFile? image =
-                            await picker.pickImage(source: ImageSource.camera);
-                        onImageSelected(image);
-                        if (context.mounted) {
-                          Navigator.of(context).pop();
-                        }
-                      },
-                    ),
-                  ],
+                      ListTile(
+                        leading: Icon(Icons.photo_camera,
+                            color: themeExtension?.mainIconColor),
+                        title: Text(
+                          "Camera",
+                          style:
+                              TextStyle(color: themeExtension?.mainTextColor),
+                        ),
+                        onTap: () async {
+                          final ImagePicker picker = ImagePicker();
+                          final XFile? image = await picker.pickImage(
+                              source: ImageSource.camera);
+                          onImageSelected(image);
+                          if (context.mounted) {
+                            Navigator.of(context).pop();
+                          }
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               );
             },
