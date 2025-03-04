@@ -21,7 +21,9 @@ class OverlayImage extends StatelessWidget {
           return Padding(
             padding: EdgeInsets.only(top: size.height * 0.4),
             child: Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(
+                color: themeExtension?.primaryColor,
+              ),
             ),
           );
         }

@@ -18,7 +18,9 @@ class GenreBottomSheet extends StatelessWidget {
       builder: (context, state) {
         if (state is HomeGenreLoading) {
           return Center(
-            child: CircularProgressIndicator(),
+            child: CircularProgressIndicator(
+              color: themeExtension?.primaryColor,
+            ),
           );
         }
         if (state is HomeGenreError) {

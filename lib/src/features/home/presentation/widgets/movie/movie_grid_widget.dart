@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
+import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dart';
 import 'package:red_line/src/features/home/bloc/home_movie_cubit/home_movie_cubit.dart';
 import 'package:red_line/src/features/home/presentation/widgets/movie/movie_grid_item.dart';
 
@@ -11,6 +12,8 @@ class MovieGridWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final themeExtension =
+        Theme.of(context).extension<CustomThemeColorsExtension>();
     return Padding(
       padding: EdgeInsets.only(top: size.height * 0.0475),
       child: BlocBuilder<HomeMovieCubit, HomeMovieState>(
@@ -19,7 +22,9 @@ class MovieGridWidget extends StatelessWidget {
             return Padding(
               padding: EdgeInsets.only(top: size.height * 0.35),
               child: Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(
+                  color: themeExtension?.primaryColor,
+                ),
               ),
             );
           }

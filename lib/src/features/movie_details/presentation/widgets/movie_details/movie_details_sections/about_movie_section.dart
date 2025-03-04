@@ -35,7 +35,9 @@ class AboutMovieSection extends StatelessWidget {
             builder: (context, movieDetailsState) {
           if (movieDetailsState is MovieDetailsLoading) {
             return Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(
+                color: themeExtension?.primaryColor,
+              ),
             );
           }
           if (movieDetailsState is MovieDetailsError) {

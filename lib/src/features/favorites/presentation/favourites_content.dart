@@ -21,8 +21,10 @@ class FavouritesContent extends StatelessWidget {
     return BlocBuilder<FavouritesDataCubit, FavouritesDataState>(
       builder: (context, state) {
         if (state is FavouritesDataLoading) {
-          return const Center(
-            child: CircularProgressIndicator(),
+          return Center(
+            child: CircularProgressIndicator(
+              color: themeExtension?.primaryColor,
+            ),
           );
         }
         if (state is FavouritesDataLoaded) {

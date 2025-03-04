@@ -81,7 +81,9 @@ class SettingsSection extends StatelessWidget {
                   ],
                 );
               } else {
-                return CircularProgressIndicator();
+                return CircularProgressIndicator(
+                  color: themeExtension?.primaryColor,
+                );
               }
             },
           ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
+import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dart';
 import 'package:red_line/src/common/extensions/sized_box_extension.dart';
 import 'package:red_line/src/features/movie_details/bloc/movie_provider_cubit/movie_provider_cubit.dart';
 import 'package:red_line/src/features/movie_details/presentation/widgets/movie_details/movie_details_sections/widgets/provider_tile.dart';
@@ -12,10 +13,15 @@ class MovieProviderSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final themeExtension =
+        Theme.of(context).extension<CustomThemeColorsExtension>();
     return BlocBuilder<MovieProviderCubit, MovieProviderState>(
       builder: (context, state) {
         if (state is MovieProviderLoading) {
-          return Center(child: const CircularProgressIndicator());
+          return Center(
+              child: CircularProgressIndicator(
+            color: themeExtension?.primaryColor,
+          ));
         }
         if (state is MovieProviderError) {
           return Padding(
