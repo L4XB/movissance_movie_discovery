@@ -126,4 +126,65 @@ class MovieDetailModel {
       'vote_count': voteCount,
     };
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is MovieDetailModel &&
+        other.adult == adult &&
+        other.backdropPath == backdropPath &&
+        other.budget == budget &&
+        other.genres == genres &&
+        other.homepage == homepage &&
+        other.id == id &&
+        other.imdbId == imdbId &&
+        other.originCountry == originCountry &&
+        other.originalLanguage == originalLanguage &&
+        other.originalTitle == originalTitle &&
+        other.overview == overview &&
+        other.popularity == popularity &&
+        other.posterPath == posterPath &&
+        other.productionCompanies == productionCompanies &&
+        other.productionCountries == productionCountries &&
+        other.releaseDate == releaseDate &&
+        other.revenue == revenue &&
+        other.runtime == runtime &&
+        other.spokenLanguages == spokenLanguages &&
+        other.status == status &&
+        other.tagline == tagline &&
+        other.title == title &&
+        other.video == video &&
+        other.voteAverage == voteAverage &&
+        other.voteCount == voteCount;
+  }
+
+  @override
+  int get hashCode {
+    return adult.hashCode ^
+        backdropPath.hashCode ^
+        budget.hashCode ^
+        genres.hashCode ^
+        homepage.hashCode ^
+        id.hashCode ^
+        imdbId.hashCode ^
+        originCountry.hashCode ^
+        originalLanguage.hashCode ^
+        originalTitle.hashCode ^
+        overview.hashCode ^
+        popularity.hashCode ^
+        posterPath.hashCode ^
+        productionCompanies.hashCode ^
+        productionCountries.hashCode ^
+        releaseDate.hashCode ^
+        revenue.hashCode ^
+        runtime.hashCode ^
+        spokenLanguages.hashCode ^
+        status.hashCode ^
+        tagline.hashCode ^
+        title.hashCode ^
+        video.hashCode ^
+        voteAverage.hashCode ^
+        voteCount.hashCode;
+  }
 }
