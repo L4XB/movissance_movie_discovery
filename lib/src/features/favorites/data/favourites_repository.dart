@@ -14,4 +14,9 @@ abstract class FavouritesRepository {
   /// [returns] a stream of the user's favourite movies.
   /// [userId] the id of the user.
   Stream<List<int>> getFavourites(String userId);
+
+  /// deletes all the user's favourite movies.
+  /// throws an exception if the movies could not be deleted.
+  /// [userId] the id of the user.
+  Future<void> deleteAllFavourites(String userId);
 }

@@ -54,4 +54,13 @@ class FirestoreFavouritesRepository implements FavouritesRepository {
       }
     });
   }
+
+  @override
+  Future<void> deleteAllFavourites(String userId) async {
+    try {
+      await _firestore.collection('favourites').doc(userId).delete();
+    } catch (e) {
+      throw Exception('Error deleting all favourites: $e');
+    }
+  }
 }
