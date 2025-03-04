@@ -5,6 +5,7 @@ import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dar
 import 'package:red_line/src/common/services/cubit_reset_service.dart';
 import 'package:red_line/src/features/auth/cubit/user_data_cubit.dart';
 import 'package:red_line/src/features/favorites/data/firestore_favourites_repository.dart';
+import 'package:red_line/src/features/profile/cubit/profile_cubit.dart';
 
 class DeleteAccountTile extends StatelessWidget {
   final PersistentTabController controller;
@@ -59,9 +60,21 @@ class DeleteAccountTile extends StatelessWidget {
                             themeExtension?.secondaryBackgroundColor),
                     onPressed: () async {
                       try {
-                        FirestoreFavouritesRepository().deleteAllFavourites(
-                            context.read<UserDataCubit>().state?.uid ?? "");
-                        await context.read<UserDataCubit>().state?.delete();
+                        if (context.mounted) {
+                          await FirestoreFavouritesRepository()
+                              .deleteAllFavourites(
+                                  context.read<UserDataCubit>().state?.uid ??
+                                      "");
+                        }
+
+                        if (context.mounted) {
+                          await context.read<UserDataCubit>().state?.delete();
+                        }
+
+                        if (context.mounted) {
+                          await context.read<ProfileCubit>().clearData();
+                        }
+
                         controller.jumpToTab(0);
                         if (context.mounted) {
                           CubitResetService.resetCubits(context);
