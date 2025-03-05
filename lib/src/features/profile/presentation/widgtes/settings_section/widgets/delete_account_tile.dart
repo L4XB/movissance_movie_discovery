@@ -3,13 +3,38 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dart';
 import 'package:red_line/src/common/services/cubit_reset_service.dart';
+import 'package:red_line/src/common/utils/firebase_error_text_converter.dart';
+import 'package:red_line/src/common/utils/snack_bars.dart';
 import 'package:red_line/src/features/auth/cubit/user_data_cubit.dart';
+import 'package:red_line/src/features/auth/data/auth_repository.dart';
+import 'package:red_line/src/features/auth/data/firebase_auth_repository.dart';
+import 'package:red_line/src/features/auth/presentation/login/widgets/password_text_field.dart';
+import 'package:red_line/src/features/favorites/data/favourites_repository.dart';
 import 'package:red_line/src/features/favorites/data/firestore_favourites_repository.dart';
 import 'package:red_line/src/features/profile/cubit/profile_cubit.dart';
 
-class DeleteAccountTile extends StatelessWidget {
+class DeleteAccountTile extends StatefulWidget {
   final PersistentTabController controller;
   const DeleteAccountTile({super.key, required this.controller});
+
+  @override
+  State<DeleteAccountTile> createState() => _DeleteAccountTileState();
+}
+
+class _DeleteAccountTileState extends State<DeleteAccountTile> {
+  late TextEditingController _passwordRepeatController;
+
+  @override
+  void initState() {
+    _passwordRepeatController = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _passwordRepeatController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +58,29 @@ class DeleteAccountTile extends StatelessWidget {
                       color: themeExtension?.mainTextColor,
                       fontWeight: FontWeight.bold),
                 )),
-                content: Text(
-                  "Are you sure you want to delete your account forever?",
-                  style: TextStyle(color: themeExtension?.mainTextColor),
+                content: Wrap(
+                  children: [
+                    Text(
+                      "Are you sure you want to delete your account forever?",
+                      style: TextStyle(color: themeExtension?.mainTextColor),
+                    ),
+                    SizedBox(
+                      height: size.height * 0.07,
+                    ),
+                    Text(
+                      "Please enter your password to confirm:",
+                      style: TextStyle(color: themeExtension?.mainTextColor),
+                    ),
+                    SizedBox(
+                      height: size.height * 0.07,
+                    ),
+                    PasswordTextField(
+                        controller: _passwordRepeatController,
+                        label: "Password"),
+                    SizedBox(
+                      height: size.height * 0.07,
+                    ),
+                  ],
                 ),
                 actionsAlignment: MainAxisAlignment.center,
                 actions: <Widget>[
@@ -59,39 +104,37 @@ class DeleteAccountTile extends StatelessWidget {
                         backgroundColor:
                             themeExtension?.secondaryBackgroundColor),
                     onPressed: () async {
+                      final FavouritesRepository favouritesRepository =
+                          FirestoreFavouritesRepository();
+
+                      final AuthRepository authRepository =
+                          FirebaseAuthRepository();
                       try {
                         if (context.mounted) {
-                          await FirestoreFavouritesRepository()
-                              .deleteAllFavourites(
-                                  context.read<UserDataCubit>().state?.uid ??
-                                      "");
+                          await favouritesRepository.deleteAllFavourites(
+                              context.read<UserDataCubit>().state?.uid ?? "");
                         }
 
                         if (context.mounted) {
-                          await context.read<UserDataCubit>().state?.delete();
+                          final password = _passwordRepeatController.text;
+                          await authRepository.deleteUser(password);
                         }
 
                         if (context.mounted) {
                           await context.read<ProfileCubit>().clearData();
                         }
 
-                        controller.jumpToTab(0);
+                        widget.controller.jumpToTab(0);
                         if (context.mounted) {
                           CubitResetService.resetCubits(context);
-                          Navigator.of(context).pop();
                         }
                       } catch (e) {
+                        final errorText =
+                            FirebaseErrorTextConverter.convertFirebaseError(
+                                e.toString());
                         if (context.mounted) {
-                          showAboutDialog(
-                            context: context,
-                            children: [
-                              Text(
-                                "An error occurred while deleting the account",
-                                style: TextStyle(
-                                    color: themeExtension?.warningColor),
-                              ),
-                            ],
-                          );
+                          Navigator.of(context).pop();
+                          SnackBars.showErrorSnackbar(errorText, context);
                         }
                       }
                     },

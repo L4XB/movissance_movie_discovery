@@ -58,4 +58,18 @@ class FirebaseAuthRepository implements AuthRepository {
       throw Exception(e);
     }
   }
+
+  @override
+  Future<void> deleteUser(String password) async {
+    try {
+      final credential = EmailAuthProvider.credential(
+          email: _firebaseAuth.currentUser!.email!, password: password);
+      await _firebaseAuth.currentUser!.reauthenticateWithCredential(credential);
+      await _firebaseAuth.currentUser!.delete();
+    } on FirebaseAuthException catch (e) {
+      throw Exception(e.code);
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
 }

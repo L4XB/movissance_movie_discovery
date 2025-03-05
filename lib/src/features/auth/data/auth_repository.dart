@@ -25,4 +25,9 @@ abstract class AuthRepository {
   /// sends a password reset email to the user with the given [email].
   /// throws an exception if the email could not be sent.
   Future<void> resetPassword(String email);
+
+  /// deletes the current user.
+  /// throws an exception if the user could not be deleted.
+  /// [password] is the password of the user.
+  Future<void> deleteUser(String password);
 }
