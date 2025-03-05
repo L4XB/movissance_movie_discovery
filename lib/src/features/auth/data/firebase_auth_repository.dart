@@ -53,8 +53,6 @@ class FirebaseAuthRepository implements AuthRepository {
       await _firebaseAuth.currentUser!
           .updateProfile(displayName: name, photoURL: image);
     } on FirebaseAuthException catch (e) {
-      print("Test Repository");
-      print(e.code);
       throw Exception(e.code);
     } catch (e) {
       throw Exception(e);
