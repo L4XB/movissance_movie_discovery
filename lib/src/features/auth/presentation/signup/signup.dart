@@ -5,7 +5,9 @@ import 'package:red_line/src/features/auth/presentation/signup/widgets/sign_up_c
 
 class SignupScreen extends StatelessWidget {
   final AuthRepository authRepository;
-  const SignupScreen({super.key, required this.authRepository});
+  final PageController controller;
+  const SignupScreen(
+      {super.key, required this.authRepository, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +17,7 @@ class SignupScreen extends StatelessWidget {
         backgroundColor: themeExtension?.primaryColor,
         body: SignUpCreenContent(
           authRepository: authRepository,
+          controller: controller,
         ));
   }
 }

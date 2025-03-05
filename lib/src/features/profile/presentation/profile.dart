@@ -36,38 +36,40 @@ class ProfileScreen extends StatelessWidget {
       },
       child: Scaffold(
         backgroundColor: themeExtension?.mainBackGroundColor,
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: EdgeInsets.only(
-                  left: size.width * 0.065, top: size.height * 0.0825),
-              child: Text("Account",
-                  style: TextStyle(
-                      fontSize: textScaler.scale(25),
-                      fontWeight: FontWeight.bold,
-                      color: themeExtension?.headLineTextColor)),
-            ),
-            SizedBoxExtension.height(size.height * 0.025),
-            AccountBar(
-              authRepository: authRepository,
-              controller: controller,
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                  left: size.width * 0.065, top: size.height * 0.045),
-              child: Text("Settings",
-                  style: TextStyle(
-                      fontSize: textScaler.scale(25),
-                      fontWeight: FontWeight.bold,
-                      color: themeExtension?.headLineTextColor)),
-            ),
-            SizedBoxExtension.height(size.height * 0.025),
-            SettingsSection(
-              authRepository: authRepository,
-              controller: controller,
-            ),
-          ],
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(
+                    left: size.width * 0.065, top: size.height * 0.0825),
+                child: Text("Account",
+                    style: TextStyle(
+                        fontSize: textScaler.scale(25),
+                        fontWeight: FontWeight.bold,
+                        color: themeExtension?.headLineTextColor)),
+              ),
+              SizedBoxExtension.height(size.height * 0.025),
+              AccountBar(
+                authRepository: authRepository,
+                controller: controller,
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                    left: size.width * 0.065, top: size.height * 0.045),
+                child: Text("Settings",
+                    style: TextStyle(
+                        fontSize: textScaler.scale(25),
+                        fontWeight: FontWeight.bold,
+                        color: themeExtension?.headLineTextColor)),
+              ),
+              SizedBoxExtension.height(size.height * 0.025),
+              SettingsSection(
+                authRepository: authRepository,
+                controller: controller,
+              ),
+            ],
+          ),
         ),
       ),
     );

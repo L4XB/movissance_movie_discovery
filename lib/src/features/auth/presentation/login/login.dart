@@ -12,15 +12,19 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeExtension =
         Theme.of(context).extension<CustomThemeColorsExtension>();
+    final PageController pageController = PageController();
     return Scaffold(
       backgroundColor: themeExtension?.mainBackGroundColor,
       body: PageView(
+        controller: pageController,
         scrollDirection: Axis.vertical,
         children: [
           LoginScreenContent(
+              authRepository: authRepository, pageController: pageController),
+          SignupScreen(
             authRepository: authRepository,
+            controller: pageController,
           ),
-          SignupScreen(authRepository: authRepository),
         ],
       ),
     );

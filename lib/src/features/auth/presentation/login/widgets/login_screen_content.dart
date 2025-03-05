@@ -11,10 +11,9 @@ import 'package:red_line/src/features/auth/presentation/password_reset/password_
 
 class LoginScreenContent extends StatefulWidget {
   final AuthRepository authRepository;
-  const LoginScreenContent({
-    super.key,
-    required this.authRepository,
-  });
+  final PageController pageController;
+  const LoginScreenContent(
+      {super.key, required this.authRepository, required this.pageController});
 
   @override
   State<LoginScreenContent> createState() => _LoginScreenContentState();
@@ -135,27 +134,33 @@ class _LoginScreenContentState extends State<LoginScreenContent> {
                     ),
                   ),
                   Spacer(),
-                  Container(
-                    height: size.height * 0.086,
-                    width: size.width * 0.285,
-                    decoration: BoxDecoration(
-                      color: themeExtension?.primaryColor,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(60),
-                        topRight: Radius.circular(60),
+                  GestureDetector(
+                    onTap: () {
+                      widget.pageController.animateToPage(1,
+                          duration: Durations.medium1, curve: Curves.bounceIn);
+                    },
+                    child: Container(
+                      height: size.height * 0.086,
+                      width: size.width * 0.285,
+                      decoration: BoxDecoration(
+                        color: themeExtension?.primaryColor,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(60),
+                          topRight: Radius.circular(60),
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Sign up",
+                          style: TextStyle(
+                              color: themeExtension?.contrastTextColor,
+                              fontSize: scaler.scale(17),
+                              fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ),
-                    child: Center(
-                      child: Text(
-                        "Sign up",
-                        style: TextStyle(
-                            color: themeExtension?.contrastTextColor,
-                            fontSize: scaler.scale(17),
-                            fontWeight: FontWeight.bold),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  )
+                  ),
                 ],
               ),
             ),

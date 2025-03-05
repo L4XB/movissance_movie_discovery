@@ -14,7 +14,9 @@ import 'package:red_line/src/features/auth/presentation/signup/widgets/name_text
 
 class SignUpCreenContent extends StatefulWidget {
   final AuthRepository authRepository;
-  const SignUpCreenContent({super.key, required this.authRepository});
+  final PageController controller;
+  const SignUpCreenContent(
+      {super.key, required this.authRepository, required this.controller});
 
   @override
   State<SignUpCreenContent> createState() => _SignUpCreenContentState();
@@ -168,6 +170,25 @@ class _SignUpCreenContentState extends State<SignUpCreenContent> {
                             fontSize: scaler.scale(15),
                             fontWeight: FontWeight.bold)),
                   ),
+                ),
+                SizedBox(
+                  height: size.height * 0.03,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    widget.controller.animateToPage(0,
+                        duration: Durations.medium1, curve: Curves.bounceIn);
+                  },
+                  child: Text(
+                    "Already have an Account?",
+                    style: TextStyle(
+                        color: themeExtension?.contrastTextColor,
+                        fontSize: scaler.scale(14),
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+                SizedBox(
+                  height: size.height * 0.03,
                 ),
                 Spacer(),
               ],
