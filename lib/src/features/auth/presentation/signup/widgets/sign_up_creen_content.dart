@@ -133,10 +133,10 @@ class _SignUpCreenContentState extends State<SignUpCreenContent> {
                 SizedBox(
                   width: size.width * 0.9,
                   child: ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       try {
                         if (formKey.currentState!.validate()) {
-                          widget.authRepository.signUp(
+                          await widget.authRepository.signUp(
                             _emailController.text,
                             _passwordController.text,
                             _nameController.text,
