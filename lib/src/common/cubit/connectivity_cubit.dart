@@ -9,6 +9,9 @@ part 'connectivity_state.dart';
 class ConnectivityCubit extends Cubit<ConnectivityState> {
   late StreamSubscription<List<ConnectivityResult>> _subscription;
 
+  /// [ConnectivityCubit] constructor
+  /// emits [ConnectivityConnected] when the device is connected to the internet
+  /// emits [ConnectivityDisconnected] when the device is disconnected from the internet
   ConnectivityCubit() : super(ConnectivityInitial()) {
     _subscription = Connectivity().onConnectivityChanged.listen((event) {
       if (event.contains(ConnectivityResult.none)) {
@@ -22,6 +25,7 @@ class ConnectivityCubit extends Cubit<ConnectivityState> {
     });
   }
 
+  /// close the subscription
   @override
   Future<void> close() {
     _subscription.cancel();

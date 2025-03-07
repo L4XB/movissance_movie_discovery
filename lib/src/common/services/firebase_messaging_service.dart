@@ -8,6 +8,7 @@ class FirebaseMessagingService {
   final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
 
+  /// initializes the Firebase Messaging Service and sets up the local notifications
   Future<void> initialize() async {
     const AndroidInitializationSettings initializationSettingsAndroid =
         AndroidInitializationSettings('@mipmap/ic_launcher');
@@ -48,6 +49,9 @@ class FirebaseMessagingService {
     });
   }
 
+  /// schedules a notification at the given [hour] and [minute]
+  /// [hour] the hour at which the notification should be scheduled
+  /// [minute] the minute at which the notification should be scheduled
   Future<void> scheduleNotification(int hour, int minute) async {
     tz.initializeTimeZones();
     final tz.TZDateTime now = tz.TZDateTime.now(tz.local);

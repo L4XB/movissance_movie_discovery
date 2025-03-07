@@ -9,6 +9,8 @@ import 'package:red_line/src/features/movie_details/bloc/movie_provider_cubit/mo
 import 'package:red_line/src/features/movie_details/bloc/movie_reviews_cubit/movie_reviews_cubit.dart';
 
 class CubitResetService {
+  /// resets all the cubits in the app
+  /// [context] is the current context
   static void resetCubits(BuildContext context) {
     context.read<FilterCubit>().reset();
     context.read<MovieDetailsCubit>().reset();

@@ -4,6 +4,7 @@ import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dar
 
 final darkTheme = ThemeData(
   extensions: [
+    /// make use of the custom theme colors extension
     CustomThemeColorsExtension(
       mainBackGroundColor: Color.fromARGB(255, 18, 18, 18),
       primaryColor: Colors.blueAccent,

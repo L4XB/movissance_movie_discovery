@@ -1,4 +1,7 @@
 class TextfieldValidators {
+  /// validator for email
+  /// [email] the email to validate
+  /// [returns] null if the email is valid, otherwise an error message
   static String? emailValidator(String? email) {
     if (email == null || email.isEmpty) {
       return 'Email is required';
@@ -9,6 +12,9 @@ class TextfieldValidators {
     return null;
   }
 
+  /// validator for password
+  /// [password] the password to validate
+  /// [returns] null if the password is valid, otherwise an error message
   static String? passwordValidator(String? password) {
     if (password == null || password.isEmpty) {
       return 'Password is required';

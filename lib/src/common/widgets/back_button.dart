@@ -8,10 +8,13 @@ class CustomBackButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //// ----------------- Local Variables ----------------- ////
     final scaler = MediaQuery.of(context).textScaler;
     final size = MediaQuery.of(context).size;
     final themeExtension =
         Theme.of(context).extension<CustomThemeColorsExtension>();
+
+    //// ----------------- Widget ----------------- ////
     return GestureDetector(
       onTap: () {
         PersistentNavBarNavigator.pop(context);

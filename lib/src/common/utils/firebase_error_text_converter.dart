@@ -1,4 +1,7 @@
 class FirebaseErrorTextConverter {
+  /// converts the error message from Firebase to a human-readable error message
+  /// [errorMessage] the error message from Firebase
+  /// [returns] a human-readable error message
   static String convertFirebaseError(String errorMessage) {
     final errorCode = errorMessage.split(" ").last;
 

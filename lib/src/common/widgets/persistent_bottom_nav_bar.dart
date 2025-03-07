@@ -15,8 +15,11 @@ class PersistentBottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// ----------------- Local Variables ----------------- ///
     final themeExtension =
         Theme.of(context).extension<CustomThemeColorsExtension>();
+
+    /// ----------------- Widget ----------------- ///
     return PersistentTabView(
       context,
       controller: controller,
@@ -44,27 +47,36 @@ class PersistentBottomNavBar extends StatelessWidget {
     );
   }
 
+  /// [themeExtension] the theme extension to get the colors
+  /// [returns] list of [PersistentBottomNavBarItem]
   List<PersistentBottomNavBarItem> _navBarsItems(
       CustomThemeColorsExtension? themeExtension) {
     return [
+      /// home element
       PersistentBottomNavBarItem(
         icon: Icon(Icons.home),
         title: ("Home"),
         activeColorPrimary: themeExtension?.secondaryColor as Color,
         inactiveColorPrimary: themeExtension?.mainIconColor,
       ),
+
+      /// favorites element
       PersistentBottomNavBarItem(
         icon: Icon(Icons.bookmark),
         title: ("Favorites"),
         activeColorPrimary: themeExtension?.secondaryColor as Color,
         inactiveColorPrimary: themeExtension?.mainIconColor,
       ),
+
+      /// discover element
       PersistentBottomNavBarItem(
         icon: Icon(Icons.explore),
         title: ("Discover"),
         activeColorPrimary: themeExtension?.secondaryColor as Color,
         inactiveColorPrimary: themeExtension?.mainIconColor,
       ),
+
+      /// account element
       PersistentBottomNavBarItem(
         icon: Icon(Icons.person),
         title: ("Account"),
@@ -74,17 +86,25 @@ class PersistentBottomNavBar extends StatelessWidget {
     ];
   }
 
+  /// [retunrs] a list of [Widget] to be displayed in the [PersistentTabView]
   List<Widget> _buildScreens() {
     return [
+      /// home screen
       HomeScreen(
         controller: controller,
       ),
+
+      /// favorites screen
       Favourites(
         controller: controller,
       ),
+
+      /// discover screen
       DiscoverScreen(
         controller: controller,
       ),
+
+      /// profile screen
       ProfileScreen(
         controller: controller,
         authRepository: authRepository,

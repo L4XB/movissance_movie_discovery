@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:red_line/src/common/extensions/custom_theme_colors_extension.dart';
 
 class SnackBars {
+  /// show a error snackbar
+  /// [message] the message to be displayed
+  /// [context] the context to show the snackbar
   static void showErrorSnackbar(String message, BuildContext context) {
     final themeExtension =
         Theme.of(context).extension<CustomThemeColorsExtension>();
