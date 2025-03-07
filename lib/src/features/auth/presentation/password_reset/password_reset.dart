@@ -14,14 +14,30 @@ class PasswordResetScreen extends StatefulWidget {
 }
 
 class _PasswordResetScreenState extends State<PasswordResetScreen> {
+  /// ----------------- State Variables and Methods ----------------- ///
+  late final TextEditingController emailController;
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  @override
+  void initState() {
+    emailController = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final TextEditingController emailController = TextEditingController();
-    final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+    /// ----------------- Local Variables ----------------- ///
     final size = MediaQuery.of(context).size;
     final scaler = MediaQuery.of(context).textScaler;
     final themeExtension =
         Theme.of(context).extension<CustomThemeColorsExtension>();
+
+    /// ----------------- Widget ----------------- ///
     return Scaffold(
       backgroundColor: themeExtension?.mainBackGroundColor,
       body: Column(

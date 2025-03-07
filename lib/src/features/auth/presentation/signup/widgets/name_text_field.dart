@@ -8,9 +8,12 @@ class NameTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// ----------------- Local Variables ----------------- ///
     final themeExtension =
         Theme.of(context).extension<CustomThemeColorsExtension>();
     final size = MediaQuery.of(context).size;
+
+    /// ----------------- Widget ----------------- ///
     return Padding(
       padding: EdgeInsets.symmetric(
           horizontal: size.width * 0.04, vertical: size.height * 0.0125),

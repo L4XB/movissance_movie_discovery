@@ -20,6 +20,7 @@ class LoginScreenContent extends StatefulWidget {
 }
 
 class _LoginScreenContentState extends State<LoginScreenContent> {
+  /// ----------------- State Variables and Methods ----------------- ///
   late TextEditingController _emailController;
   late TextEditingController _passwordController;
 
@@ -39,13 +40,19 @@ class _LoginScreenContentState extends State<LoginScreenContent> {
 
   @override
   Widget build(BuildContext context) {
+    /// ----------------- Local Variables ----------------- ///
     final size = MediaQuery.of(context).size;
     final scaler = MediaQuery.of(context).textScaler;
     final themeExtension =
         Theme.of(context).extension<CustomThemeColorsExtension>();
+
+    /// ----------------- Widget ----------------- ///
     return Stack(
       children: [
+        /// background circles
         const BackgroundCircles(),
+
+        /// login screen content
         SingleChildScrollView(
           child: ConstrainedBox(
             constraints: BoxConstraints(

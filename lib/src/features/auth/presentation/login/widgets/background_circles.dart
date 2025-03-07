@@ -5,7 +5,10 @@ class BackgroundCircles extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// ----------------- Local Variables ----------------- ///
     final size = MediaQuery.of(context).size;
+
+    /// ----------------- Widget ----------------- ///
     return Stack(
       children: [
         Positioned(

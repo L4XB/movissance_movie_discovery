@@ -23,6 +23,7 @@ class SignUpCreenContent extends StatefulWidget {
 }
 
 class _SignUpCreenContentState extends State<SignUpCreenContent> {
+  /// ----------------- State Variables and Methods ----------------- ///
   late TextEditingController _emailController;
   late TextEditingController _passwordController;
   late TextEditingController _confirmPasswordController;
@@ -50,10 +51,13 @@ class _SignUpCreenContentState extends State<SignUpCreenContent> {
 
   @override
   Widget build(BuildContext context) {
+    /// ----------------- Local Variables ----------------- ///
     final size = MediaQuery.of(context).size;
     final scaler = MediaQuery.of(context).textScaler;
     final themeExtension =
         Theme.of(context).extension<CustomThemeColorsExtension>();
+
+    /// ----------------- Widget ----------------- ///
     return SingleChildScrollView(
       child: ConstrainedBox(
         constraints: BoxConstraints(
