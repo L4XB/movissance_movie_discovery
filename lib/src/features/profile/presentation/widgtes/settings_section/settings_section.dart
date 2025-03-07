@@ -20,11 +20,13 @@ class SettingsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// ----------------- Local Variables ----------------- ///
     final size = MediaQuery.of(context).size;
     final textScaler = MediaQuery.of(context).textScaler;
     final themeExtension =
         Theme.of(context).extension<CustomThemeColorsExtension>();
 
+    /// ----------------- Widget ----------------- ///
     return Center(
       child: Material(
         elevation: 3,

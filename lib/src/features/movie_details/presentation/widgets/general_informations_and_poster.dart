@@ -13,6 +13,7 @@ class GeneralInformationsAndPoster extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// ----------------- Widget ----------------- ///
     return BlocBuilder<MovieDetailsCubit, MovieDetailsState>(
       builder: (context, state) {
         if (state is MovieDetailsLoading) {

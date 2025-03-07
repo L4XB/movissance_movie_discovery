@@ -24,9 +24,12 @@ class HomeScreenContent extends StatefulWidget {
 class _HomeScreenContentState extends State<HomeScreenContent> {
   @override
   Widget build(BuildContext context) {
+    /// ----------------- Local Variables ----------------- ///
     final themeExtension =
         Theme.of(context).extension<CustomThemeColorsExtension>();
     final size = MediaQuery.of(context).size;
+
+    /// ----------------- Widget ----------------- ///
     return RefreshIndicator(
       backgroundColor: themeExtension?.overlayElementBackgroundColor,
       color: themeExtension?.primaryColor,

@@ -16,9 +16,12 @@ class Favourites extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// ----------------- Local Variables ----------------- ///
     final size = MediaQuery.of(context).size;
     final themeExtension =
         Theme.of(context).extension<CustomThemeColorsExtension>();
+
+    /// ----------------- Widget ----------------- ///
     return BlocListener<ConnectivityCubit, ConnectivityState>(
       listener: (context, state) {
         if (state is ConnectivityDisconnected) {

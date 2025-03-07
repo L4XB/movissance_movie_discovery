@@ -11,9 +11,12 @@ class AddToFavouriesActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// ----------------- Local Variables ----------------- ///
     final scaler = MediaQuery.of(context).textScaler;
     final themeExtension =
         Theme.of(context).extension<CustomThemeColorsExtension>();
+
+    /// ----------------- Widget ----------------- ///
     return BlocBuilder<MovieDetailsCubit, MovieDetailsState>(
       builder: (context, movieDetailsState) {
         if (movieDetailsState is MovieDetailsLoaded) {

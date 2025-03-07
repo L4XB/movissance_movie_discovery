@@ -8,7 +8,10 @@ class MoviePoster extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// ----------------- Local Variables ----------------- ///
     final size = MediaQuery.of(context).size;
+
+    /// ----------------- Widget ----------------- ///
     return Container(
       height: size.height * 0.294,
       width: double.infinity,

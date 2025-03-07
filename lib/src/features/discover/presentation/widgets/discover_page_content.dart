@@ -13,6 +13,7 @@ class DiscoverPageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// ----------------- Widget ----------------- ///
     return BlocBuilder<SwiperContentCubit, SwiperContentState>(
       builder: (context, state) {
         if (state is SwiperContentLoading) {

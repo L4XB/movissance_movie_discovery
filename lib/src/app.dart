@@ -33,7 +33,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /// bloc provider for all the blocs in the app
+    /// ----------------- Widget ----------------- ///
     return MultiBlocProvider(
       providers: [
         BlocProvider<HomeGenreCubit>(

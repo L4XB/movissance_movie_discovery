@@ -22,6 +22,7 @@ class DeleteAccountTile extends StatefulWidget {
 }
 
 class _DeleteAccountTileState extends State<DeleteAccountTile> {
+  /// ----------------- State Variables and Methods ----------------- ///
   late TextEditingController _passwordRepeatController;
 
   @override
@@ -38,10 +39,13 @@ class _DeleteAccountTileState extends State<DeleteAccountTile> {
 
   @override
   Widget build(BuildContext context) {
+    /// ----------------- Local Variables ----------------- ///
     final size = MediaQuery.of(context).size;
     final themeExtension =
         Theme.of(context).extension<CustomThemeColorsExtension>();
     final textScaler = MediaQuery.of(context).textScaler;
+
+    /// ----------------- Widget ----------------- ///
     return Padding(
       padding: EdgeInsets.symmetric(vertical: size.height * 0.0055),
       child: ListTile(

@@ -10,10 +10,13 @@ class MovieDetailsRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// ----------------- Local Variables ----------------- ///
     final size = MediaQuery.of(context).size;
     final scaler = MediaQuery.of(context).textScaler;
     final themeExtension =
         Theme.of(context).extension<CustomThemeColorsExtension>();
+
+    /// ----------------- Widget ----------------- ///
     return Padding(
       padding: EdgeInsets.only(left: size.width * 0.382),
       child: Row(

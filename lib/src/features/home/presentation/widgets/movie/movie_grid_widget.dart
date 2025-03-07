@@ -11,9 +11,12 @@ class MovieGridWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// ----------------- Local Variables ----------------- ///
     final size = MediaQuery.of(context).size;
     final themeExtension =
         Theme.of(context).extension<CustomThemeColorsExtension>();
+
+    /// ----------------- Widget ----------------- ///
     return Padding(
       padding: EdgeInsets.only(top: size.height * 0.0475),
       child: BlocBuilder<HomeMovieCubit, HomeMovieState>(

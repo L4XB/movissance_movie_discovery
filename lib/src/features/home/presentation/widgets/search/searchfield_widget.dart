@@ -12,6 +12,7 @@ class SearchFieldWidget extends StatefulWidget {
 }
 
 class _SearchFieldWidgetState extends State<SearchFieldWidget> {
+  /// ----------------- State Variables and methods ----------------- ///
   late TextEditingController _searchController;
 
   @override
@@ -28,9 +29,12 @@ class _SearchFieldWidgetState extends State<SearchFieldWidget> {
 
   @override
   Widget build(BuildContext context) {
+    /// ----------------- Local Variables ----------------- ///
     final size = MediaQuery.of(context).size;
     final themeExtension =
         Theme.of(context).extension<CustomThemeColorsExtension>();
+
+    /// ----------------- Widget ----------------- ///
     return Padding(
       padding: EdgeInsets.symmetric(
           horizontal: size.width * 0.045, vertical: size.height * 0.012),

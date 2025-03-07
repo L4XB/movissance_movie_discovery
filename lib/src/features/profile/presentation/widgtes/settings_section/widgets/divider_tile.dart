@@ -13,6 +13,7 @@ class DividerTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// ----------------- Widget ----------------- ///
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: size.width * 0.025),
       child: Divider(

@@ -10,10 +10,13 @@ class ReviewBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// ----------------- Local Variables ----------------- ///
     final size = MediaQuery.of(context).size;
     final scaler = MediaQuery.of(context).textScaler;
     final themeExtension =
         Theme.of(context).extension<CustomThemeColorsExtension>();
+
+    /// ----------------- Widget ----------------- ///
     return Padding(
       padding: EdgeInsets.symmetric(
           vertical: size.height * 0.009, horizontal: size.width * 0.04),

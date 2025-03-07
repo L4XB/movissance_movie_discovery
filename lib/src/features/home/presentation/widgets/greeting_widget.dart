@@ -14,8 +14,11 @@ class GreetingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// ----------------- Local Variables ----------------- ///
     final size = MediaQuery.of(context).size;
     final scaler = MediaQuery.of(context).textScaler;
+
+    /// ----------------- Widget ----------------- ///
     return BlocProvider(
       create: (context) => UserDataCubit(),
       child: BlocBuilder<UserDataCubit, User?>(

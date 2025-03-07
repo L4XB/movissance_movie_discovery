@@ -5,6 +5,7 @@ class SnackBars {
   /// show a error snackbar
   /// [message] the message to be displayed
   /// [context] the context to show the snackbar
+  /// [isWarning] if true, the snackbar will be shown in warning color
   static void showStatusSnackBar(String message, BuildContext context,
       {bool isWarning = false}) {
     final themeExtension =
@@ -23,6 +24,7 @@ class SnackBars {
       backgroundColor: isWarning
           ? themeExtension?.warningColor
           : themeExtension?.successColor,
+      behavior: SnackBarBehavior.floating,
     );
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }

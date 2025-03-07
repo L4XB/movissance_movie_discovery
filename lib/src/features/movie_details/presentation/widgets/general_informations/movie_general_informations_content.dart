@@ -12,12 +12,20 @@ class MovieGeneralInformationsContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// ----------------- Widget ----------------- ///
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
+        // movie poster
         MoviePoster(backdropPath: movie.backdropPath),
+
+        // movie title
         MovieTitle(title: movie.title),
+
+        // movie details row
         MovieDetailsRow(movie: movie),
+
+        // movie rating row
         MovieRatingRow(movie: movie),
       ],
     );

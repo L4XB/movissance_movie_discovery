@@ -19,12 +19,16 @@ class AccountBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// ----------------- Local Variables ----------------- ///
     final size = MediaQuery.of(context).size;
     final textScaler = MediaQuery.of(context).textScaler;
+
+    /// ----------------- Widget ----------------- ///
     return BlocProvider(
       create: (context) => UserDataCubit(),
       child: BlocBuilder<UserDataCubit, User?>(
         builder: (context, state) {
+          /// ----------------- Local Cubit Variables ----------------- ///
           final currentUser = state;
           final displayName = currentUser?.displayName ?? "";
           final imagePath = currentUser?.photoURL;
@@ -33,6 +37,7 @@ class AccountBar extends StatelessWidget {
           final themeExtension =
               Theme.of(context).extension<CustomThemeColorsExtension>();
 
+          /// ----------------- Widget ----------------- ///
           return Center(
             child: Material(
               elevation: 3,

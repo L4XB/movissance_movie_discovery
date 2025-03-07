@@ -20,6 +20,7 @@ class ResetPasswordTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// ----------------- Widget ----------------- ///
     return Padding(
       padding: EdgeInsets.symmetric(vertical: size.height * 0.0055),
       child: GestureDetector(

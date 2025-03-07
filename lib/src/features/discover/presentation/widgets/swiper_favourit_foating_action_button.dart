@@ -11,9 +11,12 @@ class SwiperFavouritFoatingActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// ----------------- Local Variables ----------------- ///
     final scaler = MediaQuery.of(context).textScaler;
     final themeExtension =
         Theme.of(context).extension<CustomThemeColorsExtension>();
+
+    /// ----------------- Widget ----------------- ///
     return BlocBuilder<SwiperContentCubit, SwiperContentState>(
       builder: (context, state) {
         if (state is SwiperContentLoaded) {
