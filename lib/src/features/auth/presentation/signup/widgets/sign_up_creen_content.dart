@@ -154,7 +154,8 @@ class _SignUpCreenContentState extends State<SignUpCreenContent> {
                             FirebaseErrorTextConverter.convertFirebaseError(
                                 e.toString());
                         if (context.mounted) {
-                          SnackBars.showErrorSnackbar(errorText, context);
+                          SnackBars.showStatusSnackBar(errorText, context,
+                              isWarning: true);
                         }
                       }
                     },

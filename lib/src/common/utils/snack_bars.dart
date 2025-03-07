@@ -5,7 +5,8 @@ class SnackBars {
   /// show a error snackbar
   /// [message] the message to be displayed
   /// [context] the context to show the snackbar
-  static void showErrorSnackbar(String message, BuildContext context) {
+  static void showStatusSnackBar(String message, BuildContext context,
+      {bool isWarning = false}) {
     final themeExtension =
         Theme.of(context).extension<CustomThemeColorsExtension>();
     final scaler = MediaQuery.of(context).textScaler;
@@ -16,9 +17,12 @@ class SnackBars {
         style: TextStyle(
           color: Colors.white,
           fontSize: scaler.scale(16),
+          fontWeight: FontWeight.bold,
         ),
       ),
-      backgroundColor: themeExtension?.warningColor,
+      backgroundColor: isWarning
+          ? themeExtension?.warningColor
+          : themeExtension?.successColor,
     );
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }

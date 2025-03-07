@@ -29,6 +29,27 @@ class _PasswordResetScreenState extends State<PasswordResetScreen> {
     super.dispose();
   }
 
+  void resetPassword(BuildContext context) async {
+    try {
+      if (formKey.currentState!.validate()) {
+        await widget.authRepository.resetPassword(emailController.text);
+        if (context.mounted) {
+          Navigator.pop(context);
+        }
+        if (context.mounted) {
+          SnackBars.showStatusSnackBar(
+              'Password reset link has been sent to your email', context);
+        }
+      }
+    } catch (e) {
+      final errorText =
+          FirebaseErrorTextConverter.convertFirebaseError(e.toString());
+      if (context.mounted) {
+        SnackBars.showStatusSnackBar(errorText, context, isWarning: true);
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     /// ----------------- Local Variables ----------------- ///
@@ -101,24 +122,7 @@ class _PasswordResetScreenState extends State<PasswordResetScreen> {
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: () async {
-                          try {
-                            if (formKey.currentState!.validate()) {
-                              await widget.authRepository
-                                  .resetPassword(emailController.text);
-                              if (context.mounted) {
-                                Navigator.pop(context);
-                              }
-                            }
-                          } catch (e) {
-                            final errorText =
-                                FirebaseErrorTextConverter.convertFirebaseError(
-                                    e.toString());
-                            if (context.mounted) {
-                              SnackBars.showErrorSnackbar(errorText, context);
-                            }
-                          }
-                        },
+                        onPressed: () => resetPassword(context),
                         style: ElevatedButton.styleFrom(
                           foregroundColor: themeExtension?.contrastTextColor,
                           backgroundColor: themeExtension?.primaryColor,

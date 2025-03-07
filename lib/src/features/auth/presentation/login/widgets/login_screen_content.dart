@@ -106,7 +106,8 @@ class _LoginScreenContentState extends State<LoginScreenContent> {
                             final errorText =
                                 FirebaseErrorTextConverter.convertFirebaseError(
                                     e.toString());
-                            SnackBars.showErrorSnackbar(errorText, context);
+                            SnackBars.showStatusSnackBar(errorText, context,
+                                isWarning: true);
                           }
                         }
                       },

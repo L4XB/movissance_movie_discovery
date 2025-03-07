@@ -134,7 +134,8 @@ class _DeleteAccountTileState extends State<DeleteAccountTile> {
                                 e.toString());
                         if (context.mounted) {
                           Navigator.of(context).pop();
-                          SnackBars.showErrorSnackbar(errorText, context);
+                          SnackBars.showStatusSnackBar(errorText, context,
+                              isWarning: true);
                         }
                       }
                     },

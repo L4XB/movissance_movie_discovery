@@ -33,6 +33,7 @@ final darkTheme = ThemeData(
       discoverPageOverlayColorTwo: Colors.black.withAlpha(51),
       backButtonBackgroundColor: Color.fromARGB(177, 50, 50, 50),
       warningColor: Colors.red,
+      successColor: const Color.fromARGB(255, 82, 192, 86),
     ),
   ],
 );
