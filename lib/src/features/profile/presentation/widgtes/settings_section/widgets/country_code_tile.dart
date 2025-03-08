@@ -83,7 +83,7 @@ class CountryCodeTile extends StatelessWidget {
                   ),
                   dropdownColor:
                       themeExtension?.secondaryOverlayElementBackgroundColor,
-                  items: <String>['US', 'DE', 'FR', 'GB', 'IN']
+                  items: <String>['US', 'DE', 'FR', 'GB', 'IT', 'ES']
                       .map((String value) {
                     return DropdownMenuItem<String>(
                       value: value,

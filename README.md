@@ -33,6 +33,8 @@ Welcome to **Movissance**, the ultimate movie recommendation app! This app helps
     flutter pub get
     ```
 
+4. Get your API Key from https://www.themoviedb.org/ and enter it into the config.dart File.
+
 ## Usage
 
 Start the app with the following command:

@@ -36,6 +36,7 @@ class FirebaseMessagingService {
           notification.title,
           notification.body,
           NotificationDetails(
+            /// not used on iOS
             android: AndroidNotificationDetails(
               'channel_id',
               'hannel_name',
@@ -70,6 +71,7 @@ class FirebaseMessagingService {
       'Discover new Movies or just drop by again!',
       scheduledDate,
       const NotificationDetails(
+        /// not used on iOS
         android: AndroidNotificationDetails(
           'channel_id',
           'channel_name',
