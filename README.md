@@ -68,6 +68,25 @@ Contributions are welcome! Please create a pull request or open an issue to repo
 
 This app is licensed under the MIT License. For more information, see the LICENSE file.
 
+## Screenshots
+
+Here are some screenshots of the app:
+
+- **Home Screen**  
+  ![Home Screen](assets/readme/home_screen.png)
+
+- **Favourites Screen**  
+  ![Favourites Screen](assets/readme/favourites_screen.png)
+
+- **Movie Details Screen**  
+  ![Movie Details Screen](assets/readme/movie_details_screen.png)
+
+- **Profile Screen**  
+  ![Profile Screen](assets/readme/profile_screen.png)
+
+- **Swiper Screen**  
+  ![Swiper Screen](assets/readme/swiper_screen.png)
+
 ## Contact
 
 For questions or suggestions, please contact [support.movissance.movies@lukasbuck.com](mailto:support.movissance.movies@lukasbuck.com).
