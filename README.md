@@ -35,6 +35,17 @@ Welcome to **Movissance**, the ultimate movie recommendation app! This app helps
 
 4. Get your API Key from https://www.themoviedb.org/ and enter it into the config.dart File.
 
+
+## Firebase Setup
+
+This project requires Firebase. To set up Firebase:
+
+1. Install the [FlutterFire CLI](https://firebase.flutter.dev/docs/cli/).
+2. Run `flutterfire configure` to generate the `firebase_options.dart` file.
+3. Add the following files to the project:
+   - `google-services.json` (Android)
+   - `GoogleService-Info.plist` (iOS/macOS)
+
 ## Usage
 
 Start the app with the following command:

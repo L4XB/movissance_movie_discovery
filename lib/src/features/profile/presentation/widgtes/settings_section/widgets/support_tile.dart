@@ -23,7 +23,7 @@ class SupportTile extends StatelessWidget {
         onTap: () async {
           final Uri emailLaunchUri = Uri(
             scheme: 'mailto',
-            path: 'support.movissance.movies@lukasbuck.com',
+            path: 'youmailhere',
           );
           if (await canLaunchUrl(emailLaunchUri)) {
             await launchUrl(emailLaunchUri);
